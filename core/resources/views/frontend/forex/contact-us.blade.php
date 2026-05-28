@@ -1,18 +1,19 @@
 @extends('frontend.forex.layouts.app')
 
-@section('title', 'Contact Us — Core Trading Solutions')
+@section('title', 'Contact Us — SMART BINARY ZONE')
 
 @section('content')
 <!-- ==================== HERO ==================== -->
 <section style="position:relative;min-height:45vh;display:flex;align-items:center;padding-top:6rem;padding-bottom:3rem;overflow:hidden">
     <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
     <div class="grid-bg" style="position:absolute;inset:0;opacity:0.4;pointer-events:none"></div>
     <div style="position:relative;z-index:10;max-width:80rem;margin:0 auto;padding-left:1rem;padding-right:1rem;text-align:center">
         <div class="badge animate-fade-in-up"><span class="badge-dot"></span> Get in Touch</div>
-        <h1 style="font-family:'Bebas Neue','Oswald',sans-serif;font-size:3rem;font-weight:700;color:#EAEAEA;margin-bottom:1rem;animation:fadeInUp 0.6s ease 0.1s both;line-height:1.1">
+        <h1 style="font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:#EAEAEA;margin-bottom:0.75rem;animation:fadeInUp 0.6s ease 0.1s both;line-height:1.1">
             Let's <span class="gradient-text">Connect</span>
         </h1>
-        <p style="color:rgba(234,234,234,0.6);font-size:1.125rem;max-width:36rem;margin:0 auto;animation:fadeInUp 0.6s ease 0.2s both;line-height:1.6">
+        <p style="color:rgba(234,234,234,0.5);font-size:1.05rem;max-width:36rem;margin:0 auto;animation:fadeInUp 0.6s ease 0.2s both;line-height:1.6">
             Have a question or need support? We're here to help you every step of the way.
         </p>
     </div>
@@ -24,10 +25,8 @@
     <div style="position:relative;z-index:10;max-width:72rem;margin:0 auto;padding-left:1rem;padding-right:1rem">
         <style>
             @media (min-width:1024px){.cont-grid{grid-template-columns:2fr 3fr}}
-            .contact-info-card{background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:1.5rem;transition:all 0.3s;cursor:default}
-            .contact-info-card:hover{border-color:rgba(0,174,239,0.3)}
-            .contact-icon-box{width:2.75rem;height:2.75rem;border-radius:0.75rem;background:rgba(0,174,239,0.1);color:#00AEEF;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s}
-            .contact-info-card:hover .contact-icon-box{transform:scale(1.1)}
+            .contact-icon-box{width:2.75rem;height:2.75rem;border-radius:0.75rem;background:rgba(0,174,239,0.1);color:#00AEEF;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+            .glass-card:hover .contact-icon-box{transform:scale(1.1)}
             .contact-input{width:100%;background:rgba(10,10,10,0.8);border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;padding:0.875rem 1rem;font-size:0.875rem;color:#EAEAEA;transition:all 0.3s;box-sizing:border-box}
             .contact-input:focus{border-color:#00AEEF;box-shadow:0 0 0 3px rgba(0,174,239,0.15);outline:none}
             .contact-label{display:block;color:rgba(234,234,234,0.6);font-size:0.75rem;font-weight:500;margin-bottom:0.375rem;text-transform:uppercase;letter-spacing:0.05em}
@@ -41,44 +40,27 @@
                     <p style="color:rgba(234,234,234,0.5);font-size:0.875rem">Reach out through any of these channels</p>
                 </div>
 
-                <div class="contact-info-card reveal stagger-1" onmouseover="this.style.borderColor='rgba(0,174,239,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <div class="contact-icon-box">
-                            <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                        </div>
-                        <div>
-                            <p style="color:#EAEAEA;font-weight:500">Telegram</p>
-                            <a href="#" style="color:rgba(234,234,234,0.5);font-size:0.875rem;text-decoration:none;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='rgba(234,234,234,0.5)'">@darktradingchannel</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-info-card reveal stagger-2" onmouseover="this.style.borderColor='rgba(0,174,239,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <div class="contact-icon-box">
-                            <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347\"/></svg>
-                        </div>
-                        <div>
-                            <p style="color:#EAEAEA;font-weight:500">WhatsApp</p>
-                            <a href="#" style="color:rgba(234,234,234,0.5);font-size:0.875rem;text-decoration:none;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='rgba(234,234,234,0.5)'">WhatsApp Channel</a>
+                <div class="glass-card tilt-card group reveal stagger-1" style="padding:1rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                     onmouseover="this.style.boxShadow='0 12px 40px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.12)'"
+                     onmouseout="this.style.boxShadow='none'">
+                    <div class="tilt-card-inner">
+                        <div style="display:flex;align-items:center;gap:1rem">
+                            <div class="contact-icon-box">
+                                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                            </div>
+                            <div>
+                                <p style="color:#EAEAEA;font-weight:500">Telegram Support Channel</p>
+                                <a href="https://t.me/SmartBinarySupport" style="color:rgba(234,234,234,0.5);font-size:0.875rem;text-decoration:none;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='rgba(234,234,234,0.5)'">@darktradingchannel</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact-info-card reveal stagger-3" onmouseover="this.style.borderColor='rgba(0,174,239,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                    <div style="display:flex;align-items:center;gap:1rem">
-                        <div class="contact-icon-box">
-                            <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
-                        </div>
-                        <div>
-                            <p style="color:#EAEAEA;font-weight:500">LinkedIn</p>
-                            <a href="#" style="color:rgba(234,234,234,0.5);font-size:0.875rem;text-decoration:none;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='rgba(234,234,234,0.5)'">/in/darktrading</a>
-                        </div>
-                    </div>
+                    <div class="tilt-card-glow"></div>
                 </div>
 
                 <!-- Response time badge -->
-                <div style="background:linear-gradient(135deg,rgba(0,255,159,0.03),transparent);border:1px solid rgba(0,255,159,0.1);border-radius:1rem;padding:1.5rem" class="reveal stagger-4">
+                <div class="glass-card reveal stagger-4" style="padding:1.5rem;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                     onmouseover="this.style.boxShadow='0 0 0 1px rgba(0,255,159,0.15)'"
+                     onmouseout="this.style.boxShadow='none'">
                     <div style="display:flex;align-items:center;gap:0.75rem">
                         <div style="width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(0,255,159,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
                             <svg style="width:1.25rem;height:1.25rem;color:#00FF9F" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -93,7 +75,9 @@
 
             <!-- Right - Contact Form -->
             <div>
-                <div style="background:rgba(17,17,17,0.6);border:1px solid #2a2a2a;border-radius:1rem;padding:1.5rem;transition:all 0.3s" class="reveal stagger-2" onmouseover="this.style.borderColor='rgba(0,174,239,0.2)'" onmouseout="this.style.borderColor='#2a2a2a'">
+                <div class="glass-card reveal stagger-2" style="padding:1.5rem;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                     onmouseover="this.style.boxShadow='0 20px 60px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,174,239,0.12)'"
+                     onmouseout="this.style.boxShadow='none'">
                     <style>@media (min-width:640px){.cont-form-p{padding:2rem}}</style>
                     <h2 style="font-size:1.5rem;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;color:#EAEAEA;margin-bottom:0.25rem">Send a Message</h2>
                     <p style="color:rgba(234,234,234,0.4);font-size:0.875rem;margin-bottom:1.5rem">Fill out the form and we'll get back to you</p>
@@ -145,29 +129,44 @@
             <h2 style="font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;color:#EAEAEA;margin-bottom:0">Support <span class="gradient-text">Hours</span></h2>
         </div>
         <div style="display:grid;grid-template-columns:1fr;gap:1rem;max-width:48rem;margin:0 auto" class="cont-hours">
-            <div style="background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:1.5rem;text-align:center;transition:all 0.3s;animation-delay:0.1s" class="reveal" onmouseover="this.style.borderColor='rgba(0,174,239,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                <div style="width:3rem;height:3rem;margin:0 auto 0.75rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.1),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                    <svg style="width:1.5rem;height:1.5rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+            <div class="glass-card tilt-card group reveal stagger-1" style="padding:1.5rem;text-align:center;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.boxShadow='0 12px 40px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.12)'"
+                 onmouseout="this.style.boxShadow='none'">
+                <div class="tilt-card-inner">
+                    <div style="width:3rem;height:3rem;margin:0 auto 0.75rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
+                        <svg style="width:1.5rem;height:1.5rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+                    </div>
+                    <h3 style="color:#EAEAEA;font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Weekdays</h3>
+                    <p style="color:rgba(234,234,234,0.4);font-size:0.75rem;margin-bottom:0.25rem">Mon - Fri</p>
+                    <p style="color:#00AEEF;font-size:0.875rem;font-weight:500">9:00 AM - 6:00 PM</p>
                 </div>
-                <h3 style="color:#EAEAEA;font-weight:600;font-size:0.875rem;margin-bottom:0.25rem">Weekdays</h3>
-                <p style="color:rgba(234,234,234,0.5);font-size:0.75rem">Mon - Fri</p>
-                <p style="color:#00AEEF;font-size:0.875rem;font-weight:500">9:00 AM - 6:00 PM</p>
+                <div class="tilt-card-glow"></div>
             </div>
-            <div style="background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:1.5rem;text-align:center;transition:all 0.3s;animation-delay:0.2s" class="reveal" onmouseover="this.style.borderColor='rgba(0,174,239,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                <div style="width:3rem;height:3rem;margin:0 auto 0.75rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.1),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                    <svg style="width:1.5rem;height:1.5rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="glass-card tilt-card group reveal stagger-2" style="padding:1.5rem;text-align:center;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.boxShadow='0 12px 40px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.12)'"
+                 onmouseout="this.style.boxShadow='none'">
+                <div class="tilt-card-inner">
+                    <div style="width:3rem;height:3rem;margin:0 auto 0.75rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
+                        <svg style="width:1.5rem;height:1.5rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 style="color:#EAEAEA;font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;transition:color 0.3s" onmouseover="this.style.color='#00FF9F'" onmouseout="this.style.color='#EAEAEA'">Weekends</h3>
+                    <p style="color:rgba(234,234,234,0.4);font-size:0.75rem;margin-bottom:0.25rem">Sat - Sun</p>
+                    <p style="color:#00FF9F;font-size:0.875rem;font-weight:500">10:00 AM - 4:00 PM</p>
                 </div>
-                <h3 style="color:#EAEAEA;font-weight:600;font-size:0.875rem;margin-bottom:0.25rem">Weekends</h3>
-                <p style="color:rgba(234,234,234,0.5);font-size:0.75rem">Sat - Sun</p>
-                <p style="color:#00FF9F;font-size:0.875rem;font-weight:500">10:00 AM - 4:00 PM</p>
+                <div class="tilt-card-glow"></div>
             </div>
-            <div style="background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:1.5rem;text-align:center;transition:all 0.3s;animation-delay:0.3s" class="reveal" onmouseover="this.style.borderColor='rgba(0,174,239,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                <div style="width:3rem;height:3rem;margin:0 auto 0.75rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.1),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                    <svg style="width:1.5rem;height:1.5rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <div class="glass-card tilt-card group reveal stagger-3" style="padding:1.5rem;text-align:center;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.boxShadow='0 12px 40px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.12)'"
+                 onmouseout="this.style.boxShadow='none'">
+                <div class="tilt-card-inner">
+                    <div style="width:3rem;height:3rem;margin:0 auto 0.75rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
+                        <svg style="width:1.5rem;height:1.5rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 style="color:#EAEAEA;font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Emergency</h3>
+                    <p style="color:rgba(234,234,234,0.4);font-size:0.75rem;margin-bottom:0.25rem">24/7 Support</p>
+                    <p style="color:#00AEEF;font-size:0.875rem;font-weight:500">Priority Channel</p>
                 </div>
-                <h3 style="color:#EAEAEA;font-weight:600;font-size:0.875rem;margin-bottom:0.25rem">Emergency</h3>
-                <p style="color:rgba(234,234,234,0.5);font-size:0.75rem">24/7 Support</p>
-                <p style="color:#00AEEF;font-size:0.875rem;font-weight:500">Priority Channel</p>
+                <div class="tilt-card-glow"></div>
             </div>
         </div>
     </div>
@@ -237,7 +236,7 @@ function handleContactSubmit(e) {
         body: JSON.stringify({
             name: document.getElementById('contactName').value.trim(),
             email: document.getElementById('contactEmail').value.trim(),
-            subject: document.getElementById('contactSubject').value.trim(),
+            subject: (document.getElementById('contactSubject')?.value || '').trim(),
             message: document.getElementById('contactMessage').value.trim()
         })
     })

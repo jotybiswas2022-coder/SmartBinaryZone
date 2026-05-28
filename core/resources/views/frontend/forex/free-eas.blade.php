@@ -1,6 +1,6 @@
 @extends('frontend.forex.layouts.app')
 
-@section('title', 'Free Expert Advisors — Core Trading Solutions')
+@section('title', 'Free Expert Advisors — SMART BINARY ZONE')
 
 @section('content')
 <!-- ==================== HERO ==================== -->

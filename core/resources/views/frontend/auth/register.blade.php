@@ -4,240 +4,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Create Account — Connectly</title>
+    <meta name="theme-color" content="#05050f">
+    <meta name="color-scheme" content="dark">
+    <title>Create Account — SMART BINARY ZONE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="cr-page">
+<div class="de-page">
 
     {{-- Background Orbs --}}
-    <div class="cr-orb cr-orb-1"></div>
-    <div class="cr-orb cr-orb-2"></div>
-    <div class="cr-orb cr-orb-3"></div>
-    <div class="cr-orb cr-orb-4"></div>
+    <div class="de-orb de-orb-1"></div>
+    <div class="de-orb de-orb-2"></div>
+    <div class="de-orb de-orb-3"></div>
+    <div class="de-orb de-orb-4"></div>
 
     {{-- Grid Overlay --}}
-    <div class="cr-grid"></div>
+    <div class="de-grid"></div>
 
     {{-- Floating Particles --}}
-    <div class="cr-particles" id="crParticles"></div>
+    <div class="de-particles" id="deParticles"></div>
 
     {{-- Decorative Bubbles --}}
-    <div class="cr-bubble cr-bubble-1">
-        <div class="cr-bubble-inner">
-            <span class="cr-b-dot" style="--clr:#2563EB;"></span>
-            <span class="cr-b-dot" style="--clr:#60A5FA;"></span>
-            <span class="cr-b-dot" style="--clr:#1E40AF;"></span>
+    <div class="de-bubble de-bubble-1">
+        <div class="de-bubble-inner">
+            <span class="de-bubble-dot" style="--clr:#00c8ff;"></span>
+            <span class="de-bubble-dot" style="--clr:#ff2d78;"></span>
+            <span class="de-bubble-dot" style="--clr:#0099ff;"></span>
         </div>
     </div>
-    <div class="cr-bubble cr-bubble-2">
-        <div class="cr-b-avatar"></div>
-        <div class="cr-b-lines">
-            <span class="cr-b-line"></span>
-            <span class="cr-b-line" style="width:55%;"></span>
+    <div class="de-bubble de-bubble-2">
+        <div class="de-bubble-avatar"></div>
+        <div class="de-bubble-lines">
+            <span class="de-bubble-line"></span>
+            <span class="de-bubble-line" style="width:55%;"></span>
         </div>
     </div>
-    <div class="cr-bubble cr-bubble-3">
-        <i class="bi bi-lightning-fill" style="color:#2563EB;font-size:16px;"></i>
-        <span>Fast & secure</span>
+    <div class="de-bubble de-bubble-3">
+        <i class="bi bi-lightning-fill" style="color:#ff2d78;font-size:16px;"></i>
+        <span>Lightning fast & secure</span>
     </div>
 
     {{-- Main Layout --}}
-    <div class="cr-wrapper">
+    <div class="de-wrapper">
 
         {{-- Left: Brand Section --}}
-        <div class="cr-brand">
-            <div class="cr-brand-inner">
-                <div class="cr-badge">Join Connectly</div>
+        <div class="de-brand">
+            <div class="de-brand-inner">
+                <div class="de-badge">Join SMART BINARY ZONE</div>
 
-                <a href="/" class="cr-logo">
-                    <div class="cr-logo-icon"><i class="bi bi-diagram-3-fill"></i></div>
-                    <span class="cr-logo-text">Connectly</span>
+                <a href="/" class="de-logo">
+                    <div class="de-logo-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <span class="de-logo-text"><span style="color:#ffffff">SMART</span> <span style="color:#00c8ff">BINARY</span> <span style="color:#ff2d78">ZONE</span></span>
                 </a>
 
-                <p class="cr-tagline">Start connecting with people who matter.</p>
+                <p class="de-tagline">Start trading smarter.</p>
 
                 {{-- Benefits --}}
-                <div class="cr-benefits">
-                    <div class="cr-benefit">
-                        <div class="cr-benefit-icon"><i class="bi bi-chat-dots-fill"></i></div>
-                        <div class="cr-benefit-info">
-                            <span class="cr-benefit-title">Real-time Chat</span>
-                            <span class="cr-benefit-desc">Instant messaging with friends</span>
+                <div class="de-benefits">
+                    <div class="de-benefit">
+                        <div class="de-benefit-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                        <div class="de-benefit-info">
+                            <span class="de-benefit-title">AI-Powered</span>
+                            <span class="de-benefit-desc">Advanced trading algorithms</span>
                         </div>
                     </div>
-                    <div class="cr-benefit">
-                        <div class="cr-benefit-icon"><i class="bi bi-shield-check"></i></div>
-                        <div class="cr-benefit-info">
-                            <span class="cr-benefit-title">Private & Secure</span>
-                            <span class="cr-benefit-desc">End-to-end encrypted always</span>
+                    <div class="de-benefit">
+                        <div class="de-benefit-icon"><i class="bi bi-shield-check"></i></div>
+                        <div class="de-benefit-info">
+                            <span class="de-benefit-title">99.9% Precision</span>
+                            <span class="de-benefit-desc">Backtest-verified accuracy</span>
                         </div>
                     </div>
-                    <div class="cr-benefit">
-                        <div class="cr-benefit-icon"><i class="bi bi-people-fill"></i></div>
-                        <div class="cr-benefit-info">
-                            <span class="cr-benefit-title">Community</span>
-                            <span class="cr-benefit-desc">Share posts, react & comment</span>
+                    <div class="de-benefit">
+                        <div class="de-benefit-icon"><i class="bi bi-people-fill"></i></div>
+                        <div class="de-benefit-info">
+                            <span class="de-benefit-title">1M+ Traders</span>
+                            <span class="de-benefit-desc">Trusted worldwide community</span>
                         </div>
                     </div>
                 </div>
 
-                {{-- Testimonial --}}
-                <div class="cr-testimonial">
-                    <div class="cr-test-avatars">
-                        <div class="cr-test-av" style="background:#2563EB;">A</div>
-                        <div class="cr-test-av" style="background:#60A5FA;margin-left:-12px;">S</div>
-                        <div class="cr-test-av" style="background:#1E40AF;margin-left:-12px;">R</div>
+                {{-- Social Proof --}}
+                <div class="de-social-proof">
+                    <div class="de-sp-avatars">
+                        <div class="de-sp-av" style="background:#00c8ff;">M</div>
+                        <div class="de-sp-av" style="background:#ff2d78;margin-left:-12px;">K</div>
+                        <div class="de-sp-av" style="background:#0099ff;margin-left:-12px;">J</div>
                     </div>
-                    <div class="cr-test-text">
-                        <span>Join <strong>10,000+</strong> active users already connecting!</span>
+                    <div class="de-sp-text">
+                        <span>Join <strong>1M+</strong> traders already earning with SMART BINARY ZONE!</span>
                     </div>
                 </div>
             </div>
         </div>
 
         {{-- Right: Register Card --}}
-        <div class="cr-card-wrap">
-            <div class="cr-card">
+        <div class="de-card-wrap">
+            <div class="de-card">
 
                 {{-- Card Header --}}
-                <div class="cr-card-hd">
-                    <div class="cr-card-ico">
+                <div class="de-card-hd">
+                    <div class="de-card-ico">
                         <i class="bi bi-person-plus-fill"></i>
                     </div>
-                    <h2 class="cr-card-title">Create Account</h2>
-                    <p class="cr-card-sub">Fill in your details to get started.</p>
+                    <h2 class="de-card-title">Create Account</h2>
+                    <p class="de-card-sub">Fill in your details to get started.</p>
                 </div>
 
                 {{-- Card Body --}}
-                <div class="cr-card-body">
-                    <form method="POST" action="{{ route('register') }}" id="crForm" autocomplete="off" novalidate>
+                <div class="de-card-body">
+                    <form method="POST" action="{{ route('register') }}" id="deForm" autocomplete="off" novalidate>
                         @csrf
 
                         {{-- Validation Errors --}}
                         @if ($errors->any())
-                            <input type="hidden" id="crErrors" value='{{ json_encode($errors->all()) }}'>
+                            <input type="hidden" id="deErrors" value='{{ json_encode($errors->all()) }}'>
                         @endif
 
                         @if (session('success'))
-                            <input type="hidden" id="crSuccess" value="{{ session('success') }}">
+                            <input type="hidden" id="deSuccess" value="{{ session('success') }}">
                         @endif
 
                         {{-- Name --}}
-                        <div class="cr-fg">
-                            <label class="cr-label" for="crName">Full Name</label>
-                            <div class="cr-iw">
-                                <i class="bi bi-person-fill cr-ico"></i>
-                                <input id="crName" type="text"
-                                       class="cr-input @error('name') cr-err @enderror"
+                        <div class="de-fg">
+                            <label class="de-label" for="deName">Full Name</label>
+                            <div class="de-iw">
+                                <i class="bi bi-person-fill de-ico"></i>
+                                <input id="deName" type="text"
+                                       class="de-input @error('name') de-err @enderror"
                                        name="name" value="{{ old('name') }}"
                                        placeholder="John Doe"
                                        required autocomplete="off" autofocus>
-                                <div class="cr-glow"></div>
+                                <div class="de-glow"></div>
                             </div>
-                            @error('name')<span class="cr-err-txt">{{ $message }}</span>@enderror
+                            @error('name')<span class="de-err-txt">{{ $message }}</span>@enderror
                         </div>
 
                         {{-- Email --}}
-                        <div class="cr-fg">
-                            <label class="cr-label" for="crEmail">Email</label>
-                            <div class="cr-iw">
-                                <i class="bi bi-envelope-fill cr-ico"></i>
-                                <input id="crEmail" type="email"
-                                       class="cr-input @error('email') cr-err @enderror"
+                        <div class="de-fg">
+                            <label class="de-label" for="deEmail">Email</label>
+                            <div class="de-iw">
+                                <i class="bi bi-envelope-fill de-ico"></i>
+                                <input id="deEmail" type="email"
+                                       class="de-input @error('email') de-err @enderror"
                                        name="email" value="{{ old('email') }}"
                                        placeholder="you@example.com"
                                        required autocomplete="off">
-                                <div class="cr-glow"></div>
+                                <div class="de-glow"></div>
                             </div>
-                            @error('email')<span class="cr-err-txt">{{ $message }}</span>@enderror
+                            @error('email')<span class="de-err-txt">{{ $message }}</span>@enderror
                         </div>
 
                         {{-- Password --}}
-                        <div class="cr-fg">
-                            <label class="cr-label" for="crPass">Password</label>
-                            <div class="cr-iw">
-                                <i class="bi bi-lock-fill cr-ico"></i>
-                                <input id="crPass" type="password"
-                                       class="cr-input @error('password') cr-err @enderror"
+                        <div class="de-fg">
+                            <label class="de-label" for="dePass">Password</label>
+                            <div class="de-iw">
+                                <i class="bi bi-lock-fill de-ico"></i>
+                                <input id="dePass" type="password"
+                                       class="de-input @error('password') de-err @enderror"
                                        name="password"
                                        placeholder="Create a strong password"
                                        required autocomplete="off">
-                                <button type="button" class="cr-pw-tog" id="crPwTog1" tabindex="-1">
+                                <button type="button" class="de-pw-tog" id="dePwTog1" tabindex="-1">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
-                                <div class="cr-glow"></div>
+                                <div class="de-glow"></div>
                             </div>
-                            @error('password')<span class="cr-err-txt">{{ $message }}</span>@enderror
+                            @error('password')<span class="de-err-txt">{{ $message }}</span>@enderror
 
                             {{-- Password Strength --}}
-                            <div class="cr-ps">
-                                <div class="cr-ps-dots" id="crPsDots">
-                                    <span class="cr-ps-d"></span>
-                                    <span class="cr-ps-d"></span>
-                                    <span class="cr-ps-d"></span>
-                                    <span class="cr-ps-d"></span>
-                                    <span class="cr-ps-d"></span>
+                            <div class="de-ps">
+                                <div class="de-ps-dots" id="dePsDots">
+                                    <span class="de-ps-d"></span>
+                                    <span class="de-ps-d"></span>
+                                    <span class="de-ps-d"></span>
+                                    <span class="de-ps-d"></span>
+                                    <span class="de-ps-d"></span>
                                 </div>
-                                <span class="cr-ps-txt" id="crPsTxt">
+                                <span class="de-ps-txt" id="dePsTxt">
                                     <i class="bi bi-info-circle"></i> Use 8+ chars, uppercase, number & symbol
                                 </span>
                             </div>
                         </div>
 
                         {{-- Confirm Password --}}
-                        <div class="cr-fg">
-                            <label class="cr-label" for="crPassConfirm">Confirm Password</label>
-                            <div class="cr-iw">
-                                <i class="bi bi-shield-check cr-ico"></i>
-                                <input id="crPassConfirm" type="password"
-                                       class="cr-input"
+                        <div class="de-fg">
+                            <label class="de-label" for="dePassConfirm">Confirm Password</label>
+                            <div class="de-iw">
+                                <i class="bi bi-shield-check de-ico"></i>
+                                <input id="dePassConfirm" type="password"
+                                       class="de-input"
                                        name="password_confirmation"
                                        placeholder="Repeat your password"
                                        required autocomplete="off">
-                                <button type="button" class="cr-pw-tog" id="crPwTog2" tabindex="-1">
+                                <button type="button" class="de-pw-tog" id="dePwTog2" tabindex="-1">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
-                                <div class="cr-glow"></div>
+                                <div class="de-glow"></div>
                             </div>
 
                             {{-- Match Indicator --}}
-                            <div class="cr-match" id="crMatch">
-                                <div class="cr-match-ico"><i class="bi bi-check-circle-fill"></i></div>
-                                <span class="cr-match-txt">Passwords match</span>
+                            <div class="de-match" id="deMatch">
+                                <div class="de-match-ico"><i class="bi bi-check-circle-fill"></i></div>
+                                <span class="de-match-txt">Passwords match</span>
                             </div>
                         </div>
 
                         {{-- Terms --}}
-                        <div class="cr-terms">
-                            <label class="cr-cb">
-                                <input type="checkbox" name="terms" id="crTerms" required>
-                                <span class="cr-cb-mark"><i class="bi bi-check"></i></span>
-                                <span class="cr-cb-label">
-                                    I agree to the <a href="#" class="cr-link-inline">Terms of Service</a> & <a href="#" class="cr-link-inline">Privacy Policy</a>
+                        <div class="de-terms">
+                            <label class="de-cb">
+                                <input type="checkbox" name="terms" id="deTerms" required>
+                                <span class="de-cb-mark"><i class="bi bi-check"></i></span>
+                                <span class="de-cb-label">
+                                    I agree to the <a href="#" class="de-link-inline">Terms of Service</a> & <a href="#" class="de-link-inline">Privacy Policy</a>
                                 </span>
                             </label>
                         </div>
 
                         {{-- Submit --}}
-                        <button type="submit" class="cr-btn" id="crBtn">
-                            <span class="cr-btn-txt">Create Account</span>
-                            <span class="cr-btn-ldr" id="crBtnLdr"><i class="bi bi-arrow-right"></i></span>
-                            <div class="cr-btn-shine"></div>
+                        <button type="submit" class="de-btn" id="deBtn">
+                            <span class="de-btn-txt">Create Account</span>
+                            <span class="de-btn-ldr" id="deBtnLdr"><i class="bi bi-arrow-right"></i></span>
+                            <div class="de-btn-shine"></div>
                         </button>
                     </form>
 
                     {{-- Divider --}}
-                    <div class="cr-div"><span>Or sign up with</span></div>
+                    <div class="de-div"><span>Or sign up with</span></div>
 
                     {{-- Social --}}
-                    <div class="cr-social">
-                        <button type="button" class="cr-soc cr-soc-g" onclick="Swal.fire({icon:'info',title:'Coming Soon',text:'Google signup coming soon!',background:'#1e293b',color:'#f1f5f9',confirmButtonColor:'#2563EB'})">
+                    <div class="de-social">
+                        <button type="button" class="de-soc de-soc-g" onclick="Swal.fire({icon:'info',title:'Coming Soon',text:'Google signup coming soon!',background:'#05050f',color:'#EAEAEA',confirmButtonColor:'#00c8ff'})">
                             <svg viewBox="0 0 24 24" width="18" height="18">
                                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
                                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -246,25 +252,25 @@
                             </svg>
                             Google
                         </button>
-                        <button type="button" class="cr-soc cr-soc-gh" onclick="Swal.fire({icon:'info',title:'Coming Soon',text:'GitHub signup coming soon!',background:'#1e293b',color:'#f1f5f9',confirmButtonColor:'#2563EB'})">
+                        <button type="button" class="de-soc de-soc-gh" onclick="Swal.fire({icon:'info',title:'Coming Soon',text:'GitHub signup coming soon!',background:'#05050f',color:'#EAEAEA',confirmButtonColor:'#00c8ff'})">
                             <i class="bi bi-github"></i>
                             GitHub
                         </button>
                     </div>
 
                     {{-- Login Link --}}
-                    <div class="cr-login-row">
+                    <div class="de-login-row">
                         <span>Already have an account?</span>
-                        <a href="{{ route('login') }}" class="cr-login-link">
+                        <a href="{{ route('login') }}" class="de-login-link">
                             Sign in <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
                 {{-- Card Footer --}}
-                <div class="cr-card-ft">
+                <div class="de-card-ft">
                     <i class="bi bi-shield-lock-fill"></i>
-                    <span>Your information is protected with 256-bit encryption.</span>
+                    <span>Protected with 256-bit encryption.</span>
                 </div>
             </div>
         </div>
@@ -275,13 +281,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
 
     // ===================== PARTICLES =====================
-    const pc = document.getElementById('crParticles');
+    const pc = document.getElementById('deParticles');
     if (pc) {
         for (let i = 0; i < 30; i++) {
             const p = document.createElement('div');
-            p.className = 'cr-p';
+            p.className = 'de-particle';
             const s = Math.random() * 4 + 2;
             p.style.cssText = `
                 width:${s}px;height:${s}px;
@@ -307,15 +314,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    setupPwTog('crPwTog1', 'crPass');
-    setupPwTog('crPwTog2', 'crPassConfirm');
+    setupPwTog('dePwTog1', 'dePass');
+    setupPwTog('dePwTog2', 'dePassConfirm');
 
     // ===================== PASSWORD STRENGTH =====================
-    const passInput = document.getElementById('crPass');
-    const confirmInput = document.getElementById('crPassConfirm');
-    const psDots = document.getElementById('crPsDots');
-    const psTxt = document.getElementById('crPsTxt');
-    const matchEl = document.getElementById('crMatch');
+    const passInput = document.getElementById('dePass');
+    const confirmInput = document.getElementById('dePassConfirm');
+    const psDots = document.getElementById('dePsDots');
+    const psTxt = document.getElementById('dePsTxt');
+    const matchEl = document.getElementById('deMatch');
 
     function calcStrength(pw) {
         let score = 0;
@@ -325,49 +332,48 @@ document.addEventListener('DOMContentLoaded', function() {
         if (/[0-9]/.test(pw)) score++;
         if (/[^A-Za-z0-9]/.test(pw)) score++;
 
-        let cls = 'cr-weak', txt = 'Weak — try adding more characters';
-        if (score >= 4) { cls = 'cr-strong'; txt = 'Strong password!'; }
-        else if (score >= 2) { cls = 'cr-medium'; txt = 'Getting better, add a symbol or number'; }
+        let cls = 'de-weak', txt = 'Weak — try adding more characters';
+        if (score >= 4) { cls = 'de-strong'; txt = 'Strong password!'; }
+        else if (score >= 2) { cls = 'de-medium'; txt = 'Getting better, add a symbol or number'; }
 
         return { score, cls, txt };
     }
 
     function updateStrength() {
         const pw = passInput.value;
-        const dots = psDots.querySelectorAll('.cr-ps-d');
+        const dots = psDots.querySelectorAll('.de-ps-d');
 
-        // Empty field — reset to default hint
         if (pw.length === 0) {
-            dots.forEach(d => d.className = 'cr-ps-d');
+            dots.forEach(function(d) { d.className = 'de-ps-d'; });
             psTxt.innerHTML = '<i class="bi bi-info-circle"></i> Use 8+ chars, uppercase, number & symbol';
-            psTxt.className = 'cr-ps-txt';
+            psTxt.className = 'de-ps-txt';
             checkMatch();
             return;
         }
 
         const { score, cls, txt } = calcStrength(pw);
 
-        dots.forEach((d, i) => {
-            d.className = 'cr-ps-d';
+        dots.forEach(function(d, i) {
+            d.className = 'de-ps-d';
             if (i < score) d.classList.add(cls);
         });
 
         psTxt.innerHTML = `<i class="bi ${score >= 4 ? 'bi-check-circle-fill' : 'bi-info-circle'}"></i> ${txt}`;
-        psTxt.className = 'cr-ps-txt ' + cls;
+        psTxt.className = 'de-ps-txt ' + cls;
         checkMatch();
     }
 
     function checkMatch() {
-        if (!confirmInput.value) { matchEl.classList.remove('cr-match-show'); return; }
-        matchEl.classList.add('cr-match-show');
+        if (!confirmInput.value) { matchEl.classList.remove('de-match-show'); return; }
+        matchEl.classList.add('de-match-show');
         if (passInput.value === confirmInput.value && passInput.value) {
-            matchEl.classList.add('cr-match-ok');
-            matchEl.querySelector('.cr-match-txt').textContent = '✓ Passwords match';
-            matchEl.querySelector('.cr-match-ico i').className = 'bi bi-check-circle-fill';
+            matchEl.classList.add('de-match-ok');
+            matchEl.querySelector('.de-match-txt').textContent = '✓ Passwords match';
+            matchEl.querySelector('.de-match-ico i').className = 'bi bi-check-circle-fill';
         } else {
-            matchEl.classList.remove('cr-match-ok');
-            matchEl.querySelector('.cr-match-txt').textContent = 'Passwords do not match';
-            matchEl.querySelector('.cr-match-ico i').className = 'bi bi-exclamation-circle-fill';
+            matchEl.classList.remove('de-match-ok');
+            matchEl.querySelector('.de-match-txt').textContent = 'Passwords do not match';
+            matchEl.querySelector('.de-match-ico i').className = 'bi bi-exclamation-circle-fill';
         }
     }
 
@@ -375,23 +381,27 @@ document.addEventListener('DOMContentLoaded', function() {
     confirmInput.addEventListener('input', checkMatch);
 
     // ===================== ENTRANCE ANIMATIONS =====================
-    const card = document.querySelector('.cr-card');
-    const brand = document.querySelector('.cr-brand-inner');
-    setTimeout(() => { if (card) card.classList.add('cr-card-vis'); }, 100);
-    setTimeout(() => { if (brand) brand.classList.add('cr-brand-vis'); }, 300);
+    setTimeout(function() {
+        const card = document.querySelector('.de-card');
+        if (card) card.classList.add('de-card-vis');
+    }, 100);
+    setTimeout(function() {
+        const brand = document.querySelector('.de-brand-inner');
+        if (brand) brand.classList.add('de-brand-vis');
+    }, 300);
 
     // ===================== INPUT FOCUS =====================
-    document.querySelectorAll('.cr-iw').forEach(w => {
-        const inp = w.querySelector('.cr-input');
-        const ico = w.querySelector('.cr-ico');
+    document.querySelectorAll('.de-iw').forEach(function(w) {
+        const inp = w.querySelector('.de-input');
+        const ico = w.querySelector('.de-ico');
         if (inp && ico) {
-            inp.addEventListener('focus', () => {
-                w.classList.add('cr-iw-focus');
-                ico.style.color = '#2563EB';
+            inp.addEventListener('focus', function() {
+                w.classList.add('de-iw-focus');
+                ico.style.color = '#00c8ff';
                 ico.style.transform = 'translateY(-50%) scale(1.15)';
             });
-            inp.addEventListener('blur', () => {
-                w.classList.remove('cr-iw-focus');
+            inp.addEventListener('blur', function() {
+                w.classList.remove('de-iw-focus');
                 ico.style.color = '#64748b';
                 ico.style.transform = 'translateY(-50%) scale(1)';
             });
@@ -399,10 +409,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===================== SUBMIT =====================
-    const form = document.getElementById('crForm');
-    const btn = document.getElementById('crBtn');
-    const btnLdr = document.getElementById('crBtnLdr');
-    const btnTxt = btn?.querySelector('.cr-btn-txt');
+    const form = document.getElementById('deForm');
+    const btn = document.getElementById('deBtn');
+    const btnLdr = document.getElementById('deBtnLdr');
+    const btnTxt = btn ? btn.querySelector('.de-btn-txt') : null;
 
     if (form && btn) {
         form.addEventListener('submit', function(e) {
@@ -413,10 +423,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'error',
                     title: 'Passwords Don\'t Match',
                     text: 'Please make sure your passwords match before submitting.',
-                    background: '#1e293b',
-                    color: '#f1f5f9',
-                    confirmButtonColor: '#2563EB',
-                    confirmButtonText: 'Fix it',
+                background: '#05050f',
+                color: '#EAEAEA',
+                confirmButtonColor: '#00c8ff',
+                confirmButtonText: 'Fix it',
                     iconColor: '#ef4444',
                 });
                 return;
@@ -429,26 +439,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'warning',
                     title: 'Weak Password',
                     text: 'Please use at least 8 characters for a stronger password.',
-                    background: '#1e293b',
-                    color: '#f1f5f9',
-                    confirmButtonColor: '#2563EB',
-                    confirmButtonText: 'OK',
+                background: '#05050f',
+                color: '#EAEAEA',
+                confirmButtonColor: '#00c8ff',
+                confirmButtonText: 'OK',
                     iconColor: '#f59e0b',
                 });
                 return;
             }
 
             // Terms checkbox check
-            const termsCheck = document.getElementById('crTerms');
+            const termsCheck = document.getElementById('deTerms');
             if (termsCheck && !termsCheck.checked) {
                 e.preventDefault();
                 Swal.fire({
                     icon: 'warning',
                     title: 'Terms & Conditions',
-                    text: 'Please agree to the Terms of Service and Privacy Policy to continue.',
-                    background: '#1e293b',
-                    color: '#f1f5f9',
-                    confirmButtonColor: '#2563EB',
+                    text: 'Please agree to the Terms of Service and Privacy Policy to continue.',                    background: '#05050f',
+                color: '#EAEAEA',
+                confirmButtonColor: '#00c8ff',
                     confirmButtonText: 'I agree',
                     iconColor: '#f59e0b',
                 });
@@ -458,15 +467,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Loading state
             btn.disabled = true;
             btn.style.pointerEvents = 'none';
-            btnTxt.textContent = 'Creating account...';
-            btnLdr.innerHTML = '<div class="cr-spin"></div>';
+            if (btnTxt) btnTxt.textContent = 'Creating account...';
+            btnLdr.innerHTML = '<div class="de-spin"></div>';
 
-            // Safety timeout
             setTimeout(function() {
                 if (btn.disabled) {
                     btn.disabled = false;
                     btn.style.pointerEvents = '';
-                    btnTxt.textContent = 'Create Account';
+                    if (btnTxt) btnTxt.textContent = 'Create Account';
                     btnLdr.innerHTML = '<i class="bi bi-arrow-right"></i>';
                 }
             }, 10000);
@@ -474,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===================== SWEETALERT2 =====================
-    const errInput = document.getElementById('crErrors');
+    const errInput = document.getElementById('deErrors');
     if (errInput) {
         try {
             const errs = JSON.parse(errInput.value);
@@ -482,24 +490,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'error',
                 title: 'Validation Error',
                 text: Array.isArray(errs) ? errs.join('\n') : errInput.value,
-                background: '#1e293b',
-                color: '#f1f5f9',
-                confirmButtonColor: '#2563EB',
+                background: '#05050f',
+                color: '#EAEAEA',
+                confirmButtonColor: '#00c8ff',
                 confirmButtonText: 'Try Again',
                 iconColor: '#ef4444',
             });
         } catch(e) {}
     }
 
-    const sucInput = document.getElementById('crSuccess');
+    const sucInput = document.getElementById('deSuccess');
     if (sucInput) {
         Swal.fire({
             icon: 'success',
             title: 'Success',
             text: sucInput.value,
-            background: '#1e293b',
-            color: '#f1f5f9',
-            confirmButtonColor: '#2563EB',
+            background: '#181818',
+            color: '#EAEAEA',
+            confirmButtonColor: '#00c8ff',
             timer: 3000,
             timerProgressBar: true,
             iconColor: '#22c55e',
@@ -510,15 +518,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             const a = document.activeElement;
-            if (a && (a.id === 'crName' || a.id === 'crEmail' || a.id === 'crPass' || a.id === 'crPassConfirm')) {
+            if (a && (a.id === 'deName' || a.id === 'deEmail' || a.id === 'dePass' || a.id === 'dePassConfirm')) {
                 e.preventDefault();
-                form?.requestSubmit();
+                if (form) form.requestSubmit();
             }
         }
     });
 
     // ===================== MOUSE GLOW =====================
-    const c = document.querySelector('.cr-card');
+    const c = document.querySelector('.de-card');
     if (c) {
         c.addEventListener('mousemove', function(e) {
             const r = this.getBoundingClientRect();
@@ -530,26 +538,31 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-/* ===== RESET ===== */
+/* ===== DARKEAS AUTH STYLES (Register) ===== */
 * { margin:0; padding:0; box-sizing:border-box; }
 
-.cr-page {
-    --clr-primary: #2563EB;
-    --clr-light: #60A5FA;
-    --clr-dark: #1E40AF;
-    --clr-bg: #0b1121;
-    --clr-card: rgba(255,255,255,0.04);
-    --clr-border: rgba(255,255,255,0.06);
-    --clr-text: #f1f5f9;
-    --clr-muted: #94a3b8;
-    --clr-input-bg: rgba(255,255,255,0.05);
-    --clr-input-bd: rgba(255,255,255,0.08);
-    --clr-focus: rgba(37,99,235,0.25);
-    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+.de-page {
+    --brand: #00c8ff;
+    --brand-light: #0099ff;
+    --brand-dark: #00c8ff;
+    --accent: #ff2d78;
+    --accent-glow: #ff00aa;
+    --blue-edge: #2255ff;
+    --pink-edge: #ff1177;
+    --bg: #05050f;
+    --card-bg: rgba(5,5,15,0.6);
+    --card-border: rgba(255,255,255,0.06);
+    --text: #EAEAEA;
+    --text-muted: rgba(234,234,234,0.5);
+    --input-bg: rgba(5,5,15,0.8);
+    --input-border: rgba(255,255,255,0.08);
+    --input-focus: rgba(0,200,255,0.15);
+    --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Bebas Neue', 'Oswald', sans-serif;
 
     font-family: var(--font);
-    background: var(--clr-bg);
-    color: var(--clr-text);
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
@@ -560,58 +573,58 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* ===== ORBS ===== */
-.cr-orb {
-    position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0;
+.de-orb {
+    position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0;
 }
-.cr-orb-1 {
+.de-orb-1 {
     width: 550px; height: 550px;
-    background: radial-gradient(circle, rgba(37,99,235,0.12), transparent 70%);
+    background: radial-gradient(circle, rgba(0,200,255,0.15), transparent 70%);
     top: -180px; left: -120px;
-    animation: cr-o1 14s ease-in-out infinite;
+    animation: de-o1 14s ease-in-out infinite;
 }
-.cr-orb-2 {
+.de-orb-2 {
     width: 450px; height: 450px;
-    background: radial-gradient(circle, rgba(96,165,250,0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(255,45,120,0.1), transparent 70%);
     bottom: -120px; right: -80px;
-    animation: cr-o2 16s ease-in-out infinite;
+    animation: de-o2 16s ease-in-out infinite;
 }
-.cr-orb-3 {
+.de-orb-3 {
     width: 350px; height: 350px;
-    background: radial-gradient(circle, rgba(30,64,175,0.1), transparent 70%);
+    background: radial-gradient(circle, rgba(34,85,255,0.12), transparent 70%);
     top: 40%; left: 50%;
-    animation: cr-o3 18s ease-in-out infinite;
+    animation: de-o3 18s ease-in-out infinite;
 }
-.cr-orb-4 {
+.de-orb-4 {
     width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(37,99,235,0.06), transparent 70%);
+    background: radial-gradient(circle, rgba(255,17,119,0.08), transparent 70%);
     bottom: 15%; left: 20%;
-    animation: cr-o1 22s ease-in-out infinite reverse;
+    animation: de-o1 22s ease-in-out infinite reverse;
 }
-@keyframes cr-o1 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(70px,50px) scale(1.12); } }
-@keyframes cr-o2 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-50px,-70px) scale(1.08); } }
-@keyframes cr-o3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(30px,-40px) scale(1.15); } }
+@keyframes de-o1 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(70px,50px) scale(1.12); } }
+@keyframes de-o2 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-50px,-70px) scale(1.08); } }
+@keyframes de-o3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(30px,-40px) scale(1.15); } }
 
 /* ===== GRID ===== */
-.cr-grid {
+.de-grid {
     position: fixed; inset: 0;
     background-image:
-        linear-gradient(rgba(37,99,235,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37,99,235,0.025) 1px, transparent 1px);
-    background-size: 50px 50px;
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
     pointer-events: none; z-index: 1;
     mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 70%);
 }
 
 /* ===== PARTICLES ===== */
-.cr-particles { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
-.cr-p {
+.de-particles { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:1; }
+.de-particle {
     position:absolute;
-    background:linear-gradient(135deg,var(--clr-primary),var(--clr-light));
+    background:linear-gradient(135deg,var(--brand),var(--accent));
     border-radius:50%;
-    animation:cr-rise linear infinite;
+    animation:de-rise linear infinite;
 }
-@keyframes cr-rise {
+@keyframes de-rise {
     0% { transform:translateY(0) rotate(0deg); opacity:0; }
     10% { opacity:0.4; }
     90% { opacity:0.15; }
@@ -619,30 +632,30 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* ===== BUBBLES ===== */
-.cr-bubble {
+.de-bubble {
     position:fixed; z-index:2; pointer-events:none;
     background:rgba(255,255,255,0.03);
     backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
     border:1px solid rgba(255,255,255,0.06);
     border-radius:14px; padding:10px 14px;
     display:flex; align-items:center; gap:8px;
-    animation:cr-bf 7s ease-in-out infinite;
+    animation:de-bf 7s ease-in-out infinite;
 }
-.cr-bubble-1 { top:18%; left:6%; animation-delay:0s; }
-.cr-bubble-2 { bottom:25%; left:8%; animation-delay:2.5s; animation-duration:8s; }
-.cr-bubble-3 { top:45%; right:5%; animation-delay:5s; font-size:13px; color:var(--clr-muted); font-weight:500; }
-@keyframes cr-bf { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
-.cr-bubble-inner { display:flex; gap:5px; }
-.cr-b-dot { width:7px; height:7px; border-radius:50%; background:var(--clr); animation:cr-bdp 2s ease-in-out infinite; }
-.cr-b-dot:nth-child(2) { animation-delay:0.3s; }
-.cr-b-dot:nth-child(3) { animation-delay:0.6s; }
-@keyframes cr-bdp { 0%,100% { transform:scale(1); opacity:0.5; } 50% { transform:scale(1.3); opacity:1; } }
-.cr-b-avatar { width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--clr-primary),var(--clr-light)); flex-shrink:0; }
-.cr-b-lines { display:flex; flex-direction:column; gap:4px; }
-.cr-b-line { width:75px; height:5px; border-radius:3px; background:rgba(255,255,255,0.08); }
+.de-bubble-1 { top:18%; left:6%; animation-delay:0s; }
+.de-bubble-2 { bottom:25%; left:8%; animation-delay:2.5s; animation-duration:8s; }
+.de-bubble-3 { top:45%; right:5%; animation-delay:5s; font-size:13px; color:var(--text-muted); font-weight:500; }
+@keyframes de-bf { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+.de-bubble-inner { display:flex; gap:5px; }
+.de-bubble-dot { width:7px; height:7px; border-radius:50%; background:var(--clr); animation:de-bdp 2s ease-in-out infinite; }
+.de-bubble-dot:nth-child(2) { animation-delay:0.3s; }
+.de-bubble-dot:nth-child(3) { animation-delay:0.6s; }
+@keyframes de-bdp { 0%,100% { transform:scale(1); opacity:0.5; } 50% { transform:scale(1.3); opacity:1; } }
+.de-bubble-avatar { width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--accent)); flex-shrink:0; }
+.de-bubble-lines { display:flex; flex-direction:column; gap:4px; }
+.de-bubble-line { width:75px; height:5px; border-radius:3px; background:rgba(255,255,255,0.08); }
 
 /* ===== WRAPPER ===== */
-.cr-wrapper {
+.de-wrapper {
     position:relative; z-index:10;
     display:flex; align-items:center; justify-content:center;
     gap:50px; width:100%; max-width:1100px;
@@ -650,319 +663,324 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* ===== BRAND ===== */
-.cr-brand { flex:1; max-width:420px; display:flex; align-items:center; justify-content:center; }
-.cr-brand-inner {
+.de-brand { flex:1; max-width:420px; display:flex; align-items:center; justify-content:center; }
+.de-brand-inner {
     opacity:0; transform:translateX(-30px);
     transition:all 0.8s cubic-bezier(.16,1,.3,1);
 }
-.cr-brand-inner.cr-brand-vis { opacity:1; transform:translateX(0); }
+.de-brand-inner.de-brand-vis { opacity:1; transform:translateX(0); }
 
-.cr-badge {
+.de-badge {
     display:inline-flex; align-items:center; gap:6px;
-    padding:5px 12px; background:rgba(37,99,235,0.1);
-    border:1px solid rgba(37,99,235,0.15); border-radius:999px;
-    font-size:0.78rem; font-weight:600; color:var(--clr-light);
+    padding:5px 12px; background:rgba(0,200,255,0.1);
+    border:1px solid rgba(0,200,255,0.15); border-radius:999px;
+    font-size:0.78rem; font-weight:600; color:var(--brand-light);
     margin-bottom:20px; letter-spacing:0.3px;
 }
-.cr-badge::before {
+.de-badge::before {
     content:''; width:5px; height:5px; border-radius:50%;
-    background:#22c55e;
-    animation:cr-pulse 2s ease-in-out infinite;
+    background:var(--accent);
+    animation:de-pulse 2s ease-in-out infinite;
 }
-@keyframes cr-pulse { 0%,100% { box-shadow:0 0 0 0 rgba(34,197,94,0.6); } 50% { box-shadow:0 0 0 5px rgba(34,197,94,0); } }
+@keyframes de-pulse { 0%,100% { box-shadow:0 0 0 0 rgba(255,45,120,0.6); } 50% { box-shadow:0 0 0 5px rgba(255,45,120,0); } }
 
-.cr-logo {
+.de-logo {
     display:flex; align-items:center; gap:10px;
     text-decoration:none; margin-bottom:12px;
 }
-.cr-logo-icon {
+.de-logo-icon {
     width:44px; height:44px; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg,var(--clr-primary),var(--clr-dark));
-    border-radius:12px; font-size:1.35rem; color:#fff;
-    box-shadow:0 6px 20px rgba(37,99,235,0.3);
+    background:linear-gradient(135deg,var(--brand),var(--brand-dark));
+    border-radius:12px; color:#fff;
+    box-shadow:0 6px 20px rgba(0,200,255,0.3);
 }
-.cr-logo-text {
-    font-size:1.8rem; font-weight:800;
-    background:linear-gradient(135deg,var(--clr-light),var(--clr-primary));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    background-clip:text; letter-spacing:-0.5px;
+.de-logo-icon svg { width:22px; height:22px; }
+.de-logo-text {
+    font-family:var(--font-heading);
+    font-size:2rem; font-weight:700;
+    letter-spacing:-0.5px;
 }
-.cr-tagline {
-    font-size:1.05rem; color:var(--clr-muted); margin-bottom:28px; line-height:1.6;
+.de-tagline {
+    font-size:1.05rem; color:var(--text-muted); margin-bottom:28px; line-height:1.6;
 }
 
 /* Benefits */
-.cr-benefits { display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
-.cr-benefit {
+.de-benefits { display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+.de-benefit {
     display:flex; align-items:center; gap:14px;
     padding:12px 16px;
     background:rgba(255,255,255,0.03);
     border:1px solid rgba(255,255,255,0.05);
     border-radius:12px; transition:all 0.3s ease; cursor:default;
 }
-.cr-benefit:hover {
+.de-benefit:hover {
     background:rgba(255,255,255,0.06);
     transform:translateX(4px);
 }
-.cr-benefit-icon {
+.de-benefit-icon {
     width:38px; height:38px; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg,rgba(37,99,235,0.15),rgba(37,99,235,0.05));
-    border-radius:10px; font-size:1.15rem; color:var(--clr-light); flex-shrink:0;
+    background:linear-gradient(135deg,rgba(0,200,255,0.15),rgba(0,200,255,0.05));
+    border-radius:10px; font-size:1.15rem; color:var(--brand-light); flex-shrink:0;
 }
-.cr-benefit-info { display:flex; flex-direction:column; gap:2px; }
-.cr-benefit-title { font-size:0.85rem; font-weight:600; color:var(--clr-text); }
-.cr-benefit-desc { font-size:0.78rem; color:var(--clr-muted); }
+.de-benefit-info { display:flex; flex-direction:column; gap:2px; }
+.de-benefit-title { font-size:0.85rem; font-weight:600; color:var(--text); }
+.de-benefit-desc { font-size:0.78rem; color:var(--text-muted); }
 
-/* Testimonial */
-.cr-testimonial {
+/* Social Proof */
+.de-social-proof {
     display:flex; align-items:center; gap:12px;
     padding:14px 16px; background:rgba(255,255,255,0.03);
     border:1px solid rgba(255,255,255,0.05); border-radius:12px;
 }
-.cr-test-avatars { display:flex; flex-shrink:0; }
-.cr-test-av {
+.de-sp-avatars { display:flex; flex-shrink:0; }
+.de-sp-av {
     width:32px; height:32px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
     font-size:0.75rem; font-weight:700; color:#fff;
-    border:2px solid var(--clr-bg);
+    border:2px solid var(--bg);
 }
-.cr-test-text { font-size:0.82rem; color:var(--clr-muted); line-height:1.4; }
-.cr-test-text strong { color:var(--clr-light); }
+.de-sp-text { font-size:0.82rem; color:var(--text-muted); line-height:1.4; }
+.de-sp-text strong { color:var(--brand); }
 
 /* ===== CARD ===== */
-.cr-card-wrap { flex:1; max-width:440px; display:flex; align-items:center; justify-content:center; }
-.cr-card {
+.de-card-wrap { flex:1; max-width:440px; display:flex; align-items:center; justify-content:center; }
+.de-card {
     --mx:50%; --my:50%;
     width:100%;
-    background:var(--clr-card);
+    background:var(--card-bg);
     backdrop-filter:blur(24px) saturate(180%);
     -webkit-backdrop-filter:blur(24px) saturate(180%);
-    border:1px solid var(--clr-border); border-radius:24px;
+    border:1px solid var(--card-border); border-radius:24px;
     padding:36px 32px; position:relative; overflow:hidden;
     transition:all 0.6s cubic-bezier(.16,1,.3,1);
     opacity:0; transform:translateY(30px) scale(0.97);
 }
-.cr-card.cr-card-vis { opacity:1; transform:translateY(0) scale(1); }
-.cr-card::before {
+.de-card.de-card-vis { opacity:1; transform:translateY(0) scale(1); }
+.de-card::before {
     content:''; position:absolute;
     top:var(--my); left:var(--mx);
     transform:translate(-50%,-50%);
     width:350px; height:350px;
-    background:radial-gradient(circle,rgba(37,99,235,0.06),transparent 70%);
+    background:radial-gradient(circle,rgba(0,200,255,0.06),transparent 70%);
     border-radius:50%; pointer-events:none; z-index:0;
     transition:all 0.3s ease;
 }
-.cr-card:hover {
-    border-color:rgba(37,99,235,0.12);
-    box-shadow:0 20px 60px rgba(0,0,0,0.3);
+.de-card:hover {
+    border-color:rgba(0,200,255,0.12);
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
     transform:translateY(-2px);
 }
 
 /* Header */
-.cr-card-hd { text-align:center; margin-bottom:28px; position:relative; z-index:1; }
-.cr-card-ico {
+.de-card-hd { text-align:center; margin-bottom:28px; position:relative; z-index:1; }
+.de-card-ico {
     width:52px; height:52px; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg,rgba(37,99,235,0.15),rgba(37,99,235,0.05));
-    border:1px solid rgba(37,99,235,0.15); border-radius:16px;
-    margin:0 auto 14px; font-size:1.4rem; color:var(--clr-light);
-    animation:cr-ico-pulse 3s ease-in-out infinite;
+    background:linear-gradient(135deg,rgba(0,200,255,0.15),rgba(0,200,255,0.05));
+    border:1px solid rgba(0,200,255,0.15); border-radius:14px;
+    margin:0 auto 14px; font-size:1.4rem; color:var(--brand-light);
+    animation:de-ico-pulse 3s ease-in-out infinite;
 }
-@keyframes cr-ico-pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
-.cr-card-title { font-size:1.5rem; font-weight:800; color:var(--clr-text); margin-bottom:6px; letter-spacing:-0.3px; }
-.cr-card-sub { font-size:0.88rem; color:var(--clr-muted); }
+@keyframes de-ico-pulse { 0%,100% { transform:scale(1); } 50% { transform:scale(1.05); } }
+.de-card-title {
+    font-family:var(--font-heading);
+    font-size:1.6rem; font-weight:700;
+    color:var(--text); margin-bottom:6px; letter-spacing:-0.3px;
+}
+.de-card-sub { font-size:0.88rem; color:var(--text-muted); }
 
 /* Body */
-.cr-card-body { position:relative; z-index:1; }
+.de-card-body { position:relative; z-index:1; }
 
 /* ===== FORM ===== */
-.cr-fg { margin-bottom:18px; }
-.cr-label {
+.de-fg { margin-bottom:18px; }
+.de-label {
     display:block; font-size:0.82rem; font-weight:600;
-    color:var(--clr-text); margin-bottom:7px; letter-spacing:0.2px;
+    color:var(--text); margin-bottom:7px; letter-spacing:0.2px;
 }
-.cr-iw { position:relative; border-radius:12px; overflow:hidden; }
-.cr-ico {
+.de-iw { position:relative; border-radius:12px; overflow:hidden; }
+.de-ico {
     position:absolute; left:14px; top:50%;
     transform:translateY(-50%); color:#64748b;
     z-index:2; font-size:1rem;
     transition:all 0.3s cubic-bezier(.16,1,.3,1);
 }
-.cr-input {
+.de-input {
     width:100%; padding:13px 42px 13px 44px;
-    background:var(--clr-input-bg); border:1.5px solid var(--clr-input-bd);
+    background:var(--input-bg); border:1.5px solid var(--input-border);
     border-radius:12px; font-family:var(--font); font-size:0.92rem;
-    color:var(--clr-text); outline:none;
+    color:var(--text); outline:none;
     transition:all 0.3s cubic-bezier(.16,1,.3,1);
     position:relative; z-index:1;
 }
-.cr-input::placeholder { color:#475569; }
-.cr-input:focus { border-color:var(--clr-primary); background:rgba(37,99,235,0.05); box-shadow:0 0 0 4px var(--clr-focus); }
-.cr-err { border-color:#ef4444 !important; }
-.cr-glow {
+.de-input::placeholder { color:#475569; }
+.de-input:focus { border-color:var(--brand); box-shadow:0 0 0 4px var(--input-focus); }
+.de-err { border-color:#ef4444 !important; }
+.de-glow {
     position:absolute; inset:0; border-radius:12px;
-    background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(37,99,235,0.08),transparent 60%);
+    background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,200,255,0.08),transparent 60%);
     pointer-events:none; opacity:0; transition:opacity 0.3s ease; z-index:0;
 }
-.cr-iw-focus .cr-glow { opacity:1; }
-.cr-err-txt { display:block; color:#ef4444; font-size:0.78rem; margin-top:5px; font-weight:500; }
+.de-iw-focus .de-glow { opacity:1; }
+.de-err-txt { display:block; color:#ef4444; font-size:0.78rem; margin-top:5px; font-weight:500; }
 
 /* Password Toggle */
-.cr-pw-tog {
+.de-pw-tog {
     position:absolute; right:10px; top:50%; transform:translateY(-50%);
     background:none; border:none; color:#64748b; font-size:1.05rem;
     cursor:pointer; padding:4px; z-index:2;
     transition:all 0.3s ease; border-radius:6px;
 }
-.cr-pw-tog:hover { color:var(--clr-text); background:rgba(255,255,255,0.05); }
+.de-pw-tog:hover { color:var(--text); background:rgba(255,255,255,0.05); }
 
 /* Password Strength */
-.cr-ps {
+.de-ps {
     margin-top:10px; padding:10px 12px;
     background:rgba(255,255,255,0.03);
     border-radius:8px; border:1px solid rgba(255,255,255,0.04);
 }
-.cr-ps-dots { display:flex; gap:5px; margin-bottom:7px; }
-.cr-ps-d {
+.de-ps-dots { display:flex; gap:5px; margin-bottom:7px; }
+.de-ps-d {
     flex:1; height:4px; background:rgba(255,255,255,0.08);
     border-radius:2px; transition:all 0.3s ease;
 }
-.cr-ps-d.cr-weak { background:#ef4444; }
-.cr-ps-d.cr-medium { background:#f59e0b; }
-.cr-ps-d.cr-strong { background:#10b981; }
-.cr-ps-txt { font-size:0.75rem; display:flex; align-items:center; gap:5px; }
-.cr-ps-txt.cr-weak { color:#ef4444; }
-.cr-ps-txt.cr-medium { color:#f59e0b; }
-.cr-ps-txt.cr-strong { color:#10b981; }
+.de-ps-d.de-weak { background:#ef4444; }
+.de-ps-d.de-medium { background:#f59e0b; }
+.de-ps-d.de-strong { background:#10b981; }
+.de-ps-txt { font-size:0.75rem; display:flex; align-items:center; gap:5px; }
+.de-ps-txt.de-weak { color:#ef4444; }
+.de-ps-txt.de-medium { color:#f59e0b; }
+.de-ps-txt.de-strong { color:#10b981; }
 
 /* Password Match */
-.cr-match {
+.de-match {
     margin-top:8px; padding:8px 12px;
     border-radius:8px; font-size:0.8rem;
     background:rgba(239,68,68,0.1); color:#ef4444;
     border-left:3px solid #ef4444;
     display:none; align-items:center; gap:7px;
 }
-.cr-match.cr-match-show { display:flex; animation:cr-ms 0.3s ease-out; }
-.cr-match.cr-match-ok { background:rgba(16,185,129,0.1); color:#10b981; border-left-color:#10b981; }
-.cr-match-ico { display:flex; font-size:0.95rem; }
-@keyframes cr-ms { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+.de-match.de-match-show { display:flex; animation:de-ms 0.3s ease-out; }
+.de-match.de-match-ok { background:rgba(16,185,129,0.1); color:#10b981; border-left-color:#10b981; }
+.de-match-ico { display:flex; font-size:0.95rem; }
+@keyframes de-ms { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
 
 /* Terms */
-.cr-terms { margin-bottom:20px; }
-.cr-cb {
+.de-terms { margin-bottom:20px; }
+.de-cb {
     display:inline-flex; align-items:center; gap:8px; cursor:pointer; user-select:none;
 }
-.cr-cb input { display:none; }
-.cr-cb-mark {
+.de-cb input { display:none; }
+.de-cb-mark {
     width:18px; height:18px; border:2px solid rgba(255,255,255,0.15);
     border-radius:5px; display:flex; align-items:center; justify-content:center;
     transition:all 0.3s ease; flex-shrink:0;
 }
-.cr-cb-mark i { font-size:11px; color:#fff; opacity:0; transform:scale(0); transition:all 0.2s ease; }
-.cr-cb input:checked + .cr-cb-mark { background:var(--clr-primary); border-color:var(--clr-primary); }
-.cr-cb input:checked + .cr-cb-mark i { opacity:1; transform:scale(1); }
-.cr-cb-label { font-size:0.82rem; color:var(--clr-muted); font-weight:500; }
-.cr-link-inline { color:var(--clr-primary); text-decoration:none; font-weight:600; transition:color 0.3s; }
-.cr-link-inline:hover { color:var(--clr-light); text-decoration:underline; }
+.de-cb-mark i { font-size:11px; color:#fff; opacity:0; transform:scale(0); transition:all 0.2s ease; }
+.de-cb input:checked + .de-cb-mark { background:var(--brand); border-color:var(--brand); }
+.de-cb input:checked + .de-cb-mark i { opacity:1; transform:scale(1); }
+.de-cb-label { font-size:0.82rem; color:var(--text-muted); font-weight:500; }
+.de-link-inline { color:var(--brand); text-decoration:none; font-weight:600; transition:color 0.3s; }
+.de-link-inline:hover { color:var(--brand-light); text-decoration:underline; }
 
 /* Submit Button */
-.cr-btn {
+.de-btn {
     width:100%; padding:14px 20px;
-    background:linear-gradient(135deg,var(--clr-primary),var(--clr-dark));
+    background:linear-gradient(135deg,var(--brand),var(--brand-dark));
     border:none; border-radius:12px;
     font-family:var(--font); font-size:0.95rem; font-weight:700;
     color:#fff; cursor:pointer;
     display:flex; align-items:center; justify-content:center; gap:8px;
     position:relative; overflow:hidden;
     transition:all 0.4s cubic-bezier(.16,1,.3,1);
-    box-shadow:0 4px 16px rgba(37,99,235,0.3);
+    box-shadow:0 4px 16px rgba(0,200,255,0.3);
 }
-.cr-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,99,235,0.4); }
-.cr-btn:active { transform:translateY(0); }
-.cr-btn:disabled { opacity:0.7; cursor:not-allowed; transform:none; }
-.cr-btn-shine {
+.de-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,200,255,0.4); }
+.de-btn:active { transform:translateY(0); }
+.de-btn:disabled { opacity:0.7; cursor:not-allowed; transform:none; }
+.de-btn-shine {
     position:absolute; top:0; left:-100%;
     width:60%; height:100%;
     background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
     transform:skewX(-20deg); transition:left 0.8s ease;
 }
-.cr-btn:hover .cr-btn-shine { left:150%; }
-.cr-btn-ldr { font-size:1.05rem; display:flex; align-items:center; }
-.cr-btn:hover .cr-btn-ldr i { animation:cr-ba 1s ease infinite; }
-@keyframes cr-ba { 0%,100% { transform:translateX(0); } 50% { transform:translateX(4px); } }
-.cr-spin {
+.de-btn:hover .de-btn-shine { left:150%; }
+.de-btn-ldr { font-size:1.05rem; display:flex; align-items:center; }
+.de-btn:hover .de-btn-ldr i { animation:de-ba 1s ease infinite; }
+@keyframes de-ba { 0%,100% { transform:translateX(0); } 50% { transform:translateX(4px); } }
+.de-spin {
     width:16px; height:16px;
     border:2.5px solid rgba(255,255,255,0.3);
     border-top-color:#fff; border-radius:50%;
-    animation:cr-sp 0.7s linear infinite;
+    animation:de-sp 0.7s linear infinite;
 }
-@keyframes cr-sp { to { transform:rotate(360deg); } }
+@keyframes de-sp { to { transform:rotate(360deg); } }
 
 /* Divider */
-.cr-div { display:flex; align-items:center; margin:22px 0; }
-.cr-div::before, .cr-div::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.06); }
-.cr-div span { padding:0 14px; font-size:0.78rem; color:var(--clr-muted); font-weight:500; }
+.de-div { display:flex; align-items:center; margin:22px 0; }
+.de-div::before, .de-div::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.06); }
+.de-div span { padding:0 14px; font-size:0.78rem; color:var(--text-muted); font-weight:500; }
 
 /* Social */
-.cr-social { display:flex; gap:10px; margin-bottom:22px; }
-.cr-soc {
+.de-social { display:flex; gap:10px; margin-bottom:22px; }
+.de-soc {
     flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
     padding:11px 14px; background:rgba(255,255,255,0.04);
     border:1px solid rgba(255,255,255,0.08); border-radius:12px;
     font-family:var(--font); font-size:0.82rem; font-weight:600;
-    color:var(--clr-muted); cursor:pointer;
+    color:var(--text-muted); cursor:pointer;
     transition:all 0.3s ease;
 }
-.cr-soc:hover { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); color:var(--clr-text); transform:translateY(-1px); }
+.de-soc:hover { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); color:var(--text); transform:translateY(-1px); }
 
 /* Login Link */
-.cr-login-row { text-align:center; font-size:0.88rem; color:var(--clr-muted); display:flex; align-items:center; justify-content:center; gap:5px; flex-wrap:wrap; }
-.cr-login-link { display:inline-flex; align-items:center; gap:4px; font-weight:700; color:var(--clr-primary); text-decoration:none; transition:all 0.3s ease; }
-.cr-login-link:hover { color:var(--clr-light); gap:7px; }
-.cr-login-link i { font-size:0.82rem; transition:transform 0.3s ease; }
-.cr-login-link:hover i { transform:translateX(3px); }
+.de-login-row { text-align:center; font-size:0.88rem; color:var(--text-muted); display:flex; align-items:center; justify-content:center; gap:5px; flex-wrap:wrap; }
+.de-login-link { display:inline-flex; align-items:center; gap:4px; font-weight:700; color:var(--brand); text-decoration:none; transition:all 0.3s ease; }
+.de-login-link:hover { color:var(--brand-light); gap:7px; }
+.de-login-link i { font-size:0.82rem; transition:transform 0.3s ease; }
+.de-login-link:hover i { transform:translateX(3px); }
 
 /* Card Footer */
-.cr-card-ft {
+.de-card-ft {
     display:flex; align-items:center; justify-content:center; gap:7px;
     margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.05);
     position:relative; z-index:1;
 }
-.cr-card-ft i { font-size:0.82rem; color:var(--clr-primary); }
-.cr-card-ft span { font-size:0.75rem; color:var(--clr-muted); }
+.de-card-ft i { font-size:0.82rem; color:var(--brand); }
+.de-card-ft span { font-size:0.75rem; color:var(--text-muted); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 968px) {
-    .cr-wrapper { gap:36px; }
-    .cr-brand { max-width:340px; }
-    .cr-card-wrap { max-width:400px; }
-    .cr-bubble { display:none; }
+    .de-wrapper { gap:36px; }
+    .de-brand { max-width:340px; }
+    .de-card-wrap { max-width:400px; }
+    .de-bubble { display:none; }
 }
 @media (max-width: 820px) {
-    .cr-wrapper { flex-direction:column; gap:28px; padding:20px 16px; min-height:auto; }
-    .cr-brand { max-width:100%; width:100%; }
-    .cr-brand-inner { text-align:center; }
-    .cr-logo { justify-content:center; }
-    .cr-benefits { max-width:400px; margin-left:auto; margin-right:auto; }
-    .cr-testimonial { justify-content:center; max-width:400px; margin:0 auto; }
-    .cr-card-wrap { max-width:100%; width:100%; max-width:460px; }
-    .cr-card { padding:28px 22px; }
-    .cr-card-title { font-size:1.3rem; }
+    .de-wrapper { flex-direction:column; gap:28px; padding:20px 16px; min-height:auto; }
+    .de-brand { max-width:100%; width:100%; }
+    .de-brand-inner { text-align:center; }
+    .de-logo { justify-content:center; }
+    .de-benefits { max-width:400px; margin-left:auto; margin-right:auto; }
+    .de-social-proof { justify-content:center; max-width:400px; margin:0 auto; }
+    .de-card-wrap { max-width:100%; width:100%; max-width:460px; }
+    .de-card { padding:28px 22px; }
+    .de-card-title { font-size:1.4rem; }
 }
 @media (max-width: 480px) {
-    .cr-card { padding:22px 16px; border-radius:18px; }
-    .cr-social { flex-direction:column; }
-    .cr-logo-text { font-size:1.5rem; }
-    .cr-logo-icon { width:38px; height:38px; font-size:1.1rem; border-radius:10px; }
-    .cr-card-ico { width:44px; height:44px; font-size:1.2rem; border-radius:12px; }
-    .cr-card-title { font-size:1.2rem; }
-    .cr-brand-inner { text-align:center; }
-    .cr-badge { margin-left:auto; margin-right:auto; }
+    .de-card { padding:22px 16px; border-radius:18px; }
+    .de-social { flex-direction:column; }
+    .de-logo-text { font-size:1.5rem; }
+    .de-logo-icon { width:38px; height:38px; border-radius:10px; }
+    .de-logo-icon svg { width:18px; height:18px; }
+    .de-card-ico { width:44px; height:44px; font-size:1.2rem; border-radius:12px; }
+    .de-card-title { font-size:1.3rem; }
+    .de-brand-inner { text-align:center; }
+    .de-badge { margin-left:auto; margin-right:auto; }
 }
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width:6px; }
-::-webkit-scrollbar-track { background:var(--clr-bg); }
+::-webkit-scrollbar-track { background:var(--bg); }
 ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.08); border-radius:3px; }
 ::-webkit-scrollbar-thumb:hover { background:rgba(255,255,255,0.12); }
 </style>

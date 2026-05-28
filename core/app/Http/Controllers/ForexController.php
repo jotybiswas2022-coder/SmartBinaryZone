@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Partner;
+use App\Models\Product;
+use App\Models\SourceCode;
 
 class ForexController extends Controller
 {
@@ -120,6 +122,18 @@ class ForexController extends Controller
         ];
     }
 
+    /**
+     * Filter out empty/incomplete plans (must have a name and price).
+     */
+    private function filterValidPlans(?array $plans): array
+    {
+        if (empty($plans)) return [];
+        
+        return collect($plans)->filter(function ($plan) {
+            return !empty($plan['name']) && !empty($plan['price']) && $plan['price'] > 0;
+        })->values()->all();
+    }
+
     // Bundles data
     private function getBundles()
     {
@@ -198,7 +212,7 @@ class ForexController extends Controller
     private function getKbArticles()
     {
         return [
-            ['title' => 'Getting Started with Your First EA', 'category' => 'Getting Started', 'date' => '2026-01-15', 'content' => 'Welcome to Core Trading Solutions! This guide will walk you through the process of setting up your first Expert Advisor. From installation to configuration, we cover everything you need to know to start automated trading successfully.'],
+            ['title' => 'Getting Started with Your First EA', 'category' => 'Getting Started', 'date' => '2026-01-15', 'content' => 'Welcome to SMART BINARY ZONE! This guide will walk you through the process of setting up your first Expert Advisor. From installation to configuration, we cover everything you need to know to start automated trading successfully.'],
             ['title' => 'How to Install EAs on MT4', 'category' => 'Installation Guide', 'date' => '2026-01-10', 'content' => 'Installing Expert Advisors on MetaTrader 4 is straightforward. Download your EA files, place them in the Experts folder, and refresh your Navigator panel. Detailed step-by-step instructions with screenshots included.'],
             ['title' => 'How to Install EAs on MT5', 'category' => 'Installation Guide', 'date' => '2026-01-08', 'content' => 'MetaTrader 5 installation process differs slightly from MT4. Learn how to properly install and configure your EAs on the MT5 platform for optimal performance.'],
             ['title' => 'Common EA Issues and Solutions', 'category' => 'Troubleshooting', 'date' => '2025-12-20', 'content' => 'Encountering issues with your EA? This comprehensive guide covers the most common problems traders face, including connection issues, order placement problems, and performance concerns.'],
@@ -243,15 +257,62 @@ class ForexController extends Controller
         $allProducts = $products;
         $product = $products[$slug] ?? null;
         if (!$product) abort(404);
+        
+        // Try to load matching DB product images (match by slug prefix, e.g. 'dark-algo' → 'dark-algo-5')
+        $dbProduct = Product::where('slug', 'LIKE', $slug . '%')->first();
+        if ($dbProduct) {
+            $product['db_image'] = $dbProduct->image;
+            $product['db_feature_images'] = [
+                $dbProduct->feature_image_1,
+                $dbProduct->feature_image_2,
+                $dbProduct->feature_image_3,
+            ];
+        } else {
+            $product['db_image'] = null;
+            $product['db_feature_images'] = [null, null, null];
+        }
+        
+        // Filter out empty/incomplete plans
+        $product['plans'] = $this->filterValidPlans($product['plans'] ?? null);
+        
         $reviews = $this->getReviews();
         $faq = $this->getFaq();
         return view('frontend.forex.product', compact('product', 'slug', 'reviews', 'faq', 'allProducts'));
     }
 
-    // Source codes
+    // Products listing (dynamic from DB)
+    public function products()
+    {
+        $products = Product::where('available', true)->orderBy('name')->paginate(12);
+        return view('frontend.forex.products', compact('products'));
+    }
+
+    // Product detail (dynamic from DB)
+    public function productDetail($slug)
+    {
+        $product = Product::where('slug', $slug)->where('available', true)->firstOrFail();
+        
+        // Filter out empty/incomplete plans from DB
+        if ($product->plans) {
+            $product->plans = $this->filterValidPlans($product->plans);
+        }
+        
+        $faq = $this->getFaq();
+        return view('frontend.forex.product-detail', compact('product', 'slug', 'faq'));
+    }
+
+    // Source codes listing (dynamic from DB)
     public function sourceCodes()
     {
-        return view('frontend.forex.source-codes');
+        $sourceCodes = SourceCode::where('available', true)->orderBy('name')->paginate(12);
+        return view('frontend.forex.source-codes', compact('sourceCodes'));
+    }
+
+    // Source code detail (dynamic from DB)
+    public function sourceCodeDetail($slug)
+    {
+        $sourceCode = SourceCode::where('slug', $slug)->where('available', true)->firstOrFail();
+        return view('frontend.forex.source-code-detail', compact('sourceCode'));
     }
 
     // Partnership - show page
@@ -261,11 +322,21 @@ class ForexController extends Controller
     }
 
     // Partnership - view my applications
-    public function myPartnership()
+    public function myPartnership(Request $request)
     {
-        $applications = Partner::where('email', auth()->user()->email)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $query = Partner::where('email', auth()->user()->email);
+
+        // Apply status filter if provided
+        if ($request->filled('status')) {
+            $status = $request->status;
+            if (in_array($status, ['pending', 'approved', 'rejected'])) {
+                $query->where('status', $status);
+            }
+        }
+
+        $applications = $query->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('frontend.forex.my-partnership', compact('applications'));
     }
@@ -329,6 +400,12 @@ class ForexController extends Controller
     {
         $products = $this->getProducts();
         return view('frontend.forex.cart', compact('products'));
+    }
+
+    // Payment Details
+    public function paymentDetails()
+    {
+        return view('frontend.forex.payment-details');
     }
 
     // Knowledgebase

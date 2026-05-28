@@ -53,7 +53,19 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-    'storage_url' => 'http://localhost/core/storage/app/public/',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Storage URL
+    |--------------------------------------------------------------------------
+    |
+    | This URL is used to generate URLs for files stored in the public storage
+    | directory. You can set this to a CDN URL in production, or use the
+    | APP_URL to dynamically generate it in development.
+    |
+    */
+
+    'storage_url' => env('STORAGE_URL', rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage/'),
 
     /*
     |--------------------------------------------------------------------------

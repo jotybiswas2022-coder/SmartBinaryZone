@@ -26,6 +26,8 @@ window.updateCartButtons = function() {
 };
 
 window.addToCart = function(item) {
+    // Normalize price to number (json_encode may output string)
+    item.price = parseFloat(item.price) || 0;
     const cart = window.getCart();
     const existing = cart.findIndex(i => i.id === item.id);
     if (existing >= 0) {
@@ -37,6 +39,10 @@ window.addToCart = function(item) {
     window.updateCartBadge();
     window.updateCartButtons();
     window.showToast(`${item.name} added to cart!`, 'success');
+    // Redirect to cart page after a brief moment
+    setTimeout(function() {
+        window.location.href = window.routeCart || '/cart';
+    }, 600);
 };
 window.removeFromCart = function(index) {
     const cart = window.getCart();

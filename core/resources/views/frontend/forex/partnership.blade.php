@@ -1,6 +1,6 @@
 @extends('frontend.forex.layouts.app')
 
-@section('title', 'Partnership — Core Trading Solutions')
+@section('title', 'Partnership — SMART BINARY ZONE')
 
 @section('content')
 <!-- ==================== HERO ==================== -->
@@ -29,8 +29,8 @@
             </div>
             <div style="display:none;animation:fadeInUp 0.6s ease 0.3s both">
                 <style>@media (min-width:1024px){.part-hero-visual{display:flex}}</style>
-                <div style="background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:3rem;aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.borderColor='rgba(0,174,239,0.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
-                    <svg style="width:7rem;height:7rem;color:rgba(234,234,234,0.1);transition:color 0.5s" fill="none" stroke="currentColor" viewBox="0 0 24 24" onmouseover="this.style.color='rgba(0,174,239,0.2)'" onmouseout="this.style.color='rgba(234,234,234,0.1)'"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                <div class="glass-card" style="padding:3rem;aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);cursor:default" onmouseover="this.style.transform='scale(1.02)';this.style.boxShadow='0 0 0 1px rgba(0,174,239,0.15)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">
+                    <svg style="width:7rem;height:7rem;color:rgba(234,234,234,0.1);transition:all 0.5s" fill="none" stroke="currentColor" viewBox="0 0 24 24" onmouseover="this.style.color='rgba(0,174,239,0.2)'" onmouseout="this.style.color='rgba(234,234,234,0.1)'"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                 </div>
             </div>
         </div>
@@ -55,42 +55,50 @@
         </div>
 
         <div style="display:grid;gap:1.25rem" class="part-bene-grid">
-            <div class="card text-center group reveal tilt-card stagger-1">
+            <div class="glass-card tilt-card group reveal text-center" style="padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
                 <div class="tilt-card-inner">
-                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.875rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
                         <svg style="width:1.75rem;height:1.75rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">High Commission</h3>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">High Commission</h3>
                     <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Earn up to 30% commission on every sale you refer. No caps, no limits.</p>
                 </div>
                 <div class="tilt-card-glow"></div>
             </div>
-            <div class="card text-center group reveal tilt-card stagger-2">
+            <div class="glass-card tilt-card group reveal text-center" style="padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
                 <div class="tilt-card-inner">
-                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.875rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
                         <svg style="width:1.75rem;height:1.75rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">Dedicated Support</h3>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Dedicated Support</h3>
                     <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Get priority support from our dedicated partnership team.</p>
                 </div>
                 <div class="tilt-card-glow"></div>
             </div>
-            <div class="card text-center group reveal tilt-card stagger-3">
+            <div class="glass-card tilt-card group reveal text-center" style="padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
                 <div class="tilt-card-inner">
-                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.875rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
                         <svg style="width:1.75rem;height:1.75rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     </div>
-                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">Marketing Materials</h3>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Marketing Materials</h3>
                     <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Access to banners, landing pages, and promotional content.</p>
                 </div>
                 <div class="tilt-card-glow"></div>
             </div>
-            <div class="card text-center group reveal tilt-card stagger-4">
+            <div class="glass-card tilt-card group reveal text-center" style="padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
                 <div class="tilt-card-inner">
-                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.75rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));display:flex;align-items:center;justify-content:center;transition:transform 0.3s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:0.875rem;background:linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05));border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.25),rgba(0,255,159,0.1))'" onmouseout="this.style.transform='scale(1)';this.style.background='linear-gradient(135deg,rgba(0,174,239,0.15),rgba(0,255,159,0.05))'">
                         <svg style="width:1.75rem;height:1.75rem;color:#00AEEF" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                     </div>
-                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">Real-time Tracking</h3>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Real-time Tracking</h3>
                     <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Dashboard with real-time sales and commission tracking.</p>
                 </div>
                 <div class="tilt-card-glow"></div>
@@ -110,34 +118,48 @@
 
         <div style="display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:3.5rem">
             <style>@media (min-width:768px){.part-steps{grid-template-columns:repeat(3,1fr)}}</style>
-            <div style="text-align:center" class="reveal stagger-1">
-                <div style="width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#00AEEF,#0095CC);display:flex;align-items:center;justify-content:center;color:white;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;font-size:1.5rem;box-shadow:0 0 20px rgba(0,174,239,0.3);position:relative">
-                    1
-                    <div style="display:none;position:absolute;top:50%;left:100%;width:2rem;height:0.125rem;background:linear-gradient(90deg,rgba(0,174,239,0.4),transparent)"></div>
-                    <style>@media (min-width:768px){.part-step-line{display:block !important}}</style>
+            <div class="glass-card tilt-card group reveal stagger-1" style="text-align:center;padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                <div class="tilt-card-inner">
+                    <div style="width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#00AEEF,#0095CC);display:flex;align-items:center;justify-content:center;color:white;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;font-size:1.5rem;box-shadow:0 0 20px rgba(0,174,239,0.3);position:relative;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 0 30px rgba(0,174,239,0.5)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,174,239,0.3)'">
+                        1
+                    </div>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Apply</h3>
+                    <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Submit your application with your details and we'll review it promptly.</p>
                 </div>
-                <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">Apply</h3>
-                <p style="color:rgba(234,234,234,0.5);font-size:0.875rem">Submit your application with your details and we'll review it promptly.</p>
+                <div class="tilt-card-glow"></div>
             </div>
-            <div style="text-align:center" class="reveal stagger-2">
-                <div style="width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#00AEEF,#0095CC);display:flex;align-items:center;justify-content:center;color:white;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;font-size:1.5rem;box-shadow:0 0 20px rgba(0,174,239,0.3);position:relative">
-                    2
-                    <div style="display:none;position:absolute;top:50%;left:100%;width:2rem;height:0.125rem;background:linear-gradient(90deg,rgba(0,174,239,0.4),transparent)"></div>
+            <div class="glass-card tilt-card group reveal stagger-2" style="text-align:center;padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                <div class="tilt-card-inner">
+                    <div style="width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#00AEEF,#0095CC);display:flex;align-items:center;justify-content:center;color:white;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;font-size:1.5rem;box-shadow:0 0 20px rgba(0,174,239,0.3);position:relative;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 0 30px rgba(0,174,239,0.5)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,174,239,0.3)'">
+                        2
+                    </div>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Get Approved</h3>
+                    <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Our team reviews and approves your application within 24-48 hours.</p>
                 </div>
-                <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">Get Approved</h3>
-                <p style="color:rgba(234,234,234,0.5);font-size:0.875rem">Our team reviews and approves your application within 24-48 hours.</p>
+                <div class="tilt-card-glow"></div>
             </div>
-            <div style="text-align:center" class="reveal stagger-3">
-                <div style="width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#00AEEF,#0095CC);display:flex;align-items:center;justify-content:center;color:white;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;font-size:1.5rem;box-shadow:0 0 20px rgba(0,174,239,0.3)">3</div>
-                <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem">Earn</h3>
-                <p style="color:rgba(234,234,234,0.5);font-size:0.875rem">Start earning commissions on every referral. Get paid monthly.</p>
+            <div class="glass-card tilt-card group reveal stagger-3" style="text-align:center;padding:2rem 1.5rem;cursor:default;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+                 onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 48px -8px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,174,239,0.15)'"
+                 onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                <div class="tilt-card-inner">
+                    <div style="width:4rem;height:4rem;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#00AEEF,#0095CC);display:flex;align-items:center;justify-content:center;color:white;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;font-size:1.5rem;box-shadow:0 0 20px rgba(0,174,239,0.3);position:relative;transition:all 0.3s" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 0 30px rgba(0,174,239,0.5)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 20px rgba(0,174,239,0.3)'">
+                        3
+                    </div>
+                    <h3 style="color:#EAEAEA;font-weight:600;margin-bottom:0.5rem;transition:color 0.3s" onmouseover="this.style.color='#00AEEF'" onmouseout="this.style.color='#EAEAEA'">Earn</h3>
+                    <p style="color:rgba(234,234,234,0.5);font-size:0.875rem;line-height:1.625">Start earning commissions on every referral. Get paid monthly.</p>
+                </div>
+                <div class="tilt-card-glow"></div>
             </div>
         </div>
 
         <!-- Commission Table -->
         <div class="reveal">
             <h3 style="font-size:1.5rem;font-family:'Bebas Neue','Oswald',sans-serif;font-weight:700;text-align:center;color:#EAEAEA;margin-bottom:1.5rem">Commission Structure</h3>
-            <div style="background:rgba(17,17,17,0.6);border:1px solid #2a2a2a;border-radius:1rem;overflow:hidden">
+            <div class="glass-card" style="overflow:hidden;padding:0;border-radius:1rem">
                 <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
                     <table style="width:100%;border-collapse:collapse">
                         <thead>
@@ -185,7 +207,9 @@
             <p style="font-size:clamp(0.95rem,1.2vw,1.1rem);color:rgba(234,234,234,0.5);max-width:36rem;margin:0 auto;line-height:1.6">Fill out the form and our partnership team will get back to you within 24 hours</p>
         </div>
 
-        <div style="background:rgba(17,17,17,0.6);border:1px solid #2a2a2a;border-radius:1rem;padding:1.5rem;transition:all 0.3s" class="reveal stagger-2" onmouseover="this.style.borderColor='rgba(0,174,239,0.2)'" onmouseout="this.style.borderColor='#2a2a2a'">
+        <div class="glass-card reveal" style="padding:1.5rem;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)"
+             onmouseover="this.style.boxShadow='0 20px 60px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,174,239,0.12)'"
+             onmouseout="this.style.boxShadow='none'">
             <style>@media (min-width:640px){.part-form-p{padding:2rem}}
             .part-input{width:100%;background:rgba(10,10,10,0.8);border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;padding:0.875rem 1rem;font-size:0.875rem;color:#EAEAEA;transition:all 0.3s;box-sizing:border-box}
             .part-input:focus{border-color:#00AEEF;box-shadow:0 0 0 3px rgba(0,174,239,0.15);outline:none}

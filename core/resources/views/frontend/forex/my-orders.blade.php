@@ -1,44 +1,96 @@
 @extends('frontend.forex.layouts.app')
 
-@section('title', 'My Orders — Core Trading Solutions')
+@section('title', 'My Orders — SMART BINARY ZONE')
 
 @section('content')
+@if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.showToast('{{ session('success') }}', 'success');
+    });
+</script>
+@endif
 <style>
-.my-orders-page{min-height:100vh;padding-top:6rem;padding-bottom:4rem;position:relative;overflow:hidden}
-.my-orders-inner{max-width:64rem;margin:0 auto;padding:0 1rem;position:relative;z-index:10}
+.my-orders-page{min-height:100vh;padding-top:7rem;padding-bottom:4rem;position:relative;overflow:hidden}
+.my-orders-inner{max-width:56rem;margin:0 auto;padding:0 1rem;position:relative;z-index:10}
 @media (min-width:640px){.my-orders-inner{padding:0 1.5rem}}
 @media (min-width:1024px){.my-orders-inner{padding:0 2rem}}
-.my-orders-header{margin-bottom:2.5rem;text-align:center}
-.my-orders-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:2.5rem}
-@media (max-width:480px){.my-orders-stats{grid-template-columns:1fr}}
-.my-orders-stat-card{background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:0.75rem;padding:1rem;text-align:center;transition:all 0.3s}
-.my-orders-stat-card:hover{border-color:rgba(0,174,239,0.2)}
-.my-orders-stat-value{color:#EAEAEA;font-weight:700;font-size:1.375rem;font-family:'JetBrains Mono',monospace;margin-bottom:0.125rem}
-.my-orders-stat-label{color:rgba(234,234,234,0.4);font-size:0.75rem}
-.my-orders-list{display:flex;flex-direction:column;gap:0.75rem}
-.my-orders-card{background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:1.25rem;transition:all 0.3s}
-.my-orders-card:hover{border-color:rgba(0,174,239,0.15);background:rgba(17,17,17,0.8)}
-.my-orders-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap}
-.my-orders-card-order{display:flex;flex-direction:column;gap:0.125rem}
-.my-orders-card-number{color:#00AEEF;font-family:'JetBrains Mono',monospace;font-size:0.875rem;font-weight:600}
-.my-orders-card-date{color:rgba(234,234,234,0.3);font-size:0.75rem}
-.my-orders-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.06)}
-.my-orders-card-items{color:rgba(234,234,234,0.5);font-size:0.8125rem}
-.my-orders-card-total{color:#EAEAEA;font-weight:600;font-family:'JetBrains Mono',monospace;font-size:0.9375rem}
-.my-orders-card-arrow{color:rgba(234,234,234,0.2);transition:all 0.3s;width:1.25rem;height:1.25rem;flex-shrink:0}
-.my-orders-card:hover .my-orders-card-arrow{color:#00AEEF;transform:translateX(3px)}
-.my-orders-empty{text-align:center;padding:4rem 1rem}
-.my-orders-empty-icon{width:4rem;height:4rem;margin:0 auto 1.25rem;border-radius:50%;background:rgba(0,174,239,0.06);border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center}
-.my-orders-empty-icon svg{width:1.5rem;height:1.5rem;color:#00AEEF}
-.my-orders-empty-title{color:#EAEAEA;font-weight:600;font-size:1.125rem;margin-bottom:0.5rem}
-.my-orders-empty-desc{color:rgba(234,234,234,0.4);font-size:0.875rem;max-width:24rem;margin:0 auto 1.5rem;line-height:1.6}
-/* Pagination styles */
-.my-orders-pagination{display:flex;align-items:center;justify-content:center;gap:0.375rem;margin-top:2rem}
-.my-orders-pagination a,.my-orders-pagination span{display:inline-flex;align-items:center;justify-content:center;min-width:2.25rem;height:2.25rem;padding:0 0.5rem;font-size:0.8125rem;font-weight:500;border-radius:0.5rem;transition:all 0.2s;text-decoration:none}
-.my-orders-pagination a{color:rgba(234,234,234,0.5);background:rgba(17,17,17,0.6);border:1px solid rgba(255,255,255,0.06)}
-.my-orders-pagination a:hover{color:#fff;border-color:rgba(0,174,239,0.25);background:rgba(0,174,239,0.06)}
-.my-orders-pagination span:not(.dots){color:#fff;background:linear-gradient(135deg,#00AEEF,#0095CC);border:none}
-.my-orders-pagination .dots{color:rgba(234,234,234,0.2);background:transparent;border:none;min-width:1.5rem}
+
+/* Header */
+.orders-header{text-align:center;margin-bottom:2rem}
+.orders-header-icon{width:3.5rem;height:3.5rem;margin:0 auto 1rem;border-radius:1rem;background:rgba(0,174,239,0.08);border:1px solid rgba(0,174,239,0.12);display:flex;align-items:center;justify-content:center;color:#00AEEF;transition:all 0.3s ease}
+.orders-header-icon:hover{box-shadow:0 0 30px rgba(0,174,239,0.15);transform:translateY(-2px)}
+.orders-header-icon svg{width:1.5rem;height:1.5rem}
+.orders-header h1{font-family:'Bebas Neue','Oswald',sans-serif;font-size:clamp(2rem,5vw,3rem);color:#EAEAEA;margin-bottom:0.5rem;letter-spacing:0.02em}
+.orders-header p{color:rgba(234,234,234,0.4);font-size:0.9375rem;max-width:28rem;margin:0 auto;line-height:1.6}
+
+/* Stats Bar */
+.orders-stats{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2rem;padding:1rem 1.5rem;background:rgba(17,17,17,0.3);border:1px solid rgba(255,255,255,0.04);border-radius:1rem;flex-wrap:wrap}
+.orders-stat-item{text-align:center}
+.orders-stat-value{font-family:'JetBrains Mono',monospace;font-size:1.125rem;font-weight:700;color:#EAEAEA}
+.orders-stat-label{font-size:0.6875rem;color:rgba(234,234,234,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.125rem}
+.orders-stat-divider{width:1px;height:2rem;background:rgba(255,255,255,0.06)}
+.orders-stat-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:0.375rem;vertical-align:middle}
+.orders-stat-dot.pending{background:#f59e0b}
+.orders-stat-dot.processing{background:#00AEEF}
+.orders-stat-dot.completed{background:#00FF9F}
+.orders-stat-dot.cancelled{background:#ef4444}
+
+/* Orders List */
+.my-orders-list{display:flex;flex-direction:column;gap:0.625rem}
+.my-orders-card{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;text-decoration:none;background:rgba(17,17,17,0.35);border:1px solid rgba(255,255,255,0.06);border-radius:0.875rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;overflow:hidden;transition:all 0.35s cubic-bezier(0.4,0,0.2,1)}
+.my-orders-card::before{content:'';position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent 50%,rgba(255,255,255,0.02));pointer-events:none;z-index:-1}
+.my-orders-card:hover{border-color:rgba(0,174,239,0.18);background:rgba(17,17,17,0.6);box-shadow:0 8px 32px -8px rgba(0,0,0,0.3)}
+.my-orders-card-left{display:flex;align-items:center;gap:0.875rem;flex:1;min-width:0}
+.my-orders-card-icon{width:2.5rem;height:2.5rem;border-radius:0.75rem;background:rgba(0,174,239,0.06);border:1px solid rgba(0,174,239,0.1);display:flex;align-items:center;justify-content:center;color:rgba(0,174,239,0.6);flex-shrink:0;transition:all 0.3s ease}
+.my-orders-card:hover .my-orders-card-icon{background:rgba(0,174,239,0.1);border-color:rgba(0,174,239,0.2);color:#00AEEF}
+.my-orders-card-icon svg{width:1.125rem;height:1.125rem}
+.my-orders-card-info{min-width:0;flex:1}
+.my-orders-card-number{font-family:'JetBrains Mono',monospace;font-size:0.8125rem;font-weight:600;color:#00AEEF;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.my-orders-card-date{font-size:0.6875rem;color:rgba(234,234,234,0.3);margin-top:0.125rem}
+.my-orders-card-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+.my-orders-card-items{font-size:0.75rem;color:rgba(234,234,234,0.4);white-space:nowrap}
+.my-orders-card-total{font-family:'JetBrains Mono',monospace;font-size:0.9375rem;font-weight:600;color:#EAEAEA;white-space:nowrap}
+.my-orders-card-arrow{color:rgba(234,234,234,0.12);transition:all 0.35s ease;width:1.125rem;height:1.125rem;flex-shrink:0}
+.my-orders-card:hover .my-orders-card-arrow{color:#00AEEF;transform:translateX(4px)}
+
+/* Status Badge */
+.orders-status-badge{display:inline-flex;align-items:center;gap:0.3125rem;padding:0.25rem 0.625rem;border-radius:9999px;font-size:0.625rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap;flex-shrink:0}
+.orders-status-badge .dot{width:0.3125rem;height:0.3125rem;border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* Pagination */
+.my-orders-nav{display:flex;align-items:center;justify-content:center;gap:0.375rem;margin-top:2.5rem;flex-wrap:wrap}
+.my-orders-nav-link{display:inline-flex;align-items:center;justify-content:center;gap:0.375rem;min-width:2.25rem;height:2.25rem;padding:0 0.75rem;border-radius:0.625rem;font-size:0.8125rem;font-weight:500;color:rgba(234,234,234,0.4);text-decoration:none;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);transition:all 0.25s ease}
+.my-orders-nav-link:hover:not(.disabled):not(.active){color:#EAEAEA;background:rgba(0,174,239,0.06);border-color:rgba(0,174,239,0.15)}
+.my-orders-nav-link.active{color:#fff;background:rgba(0,174,239,0.12);border-color:rgba(0,174,239,0.25);pointer-events:none}
+.my-orders-nav-link.disabled{opacity:0.15;pointer-events:none;cursor:default}
+.my-orders-nav-link svg{width:0.8125rem;height:0.8125rem;flex-shrink:0;transition:transform 0.25s ease}
+.my-orders-nav-link:hover:not(.disabled):not(.active) svg:first-child{transform:translateX(-2px)}
+.my-orders-nav-link:hover:not(.disabled):not(.active) svg:last-child{transform:translateX(2px)}
+.my-orders-nav-info{color:rgba(234,234,234,0.2);font-size:0.75rem;padding:0 0.25rem}
+.my-orders-nav-dots{color:rgba(234,234,234,0.2);font-size:0.8125rem;padding:0 0.125rem;letter-spacing:0.05em}
+
+/* Empty State */
+.my-orders-empty{padding:5rem 1rem;text-align:center}
+.my-orders-empty-icon{width:4.5rem;height:4.5rem;margin:0 auto 1.25rem;border-radius:1.125rem;background:rgba(17,17,17,0.4);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+.my-orders-empty-icon:hover{border-color:rgba(0,174,239,0.2);box-shadow:0 0 30px rgba(0,174,239,0.08)}
+.my-orders-empty-icon svg{width:1.75rem;height:1.75rem;color:rgba(234,234,234,0.12)}
+.my-orders-empty-title{color:#EAEAEA;font-weight:600;font-size:1.25rem;margin-bottom:0.5rem}
+.my-orders-empty-desc{color:rgba(234,234,234,0.35);font-size:0.875rem;max-width:24rem;margin:0 auto 1.5rem;line-height:1.7}
+.my-orders-empty-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;background:linear-gradient(135deg,#00AEEF,#0095CC);color:white;font-weight:600;font-size:0.875rem;border-radius:0.75rem;text-decoration:none;transition:all 0.3s ease}
+.my-orders-empty-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,174,239,0.25)}
+
+/* Sort Toggle */
+.orders-sort{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-bottom:1.5rem}
+.orders-sort-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.5rem 1.25rem;border-radius:0.75rem;font-size:0.8125rem;font-weight:500;color:rgba(234,234,234,0.4);text-decoration:none;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);transition:all 0.25s ease;cursor:pointer}
+.orders-sort-btn:hover{color:#EAEAEA;background:rgba(0,174,239,0.06);border-color:rgba(0,174,239,0.15)}
+.orders-sort-btn.active{color:#fff;background:rgba(0,174,239,0.12);border-color:rgba(0,174,239,0.25)}
+.orders-sort-btn svg{width:0.875rem;height:0.875rem;flex-shrink:0}
+.orders-sort-divider{width:1px;height:1.25rem;background:rgba(255,255,255,0.06)}
+
+/* Loading shimmer */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 </style>
 
 <section class="my-orders-page">
@@ -47,83 +99,160 @@
     <div class="grid-bg" style="position:absolute;inset:0;opacity:0.3;pointer-events:none"></div>
 
     <div class="my-orders-inner">
-        <!-- Header -->
-        <div class="my-orders-header reveal">
-            <div class="badge">
-                <span class="badge-dot"></span>
-                Account
+        <!-- Page Header -->
+        <div class="orders-header reveal">
+            <div class="orders-header-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
             </div>
-            <h1 class="section-title">My <span class="gradient-text">Orders</span></h1>
-            <p class="section-subtitle">Your purchased Expert Advisors and bundles</p>
+            <h1>My Orders</h1>
+            <p>Track and manage all your Expert Advisor purchases in one place.</p>
         </div>
 
         @if($orders->count() > 0)
-            <!-- Stats Cards -->
-            <div class="my-orders-stats reveal" style="transition-delay:0.05s">
-                @php
-                    $totalSpent = \App\Models\Order::where('user_id', Auth::id())->sum('total');
-                    $completedCount = \App\Models\Order::where('user_id', Auth::id())->whereIn('status', ['completed', 'processing'])->count();
-                    $pendingCount = \App\Models\Order::where('user_id', Auth::id())->where('status', 'pending')->count();
-                @endphp
-                <div class="my-orders-stat-card">
-                    <div class="my-orders-stat-value">{{ $orders->total() }}</div>
-                    <div class="my-orders-stat-label">Total Orders</div>
+            @php
+                $currentSort = $sort ?? 'newest';
+                $totalOrders = $orders->total();
+                $pendingCount = 0;
+                $processingCount = 0;
+                $completedCount = 0;
+                foreach ($orders as $o) {
+                    if ($o->status === 'pending' || $o->status === 'pending_payment' || $o->status === 'payment_submitted') $pendingCount++;
+                    elseif ($o->status === 'processing') $processingCount++;
+                    elseif ($o->status === 'completed') $completedCount++;
+                }
+            @endphp
+
+            <!-- Sort Toggle: Newest / Oldest side by side -->
+            <div class="orders-sort reveal" style="transition-delay:0.05s">
+                <a href="{{ request()->fullUrlWithQuery(['sort' => 'newest']) }}" class="orders-sort-btn {{ $currentSort === 'newest' ? 'active' : '' }}">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
+                    Newest First
+                </a>
+                <span class="orders-sort-divider"></span>
+                <a href="{{ request()->fullUrlWithQuery(['sort' => 'oldest']) }}" class="orders-sort-btn {{ $currentSort === 'oldest' ? 'active' : '' }}">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m4-4l4 4m0 0l-4 4"/></svg>
+                    Oldest First
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="orders-stats reveal" style="transition-delay:0.075s">
+                <div class="orders-stat-item">
+                    <div class="orders-stat-value">{{ $totalOrders }}</div>
+                    <div class="orders-stat-label">Total Orders</div>
                 </div>
-                <div class="my-orders-stat-card">
-                    <div class="my-orders-stat-value" style="color:#00FF9F">${{ number_format($totalSpent, 0) }}</div>
-                    <div class="my-orders-stat-label">Total Spent</div>
+                <div class="orders-stat-divider"></div>
+                <div class="orders-stat-item">
+                    <div class="orders-stat-value"><span class="orders-stat-dot pending"></span>{{ $pendingCount }}</div>
+                    <div class="orders-stat-label">Pending</div>
                 </div>
-                <div class="my-orders-stat-card">
-                    <div class="my-orders-stat-value" style="color:#00AEEF">{{ $completedCount }}</div>
-                    <div class="my-orders-stat-label">Completed</div>
+                <div class="orders-stat-divider"></div>
+                <div class="orders-stat-item">
+                    <div class="orders-stat-value"><span class="orders-stat-dot processing"></span>{{ $processingCount }}</div>
+                    <div class="orders-stat-label">Processing</div>
+                </div>
+                <div class="orders-stat-divider"></div>
+                <div class="orders-stat-item">
+                    <div class="orders-stat-value"><span class="orders-stat-dot completed"></span>{{ $completedCount }}</div>
+                    <div class="orders-stat-label">Completed</div>
                 </div>
             </div>
 
             <!-- Orders List -->
-            <div class="my-orders-list">
+            <div class="my-orders-list reveal" style="transition-delay:0.1s">
                 @foreach($orders as $order)
-                <a href="{{ route('order.success', ['order' => $order->order_number]) }}" class="my-orders-card reveal group" style="text-decoration:none;display:block;transition-delay:{{ $loop->index * 0.03 }}s">
-                    <div class="my-orders-card-top">
-                        <div class="my-orders-card-order">
+                <a href="{{ route('order.success', ['order' => $order->order_number]) }}" class="my-orders-card reveal" style="transition-delay:{{ $loop->index * 0.025 }}s">
+                    <div class="my-orders-card-left">
+                        <div class="my-orders-card-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        </div>
+                        <div class="my-orders-card-info">
                             <span class="my-orders-card-number">{{ $order->order_number }}</span>
                             <span class="my-orders-card-date">{{ $order->created_at->format('M d, Y — h:i A') }}</span>
                         </div>
+                    </div>
+                    <div class="my-orders-card-right">
                         @php
                             $statusColors = [
-                                'pending' => ['bg' => 'rgba(245,158,11,0.1)', 'border' => 'rgba(245,158,11,0.2)', 'dot' => '#f59e0b'],
-                                'processing' => ['bg' => 'rgba(0,174,239,0.1)', 'border' => 'rgba(0,174,239,0.2)', 'dot' => '#00AEEF'],
-                                'completed' => ['bg' => 'rgba(0,255,159,0.1)', 'border' => 'rgba(0,255,159,0.15)', 'dot' => '#00FF9F'],
-                                'cancelled' => ['bg' => 'rgba(239,68,68,0.1)', 'border' => 'rgba(239,68,68,0.2)', 'dot' => '#ef4444'],
+                                'pending'           => ['bg' => 'rgba(245,158,11,0.1)', 'border' => 'rgba(245,158,11,0.15)', 'dot' => '#f59e0b', 'label' => 'Pending'],
+                                'pending_payment'   => ['bg' => 'rgba(245,158,11,0.1)', 'border' => 'rgba(245,158,11,0.15)', 'dot' => '#f59e0b', 'label' => 'Pending Payment'],
+                                'payment_submitted' => ['bg' => 'rgba(245,158,11,0.1)', 'border' => 'rgba(245,158,11,0.15)', 'dot' => '#f59e0b', 'label' => 'Payment Submitted'],
+                                'processing'        => ['bg' => 'rgba(0,174,239,0.1)',  'border' => 'rgba(0,174,239,0.15)',  'dot' => '#00AEEF', 'label' => 'Processing'],
+                                'completed'         => ['bg' => 'rgba(0,255,159,0.1)',  'border' => 'rgba(0,255,159,0.15)',  'dot' => '#00FF9F', 'label' => 'Completed'],
+                                'cancelled'         => ['bg' => 'rgba(239,68,68,0.1)',  'border' => 'rgba(239,68,68,0.15)',  'dot' => '#ef4444', 'label' => 'Cancelled'],
                             ];
                             $sc = $statusColors[$order->status] ?? $statusColors['pending'];
+                            $itemCount = count($order->items ?? []);
                         @endphp
-                        <span style="display:inline-flex;align-items:center;gap:0.375rem;padding:0.25rem 0.75rem;border-radius:9999px;font-size:0.6875rem;font-weight:600;background:{{ $sc['bg'] }};border:1px solid {{ $sc['border'] }};color:{{ $sc['dot'] }}">
-                            <span style="width:0.375rem;height:0.375rem;border-radius:50%;background:{{ $sc['dot'] }}"></span>
-                            {{ ucfirst($order->status) }}
+                        <span class="orders-status-badge" style="background:{{ $sc['bg'] }};border:1px solid {{ $sc['border'] }};color:{{ $sc['dot'] }}">
+                            <span class="dot" style="background:{{ $sc['dot'] }}"></span>
+                            {{ $sc['label'] }}
                         </span>
-                    </div>
-                    <div class="my-orders-card-bottom">
-                        <span class="my-orders-card-items">
-                            {{ count($order->items ?? []) }} item{{ count($order->items ?? []) !== 1 ? 's' : '' }}
-                            @if($order->items && count($order->items) > 0)
-                                — <span style="color:rgba(234,234,234,0.35)">{{ implode(', ', array_column(array_slice($order->items, 0, 2), 'name')) }}{{ count($order->items) > 2 ? '…' : '' }}</span>
-                            @endif
-                        </span>
-                        <div style="display:flex;align-items:center;gap:0.5rem">
-                            <span class="my-orders-card-total">${{ number_format($order->total, 2) }}</span>
-                            <svg class="my-orders-card-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </div>
+                        <span class="my-orders-card-items">{{ $itemCount }} item{{ $itemCount !== 1 ? 's' : '' }}</span>
+                        <span class="my-orders-card-total">${{ number_format($order->total, 2) }}</span>
+                        <svg class="my-orders-card-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </a>
                 @endforeach
             </div>
 
-            <!-- Pagination -->
-            @if($orders->hasPages())
-            <div class="my-orders-pagination">
-                {{ $orders->links() }}
+            <!-- Pagination with page numbers -->
+            <div class="my-orders-nav reveal" style="transition-delay:0.15s">
+                @php
+                    $currentPage = $orders->currentPage();
+                    $lastPage = $orders->lastPage();
+                    $startPage = max(1, $currentPage - 2);
+                    $endPage = min($lastPage, $currentPage + 2);
+                    $paginator = $orders;
+                @endphp
+
+                {{-- Previous --}}
+                @if($paginator->onFirstPage())
+                    <span class="my-orders-nav-link disabled">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </span>
+                @else
+                    <a href="{{ $paginator->previousPageUrl() }}" class="my-orders-nav-link">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </a>
+                @endif
+
+                {{-- First page + dots --}}
+                @if($startPage > 1)
+                    <a href="{{ $paginator->url(1) }}" class="my-orders-nav-link">1</a>
+                    @if($startPage > 2)
+                        <span class="my-orders-nav-dots">…</span>
+                    @endif
+                @endif
+
+                {{-- Page numbers --}}
+                @for($i = $startPage; $i <= $endPage; $i++)
+                    @if($i == $currentPage)
+                        <span class="my-orders-nav-link active">{{ $i }}</span>
+                    @else
+                        <a href="{{ $paginator->url($i) }}" class="my-orders-nav-link">{{ $i }}</a>
+                    @endif
+                @endfor
+
+                {{-- Last page + dots --}}
+                @if($endPage < $lastPage)
+                    @if($endPage < $lastPage - 1)
+                        <span class="my-orders-nav-dots">…</span>
+                    @endif
+                    <a href="{{ $paginator->url($lastPage) }}" class="my-orders-nav-link">{{ $lastPage }}</a>
+                @endif
+
+                {{-- Next --}}
+                @if($currentPage >= $lastPage)
+                    <span class="my-orders-nav-link disabled">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                @else
+                    <a href="{{ $paginator->nextPageUrl() }}" class="my-orders-nav-link">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                @endif
             </div>
-            @endif
         @else
             <!-- Empty State -->
             <div class="my-orders-empty reveal">
@@ -132,8 +261,8 @@
                 </div>
                 <h2 class="my-orders-empty-title">No Orders Yet</h2>
                 <p class="my-orders-empty-desc">You haven't purchased any Expert Advisors yet. Explore our collection and start your trading journey today.</p>
-                <a href="{{ route('forex.home') }}#pricing" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none">
-                    Browse EAs
+                <a href="{{ route('forex.products') }}" class="my-orders-empty-btn">
+                    Browse Products
                     <svg style="width:1rem;height:1rem" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
             </div>

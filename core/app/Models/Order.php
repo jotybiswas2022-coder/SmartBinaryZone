@@ -12,9 +12,14 @@ class Order extends Model
         'items',
         'subtotal',
         'total',
+        'payment_method',
         'status',
         'customer_name',
         'customer_email',
+        'phone',
+        'trading_account',
+        'transaction_id',
+        'payment_screenshot',
         'notes',
     ];
 

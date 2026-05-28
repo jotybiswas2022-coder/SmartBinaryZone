@@ -1,6 +1,6 @@
 @extends('frontend.forex.layouts.app')
 
-@section('title', 'Privacy Policy — Core Trading Solutions')
+@section('title', 'Privacy Policy — SMART BINARY ZONE')
 
 @section('content')
 <section style="padding-top:6rem;padding-bottom:3rem">

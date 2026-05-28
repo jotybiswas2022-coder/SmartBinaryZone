@@ -71,6 +71,20 @@ use Illuminate\Support\Str;
                 <span>Partners</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.products.index') }}"
+               class="{{ request()->is('admin/products*') ? 'active' : '' }}">
+                <i class="bi bi-box-seam-fill"></i>
+                <span>Products</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.source-codes.index') }}"
+               class="{{ request()->is('admin/source-codes*') ? 'active' : '' }}">
+                <i class="bi bi-code-slash"></i>
+                <span>Source Codes</span>
+            </a>
+        </li>
     </ul>
     <div class="sidebar-footer">
         <span class="sidebar-version">Connectly v1.0</span>
