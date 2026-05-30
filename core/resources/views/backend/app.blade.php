@@ -45,20 +45,26 @@ Swal.setDefaults({
 
 {{-- Top scrollbar sync for all backend tables --}}
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
     document.querySelectorAll('.table-scroll-wrap').forEach(function(wrapper) {
         // Only add top scrollbar if the content overflows
         if (wrapper.scrollWidth <= wrapper.clientWidth) return;
 
+        var container = document.createElement('div');
+        container.className = 'table-scrollbar-container';
+        container.style.cssText = 'display:flex;flex-direction:column;';
+
         var topBar = document.createElement('div');
         topBar.className = 'table-scrollbar-top';
-        topBar.style.cssText = 'overflow-x:auto;overflow-y:hidden;width:100%;height:10px;background:transparent;';
 
         var spacer = document.createElement('div');
         spacer.style.cssText = 'height:1px;width:' + wrapper.scrollWidth + 'px;';
         topBar.appendChild(spacer);
 
-        wrapper.parentNode.insertBefore(topBar, wrapper);
+        // Wrap wrapper in container with topBar before it
+        wrapper.parentNode.insertBefore(container, wrapper);
+        container.appendChild(topBar);
+        container.appendChild(wrapper);
 
         // Sync top scroll → bottom scroll
         topBar.addEventListener('scroll', function () {
@@ -143,6 +149,19 @@ main.content-area {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.2); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(148,163,184,0.35); }
+
+/* ─── Top Scrollbar Separator ─── */
+.table-scrollbar-top {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    height: 10px;
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.table-scrollbar-top::-webkit-scrollbar { height: 6px; }
+.table-scrollbar-top::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.15); }
+.table-scrollbar-top::-webkit-scrollbar-thumb:hover { background: rgba(148,163,184,0.3); }
 
 /* ─── Pagination (global style for all backend pages) ─── */
 .pagination {
