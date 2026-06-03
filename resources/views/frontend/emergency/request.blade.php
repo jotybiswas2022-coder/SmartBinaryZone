@@ -98,10 +98,17 @@
                                 @php $groups = ['A+','A-','B+','B-','O+','O-','AB+','AB-']; @endphp
                                 @foreach($groups as $group)
                                 <button type="button" class="blood-chip" onclick="selectBlood('{{ $group }}', this)"
-                                        style="padding:7px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;display:flex;align-items:center;gap:5px;font-family:inherit;">
+                                        style="padding:7px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;display:flex;align-items:center;gap:6px;font-family:inherit;position:relative;">
                                     <i class="bi bi-droplet-fill" style="font-size:10px;"></i> {{ $group }}
+                                    <span class="blood-chip-check" style="display:none;font-size:8px;margin-left:2px;">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </span>
                                 </button>
                                 @endforeach
+                            </div>
+                            <div id="selectedBloodDisplay" style="display:none;align-items:center;gap:8px;margin-top:4px;padding:6px 12px;border-radius:8px;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.2);font-size:12px;font-weight:600;color:#fca5a5;">
+                                <i class="bi bi-check-circle-fill" style="font-size:11px;"></i>
+                                <span>নির্বাচিত: <strong id="selectedBloodText"></strong></span>
                             </div>
                             <div class="input-group-custom" style="position:relative;">
                                 <select name="blood_group" id="bloodGroup" required onchange="syncBloodChips(this.value)"
@@ -124,22 +131,35 @@
                             </label>
                             <div class="urgency-chips" id="urgencyChips" style="display:flex;gap:10px;flex-wrap:wrap;">
                                 <button type="button" class="urgency-chip selected" data-value="critical" onclick="selectUrgency('critical', this)"
-                                        style="flex:1;padding:10px 14px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;font-family:inherit;text-align:center;min-width:100px;">
+                                        style="flex:1;padding:10px 14px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;font-family:inherit;text-align:center;min-width:100px;position:relative;">
                                     <i class="bi bi-exclamation-triangle-fill"></i><br>
                                     <span style="font-size:11px;">ক্রিটিক্যাল</span>
+                                    <span class="urgency-chip-check" style="display:inline-flex;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:#22c55e;color:#fff;font-size:9px;box-shadow:0 2px 6px rgba(34,197,94,0.4);">
+                                        <i class="bi bi-check"></i>
+                                    </span>
                                 </button>
                                 <button type="button" class="urgency-chip" data-value="urgent" onclick="selectUrgency('urgent', this)"
-                                        style="flex:1;padding:10px 14px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;font-family:inherit;text-align:center;min-width:100px;">
+                                        style="flex:1;padding:10px 14px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;font-family:inherit;text-align:center;min-width:100px;position:relative;">
                                     <i class="bi bi-clock-fill"></i><br>
                                     <span style="font-size:11px;">জরুরি</span>
+                                    <span class="urgency-chip-check" style="display:none;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:#22c55e;color:#fff;font-size:9px;box-shadow:0 2px 6px rgba(34,197,94,0.4);">
+                                        <i class="bi bi-check"></i>
+                                    </span>
                                 </button>
                                 <button type="button" class="urgency-chip" data-value="normal" onclick="selectUrgency('normal', this)"
-                                        style="flex:1;padding:10px 14px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;font-family:inherit;text-align:center;min-width:100px;">
+                                        style="flex:1;padding:10px 14px;border-radius:12px;border:2px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.22s ease;font-family:inherit;text-align:center;min-width:100px;position:relative;">
                                     <i class="bi bi-calendar-check"></i><br>
                                     <span style="font-size:11px;">সাধারণ</span>
+                                    <span class="urgency-chip-check" style="display:none;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:#22c55e;color:#fff;font-size:9px;box-shadow:0 2px 6px rgba(34,197,94,0.4);">
+                                        <i class="bi bi-check"></i>
+                                    </span>
                                 </button>
                             </div>
                             <input type="hidden" name="urgency" id="urgencyInput" value="critical">
+                            <div id="selectedUrgencyDisplay" style="display:flex;align-items:center;gap:8px;margin-top:6px;padding:6px 12px;border-radius:8px;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.2);font-size:12px;font-weight:600;color:#fca5a5;">
+                                <i class="bi bi-check-circle-fill" style="font-size:11px;"></i>
+                                <span>নির্বাচিত: <strong id="selectedUrgencyText">ক্রিটিক্যাল</strong></span>
+                            </div>
                         </div>
 
                         {{-- Divider --}}
@@ -258,9 +278,69 @@
         .input-group-custom select option { background: #1a1a2e; color: #f5f5f5; }
         .input-group-custom select { background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M6 8L0 0h12z'/%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 14px center; }
 
-        .blood-chip.selected { background: linear-gradient(135deg, #dc2626, #ef4444) !important; border-color: transparent !important; color: white !important; box-shadow: 0 3px 12px rgba(220,38,38,0.3); }
-        .urgency-chip.selected { border-color: #dc2626 !important; background: rgba(220,38,38,0.15) !important; color: #fca5a5 !important; }
-        .urgency-chip:hover { border-color: rgba(239,68,68,0.3) !important; }
+        .blood-chip {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            user-select: none;
+        }
+
+        .blood-chip:hover {
+            border-color: rgba(239,68,68,0.4) !important;
+            background: rgba(220,38,38,0.08) !important;
+            color: rgba(255,255,255,0.85) !important;
+            transform: translateY(-2px);
+        }
+
+        .blood-chip.selected {
+            background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+            border-color: transparent !important;
+            color: white !important;
+            box-shadow: 0 4px 16px rgba(220,38,38,0.4);
+            transform: scale(1.05);
+        }
+
+        .blood-chip.selected .blood-chip-check {
+            display: inline !important;
+        }
+
+        .urgency-chip {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            user-select: none;
+        }
+
+        .urgency-chip:hover {
+            border-color: rgba(239,68,68,0.4) !important;
+            background: rgba(220,38,38,0.08) !important;
+            color: rgba(255,255,255,0.85) !important;
+            transform: translateY(-2px);
+        }
+
+        .urgency-chip.selected {
+            border-color: #dc2626 !important;
+            background: linear-gradient(135deg, rgba(220,38,38,0.2), rgba(239,68,68,0.1)) !important;
+            color: #fca5a5 !important;
+            box-shadow: 0 4px 20px rgba(220,38,38,0.25);
+            transform: scale(1.04) !important;
+        }
+
+        .urgency-chip.selected .urgency-chip-check {
+            display: inline-flex !important;
+            animation: checkPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .blood-chip-check {
+            transition: all 0.25s ease;
+            animation: checkPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes checkPop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.3); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #selectedBloodDisplay, #selectedUrgencyDisplay {
+            animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
         @media (max-width: 767.98px) { body { padding-top: 60px; } .emergency-section { padding: 20px 0 10px; } }
         @media (max-width: 480px) { body { padding-top: 56px; } .emergency-section .container { padding: 0 14px; } }
@@ -280,24 +360,72 @@
         .light-mode .form-divider span:first-child, .light-mode .form-divider span:last-child { background: rgba(0,0,0,0.08) !important; }
         .light-mode .form-divider span:nth-child(2) { color: rgba(0,0,0,0.35); }
         .light-mode div[style*=\"background:rgba(59,130,246,0.08)\"] { background: rgba(59,130,246,0.05) !important; border-color: rgba(59,130,246,0.15) !important; color: rgba(0,0,0,0.5) !important; }
+
+        .light-mode .blood-chip:hover {
+            border-color: rgba(220,38,38,0.3) !important;
+            background: rgba(220,38,38,0.06) !important;
+            color: #dc2626 !important;
+        }
+
+        .light-mode #selectedBloodDisplay,
+        .light-mode #selectedUrgencyDisplay {
+            background: rgba(220,38,38,0.06) !important;
+            border-color: rgba(220,38,38,0.15) !important;
+            color: #dc2626 !important;
+        }
     </style>
 
     <script>
     function selectBlood(value, chipEl) {
         document.getElementById('bloodGroup').value = value;
-        document.querySelectorAll('.blood-chip').forEach(c => c.classList.remove('selected'));
+
+        // Update chip selection
+        document.querySelectorAll('.blood-chip').forEach(function(c) {
+            c.classList.remove('selected');
+            c.querySelector('.blood-chip-check').style.display = 'none';
+        });
         chipEl.classList.add('selected');
+        chipEl.querySelector('.blood-chip-check').style.display = 'inline';
+
+        // Update selection indicator
+        var display = document.getElementById('selectedBloodDisplay');
+        var text = document.getElementById('selectedBloodText');
+        text.textContent = value;
+        display.style.display = 'flex';
     }
     function syncBloodChips(value) {
-        document.querySelectorAll('.blood-chip').forEach(chip => {
+        document.querySelectorAll('.blood-chip').forEach(function(chip) {
             chip.classList.remove('selected');
-            if (chip.textContent.trim().includes(value)) chip.classList.add('selected');
+            chip.querySelector('.blood-chip-check').style.display = 'none';
+            if (chip.textContent.trim().includes(value)) {
+                chip.classList.add('selected');
+                chip.querySelector('.blood-chip-check').style.display = 'inline';
+            }
         });
+        if (value) {
+            var display = document.getElementById('selectedBloodDisplay');
+            var text = document.getElementById('selectedBloodText');
+            text.textContent = value;
+            display.style.display = 'flex';
+        }
     }
     function selectUrgency(value, chipEl) {
         document.getElementById('urgencyInput').value = value;
-        document.querySelectorAll('.urgency-chip').forEach(c => c.classList.remove('selected'));
+
+        // Update chip selection
+        document.querySelectorAll('.urgency-chip').forEach(function(c) {
+            c.classList.remove('selected');
+            var check = c.querySelector('.urgency-chip-check');
+            if (check) check.style.display = 'none';
+        });
         chipEl.classList.add('selected');
+        var check = chipEl.querySelector('.urgency-chip-check');
+        if (check) check.style.display = 'inline-flex';
+
+        // Update selection indicator
+        var labels = { 'critical': 'ক্রিটিক্যাল', 'urgent': 'জরুরি', 'normal': 'সাধারণ' };
+        var text = document.getElementById('selectedUrgencyText');
+        text.textContent = labels[value] || value;
     }
 
     document.getElementById('emergencyRequestForm').addEventListener('submit', function(e) {
