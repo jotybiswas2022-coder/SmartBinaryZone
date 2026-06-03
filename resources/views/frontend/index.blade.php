@@ -117,7 +117,7 @@
     <!-- ========== BLOOD GROUPS ========== -->
     <section class="blood-groups" id="blood-groups">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header" data-aos="fade-up">
                 <div class="section-subtitle">
                     <i class="bi bi-droplet-fill"></i> রক্তের গ্রুপ
                 </div>
@@ -132,7 +132,8 @@
             <div class="blood-grid">
                 @foreach($allGroups as $group)
                     @php $count = $bloodGroupCounts[$group] ?? 0; @endphp
-                    <div class="blood-card fade-in">
+                    @php $aosDelay = 50 + ($loop->index * 50); @endphp
+                    <div class="blood-card" data-aos="fade-up" data-aos-delay="{{ $aosDelay }}">
                         <div class="blood-icon">
                             <span class="group-text">{{ $group }}</span>
                         </div>
@@ -151,7 +152,7 @@
     <!-- ========== HOW IT WORKS ========== -->
     <section class="features" id="how-it-works">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header" data-aos="fade-up">
                 <div class="section-subtitle">
                     <i class="bi bi-gear-fill"></i> প্রক্রিয়া
                 </div>
@@ -160,7 +161,7 @@
             </div>
 
             <div class="features-grid">
-                <div class="feature-card fade-in">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-step">১</div>
                     <div class="feature-icon red">
                         <i class="bi bi-person-plus-fill"></i>
@@ -169,7 +170,7 @@
                     <p>আপনার রক্তের গ্রুপ ও যোগাযোগের তথ্য দিয়ে নিবন্ধন করুন। এটি সম্পূর্ণ বিনামূল্যে।</p>
                 </div>
 
-                <div class="feature-card fade-in">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
                     <div class="feature-step">২</div>
                     <div class="feature-icon blue">
                         <i class="bi bi-search-heart-fill"></i>
@@ -178,7 +179,7 @@
                     <p>আপনার প্রয়োজনীয় ব্লাড গ্রুপ নির্বাচন করুন এবং নিকটস্থ ডোনারদের তালিকা দেখুন।</p>
                 </div>
 
-                <div class="feature-card fade-in">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="feature-step">৩</div>
                     <div class="feature-icon green">
                         <i class="bi bi-telephone-fill"></i>
@@ -193,7 +194,7 @@
     <!-- ========== WHY DONATE ========== -->
     <section class="why-donate">
         <div class="container">
-            <div class="why-content fade-in">
+            <div class="why-content" data-aos="zoom-in">
                 <div class="why-icon">
                     <i class="bi bi-heart-pulse-fill"></i>
                 </div>
@@ -210,7 +211,7 @@
     <!-- ========== CONTACT SECTION ========== -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header" data-aos="fade-up">
                 <div class="section-subtitle">
                     <i class="bi bi-envelope-fill"></i> যোগাযোগ
                 </div>
@@ -220,7 +221,7 @@
 
             <div class="contact-grid">
                 <!-- Contact Form -->
-                <div class="contact-form-wrapper fade-in">
+                <div class="contact-form-wrapper" data-aos="fade-right">
                     <form id="contactForm" action="{{ url('/contactus') }}" method="POST">
                         @csrf
                         <div class="form-group">
@@ -252,7 +253,7 @@
                 </div>
 
                 <!-- Contact Info -->
-                <div class="contact-info fade-in">
+                <div class="contact-info" data-aos="fade-left" data-aos-delay="200">
                     <div class="emergency-card">
                         <div class="emergency-icon">
                             <i class="fas fa-ambulance"></i>

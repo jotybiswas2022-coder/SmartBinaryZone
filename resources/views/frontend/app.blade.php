@@ -97,6 +97,47 @@
                         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* ===== SCROLL ANIMATIONS (AOS) ===== */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+            transition-duration: 0.7s;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: none;
+        }
+
+        [data-aos="fade-up"] { transform: translateY(40px); }
+        [data-aos="fade-down"] { transform: translateY(-40px); }
+        [data-aos="fade-left"] { transform: translateX(-40px); }
+        [data-aos="fade-right"] { transform: translateX(40px); }
+        [data-aos="zoom-in"] { transform: scale(0.85); }
+        [data-aos="zoom-out"] { transform: scale(1.1); }
+        [data-aos="flip-up"] { transform: perspective(600px) rotateX(15deg); }
+        [data-aos="flip-down"] { transform: perspective(600px) rotateX(-15deg); }
+
+        /* Stagger delays */
+        [data-aos-delay="100"] { transition-delay: 0.1s; }
+        [data-aos-delay="150"] { transition-delay: 0.15s; }
+        [data-aos-delay="200"] { transition-delay: 0.2s; }
+        [data-aos-delay="300"] { transition-delay: 0.3s; }
+        [data-aos-delay="400"] { transition-delay: 0.4s; }
+        [data-aos-delay="500"] { transition-delay: 0.5s; }
+        [data-aos-delay="600"] { transition-delay: 0.6s; }
+        [data-aos-delay="700"] { transition-delay: 0.7s; }
+
+        /* Preserve existing fade-in behavior */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
         /* ===== LOADING SKELETON BASE ===== */
         [data-skeleton] {
             background: linear-gradient(90deg, 
@@ -238,6 +279,46 @@
             var current = html.classList.contains('light-mode') ? 'dark' : 'light';
             applyTheme(current);
         });
+    }
+})();
+
+// ===== AOS - ANIMATE ON SCROLL =====
+(function() {
+    function initAOS() {
+        var targets = document.querySelectorAll('[data-aos]');
+        if (!targets.length) return;
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        targets.forEach(function(el) { observer.observe(el); });
+    }
+
+    // Run after skeleton hides
+    var overlay = document.getElementById('skeleton-overlay');
+    if (overlay) {
+        var checkHide = setInterval(function() {
+            if (overlay.style.display === 'none' || overlay.classList.contains('skeleton-hidden')) {
+                clearInterval(checkHide);
+                setTimeout(initAOS, 100);
+            }
+        }, 100);
+        setTimeout(function() { clearInterval(checkHide); initAOS(); }, 2500);
+    } else {
+        if (document.readyState === 'complete') {
+            setTimeout(initAOS, 200);
+        } else {
+            window.addEventListener('load', function() { setTimeout(initAOS, 200); });
+        }
     }
 })();
 

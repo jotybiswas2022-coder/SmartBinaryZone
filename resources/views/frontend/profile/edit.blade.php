@@ -92,7 +92,7 @@
     <!-- ========== EDIT PROFILE SECTION ========== -->
     <section class="edit-section">
         <div class="container">
-            <div class="edit-card">
+            <div class="edit-card" data-aos="fade-up">
 
                 <!-- Card Header -->
                 <div class="edit-header">
@@ -156,7 +156,7 @@
 
                         <div class="form-row">
                             <!-- Mobile -->
-                            <div class="form-group">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="100">
                                 <label for="number">মোবাইল নম্বর <span class="required">*</span></label>
                                 <div class="input-group-custom">
                                     <input type="tel" id="number" name="number"
@@ -167,7 +167,7 @@
                             </div>
 
                             <!-- Division -->
-                            <div class="form-group">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="200">
                                 <label for="division">বিভাগ <span class="required">*</span></label>
                                 <div class="input-group-custom">
                                     <select id="division" name="division" required>
@@ -183,7 +183,7 @@
                             </div>
 
                             <!-- Last Donated -->
-                            <div class="form-group">
+                            <div class="form-group" data-aos="fade-up" data-aos-delay="300">
                                 <label for="last_donated">সর্বশেষ রক্তদান <span class="optional">(ঐচ্ছিক)</span></label>
                                 <div class="input-group-custom">
                                     <input type="date" id="last_donated" name="last_donated"
@@ -200,7 +200,7 @@
                         </div>
 
                         <!-- Buttons -->
-                        <button type="submit" class="btn-submit" id="submitBtn">
+                        <button type="submit" class="btn-submit" id="submitBtn" data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-check-lg"></i>
                             আপডেট করুন
                         </button>

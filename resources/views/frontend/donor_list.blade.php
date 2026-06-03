@@ -120,7 +120,7 @@
     <!-- ========== FILTER SECTION ========== -->
     <section class="filter-section">
         <div class="container">
-            <div class="filter-card">
+            <div class="filter-card" data-aos="fade-up">
                 <div class="filter-header">
                     <div class="filter-label">
                         <i class="bi bi-funnel-fill"></i> ফিল্টার
@@ -167,7 +167,7 @@
     <!-- ========== DONOR TABLE ========== -->
     <section class="donor-section">
         <div class="container">
-            <div class="donor-card">
+            <div class="donor-card" data-aos="fade-up" data-aos-delay="150">
                 <div class="donor-card-header">
                     <h3>
                         <i class="bi bi-people-fill"></i>
@@ -263,7 +263,7 @@
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content" data-aos="fade-up">
                 <div class="footer-brand">
                     <div class="logo-icon">
                         <i class="bi bi-droplet-fill"></i>

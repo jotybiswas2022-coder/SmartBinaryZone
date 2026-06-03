@@ -74,7 +74,7 @@
     <!-- ========== PROFILE SECTION ========== -->
     <section class="profile-section">
         <div class="container">
-            <div class="profile-card">
+            <div class="profile-card" data-aos="fade-up">
 
                 <!-- Card Header -->
                 <div class="profile-header">
@@ -102,7 +102,7 @@
 
                     <div class="info-grid">
                         <!-- Mobile -->
-                        <div class="info-item">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="100">
                             <div class="info-icon phone-icon">
                                 <i class="bi bi-telephone-fill"></i>
                             </div>
@@ -113,7 +113,7 @@
                         </div>
 
                         <!-- Blood -->
-                        <div class="info-item">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="200">
                             <div class="info-icon blood-icon-bg">
                                 <i class="bi bi-droplet-half"></i>
                             </div>
@@ -124,7 +124,7 @@
                         </div>
 
                         <!-- Division -->
-                        <div class="info-item">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="300">
                             <div class="info-icon div-icon">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </div>
@@ -135,7 +135,7 @@
                         </div>
 
                         <!-- Last Donated -->
-                        <div class="info-item">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="400">
                             <div class="info-icon cal-icon">
                                 <i class="bi bi-calendar-check-fill"></i>
                             </div>
@@ -154,7 +154,7 @@
 
                     <!-- Donation Status -->
                     @if($profile->last_donated)
-                    <div class="donation-status">
+                    <div class="donation-status" data-aos="fade-up" data-aos-delay="300">
                         <div class="status-bar">
                             @php
                                 $nextDate = $profile->nextDonationDate();
@@ -179,7 +179,7 @@
                 </div>
 
                 <!-- Card Actions -->
-                <div class="profile-actions">
+                <div class="profile-actions" data-aos="fade-up" data-aos-delay="200">
                     <a href="{{ url('/profile/edit') }}" class="btn-edit">
                         <i class="bi bi-pencil-square"></i>
                         প্রোফাইল এডিট করুন

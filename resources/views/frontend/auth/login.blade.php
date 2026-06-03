@@ -104,7 +104,7 @@
     </div>
 
     {{-- ====== MAIN CARD ====== --}}
-    <div style="width:100%;max-width:430px;position:relative;z-index:1;animation:cardIn 0.7s cubic-bezier(0.22,1,0.36,1) both;">
+    <div style="width:100%;max-width:430px;position:relative;z-index:1;animation:cardIn 0.7s cubic-bezier(0.22,1,0.36,1) both;" data-aos="fade-up" data-aos-delay="100">
 
         {{-- Brand --}}
         <div style="text-align:center;margin-bottom:24px;">
