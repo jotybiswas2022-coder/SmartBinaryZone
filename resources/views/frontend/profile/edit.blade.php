@@ -125,7 +125,6 @@
                         </div>
                     </div>
                     <input type="file" id="avatarInput" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none;">
-                    <input type="hidden" name="avatar" id="avatarDataInput">
                     <p class="avatar-hint">Click to upload. Max 5MB. Crop & adjust before saving.</p>
                 </div>
 
@@ -588,6 +587,11 @@
             toast.style.background = 'linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05))';
             toast.style.borderLeftColor = '#22c55e';
             icon.style.color = '#22c55e';
+        } else if (type === 'error') {
+            icon.className = 'toast-icon bi bi-exclamation-circle-fill';
+            toast.style.background = 'linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05))';
+            toast.style.borderLeftColor = '#ef4444';
+            icon.style.color = '#ef4444';
         } else {
             icon.className = 'toast-icon bi bi-info-circle-fill';
             toast.style.background = 'linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05))';
@@ -600,7 +604,7 @@
         clearTimeout(toast._hideTimer);
         toast._hideTimer = setTimeout(() => {
             toast.classList.remove('show');
-        }, 2500);
+        }, 3500);
     }
 
     // Update snapshot after successful save
