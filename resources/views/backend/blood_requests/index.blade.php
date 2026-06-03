@@ -74,7 +74,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="table-responsive" style="padding:0;">
+                <div class="table-responsive" id="bloodRequestTableWrap" style="padding:0;">
                     <table class="table table-hover align-middle mb-0" style="font-size:0.85rem;">
                         <thead>
                             <tr style="background:#f8f9fe;border-bottom:2px solid #eef1ff;">
@@ -183,4 +183,32 @@
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Top Scrollbar for blood requests table
+    var tw = document.getElementById('bloodRequestTableWrap');
+    if (tw) {
+        var ts = document.createElement('div');
+        ts.style.cssText = 'overflow-x:auto;overflow-y:hidden;height:10px;visibility:visible;margin-bottom:1px;border-radius:6px;';
+        ts.innerHTML = '<div style="height:1px"></div>';
+        tw.parentNode.insertBefore(ts, tw);
+        var ti = ts.firstChild;
+        function sw() { ti.style.width = tw.scrollWidth + 'px'; }
+        sw();
+        ts.addEventListener('scroll', function () { tw.scrollLeft = ts.scrollLeft; });
+        tw.addEventListener('scroll', function () { ts.scrollLeft = tw.scrollLeft; });
+        window.addEventListener('resize', sw);
+        if (window.ResizeObserver) { new ResizeObserver(sw).observe(tw); }
+    }
+});
+</script>
+<style>
+#bloodRequestTableWrap + div::-webkit-scrollbar { height: 10px; background: #f1f1f1; border-radius: 6px; }
+#bloodRequestTableWrap + div::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 6px; }
+#bloodRequestTableWrap + div::-webkit-scrollbar-thumb:hover { background: #a0a0a0; }
+#bloodRequestTableWrap + div { scrollbar-width: auto; scrollbar-color: #c1c1c1 #f1f1f1; }
+@media (max-width: 575.98px) {
+    #bloodRequestTableWrap + div { display: none; }
+}
+</style>
 @endsection
