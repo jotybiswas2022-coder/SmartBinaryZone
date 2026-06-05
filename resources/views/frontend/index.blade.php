@@ -1399,25 +1399,5 @@
     });
 })();
 
-// ===== DARK/LIGHT MODE TOGGLE =====
-(function() {
-    var toggle = document.getElementById('themeToggle');
-    if (!toggle) return;
-    var root = document.documentElement;
-
-    // Load saved theme
-    var saved = localStorage.getItem('theme') || 'dark';
-    if (saved === 'light') {
-        root.classList.add('light-theme');
-        toggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
-    }
-
-    toggle.addEventListener('click', function() {
-        root.classList.toggle('light-theme');
-        var isLight = root.classList.contains('light-theme');
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        this.innerHTML = isLight ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
-    });
-})();
 </script>
 @endsection

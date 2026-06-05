@@ -49,5 +49,26 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <script>
+    // ===== THEME TOGGLE (global - works on ALL pages) =====
+    (function() {
+        var toggle = document.getElementById('themeToggle');
+        if (!toggle) return;
+
+        // Set initial icon based on saved theme
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light') {
+            toggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+        }
+
+        toggle.addEventListener('click', function() {
+            document.documentElement.classList.toggle('light-theme');
+            var isLight = document.documentElement.classList.contains('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            this.innerHTML = isLight ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
+        });
+    })();
+    </script>
 </body>
 </html>
