@@ -434,7 +434,6 @@
 
     .login-link:hover {
         color: #93c5fd;
-        text-decoration: underline;
     }
 
     /* divider */

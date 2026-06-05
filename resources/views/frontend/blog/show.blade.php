@@ -117,8 +117,7 @@
     .post-content ul li, .post-content ol li { margin-bottom: 0.5rem; }
     .post-content a {
         color: #60a5fa;
-        text-decoration: underline;
-        text-underline-offset: 2px;
+        text-decoration: none;
     }
     .post-content a:hover { color: #3b82f6; }
     .post-content blockquote {
