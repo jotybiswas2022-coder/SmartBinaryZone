@@ -30,6 +30,29 @@
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
+    /* Theme Toggle */
+    .theme-toggle-btn {
+        width: 36px; height: 36px;
+        border-radius: 50%; border: 1px solid rgba(59, 130, 246, 0.25);
+        background: rgba(59, 130, 246, 0.08);
+        color: #60a5fa; font-size: 1rem;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 0; margin-left: 0.5rem;
+    }
+    .theme-toggle-btn:hover {
+        background: rgba(59, 130, 246, 0.18);
+        transform: scale(1.1);
+    }
+    .light-theme .theme-toggle-btn {
+        color: #f59e0b;
+        border-color: rgba(245, 158, 11, 0.3);
+        background: rgba(245, 158, 11, 0.1);
+    }
+    .light-theme .theme-toggle-btn:hover {
+        background: rgba(245, 158, 11, 0.2);
+    }
+
     .nav-links { display: flex; gap: 0.5rem; list-style: none; align-items: center; margin: 0; padding: 0; }
     .nav-links a {
         color: #94a3b8; font-weight: 500; font-size: 0.88rem;
@@ -91,6 +114,7 @@
         <li><a href="/#projects"><i class="bi bi-folder-fill me-1"></i>Projects</a></li>
         <li><a href="/#contact"><i class="bi bi-envelope-fill me-1"></i>Contact</a></li>
         <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') || request()->is('blog/*') ? 'nav-active' : '' }}"><i class="bi bi-journal-text me-1"></i>Blog</a></li>
+        <li><button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme"><i class="bi bi-sun-fill"></i></button></li>
 
         @auth
             @if(auth()->user()->is_admin == 1)

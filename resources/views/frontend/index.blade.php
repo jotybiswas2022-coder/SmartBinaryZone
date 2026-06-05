@@ -29,6 +29,18 @@
         --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         --font: 'Inter', sans-serif;
     }
+
+    /* Light Theme page-specific overrides */
+    .light-theme .project-card {
+        background: linear-gradient(145deg, #ffffff, #f8fafc);
+    }
+    .light-theme .skill-card,
+    .light-theme .timeline-card,
+    .light-theme .contact-form,
+    .light-theme .contact-item,
+    .light-theme .testimonial-card {
+        background: rgba(255, 255, 255, 0.85);
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -349,6 +361,35 @@
     .skill-card .bar-wrapper { margin-top: 0.8rem; background: rgba(59, 130, 246, 0.08); border-radius: 10px; height: 4px; overflow: hidden; }
     .skill-card .bar-fill { height: 100%; background: var(--accent-gradient); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
 
+    /* Filter Tabs */
+    .filter-tabs {
+        display: flex; flex-wrap: wrap; gap: 0.6rem;
+        justify-content: center; margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+        padding: 0.5rem 1.2rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 50px;
+        color: var(--text-secondary);
+        font-size: 0.82rem; font-weight: 500;
+        cursor: pointer; transition: var(--transition);
+        font-family: var(--font);
+    }
+    .filter-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent-light);
+    }
+    .filter-btn.active {
+        background: var(--accent-gradient);
+        border-color: transparent;
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+    .filter-btn.active:hover {
+        color: #fff;
+    }
+
     /* Projects */
     .projects-section { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem; }
@@ -497,6 +538,23 @@
     @keyframes pulseWhatsApp {
         0%, 100% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.35); }
         50% { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.6); }
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+        position: fixed; top: 0; left: 0;
+        height: 3px; z-index: 10001;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        background-size: 200% 100%;
+        animation: progressGlow 2s ease infinite;
+        width: 0%;
+        transition: width 0.1s ease-out;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    }
+    @keyframes progressGlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
 
     /* Back to Top */
@@ -713,9 +771,30 @@
                 <h2>My Projects</h2>
                 <p>Some of my recent work</p>
             </div>
+            <!-- Filter Buttons -->
+            <div class="filter-tabs reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                @php
+                    $allTechs = [];
+                    foreach($projects as $p) {
+                        foreach($p->getTechStackArray() as $t) {
+                            $slug = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $t));
+                            $allTechs[$slug] = $t;
+                        }
+                    }
+                @endphp
+                @foreach($allTechs as $slug => $label)
+                    <button class="filter-btn" data-filter="{{ $slug }}">{{ $label }}</button>
+                @endforeach
+            </div>
+
             <div class="projects-grid">
                 @forelse($projects as $index => $project)
                     @php
+                        $techSlugs = [];
+                        foreach($project->getTechStackArray() as $t) {
+                            $techSlugs[] = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $t));
+                        }
                         $gradients = [
                             'linear-gradient(135deg, #1e3a5f, #1a1a3e)',
                             'linear-gradient(135deg, #1e4040, #1a2e3e)',
@@ -734,7 +813,7 @@
                         ];
                         $delay = ($index % 4) + 1;
                     @endphp
-                    <div class="project-card reveal reveal-delay-{{ $delay }}">
+                    <div class="project-card reveal reveal-delay-{{ $delay }}" data-tech="{{ implode(' ', $techSlugs) }}">
                         <div class="card-image" style="background: {{ $gradients[$index % count($gradients)] }};">
                             @if($project->image)
                                 <img src="{{ config('app.storage_url') }}{{ $project->image }}"
@@ -940,6 +1019,9 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="bi bi-arrow-up"></i>
     </button>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Toast -->
     <div class="toast" id="toast">
@@ -1272,9 +1354,70 @@
     });
 })();
 
-// ===== BACK TO TOP =====
-document.getElementById('backToTop').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+// ===== SCROLL PROGRESS BAR =====
+(function() {
+    var bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    window.addEventListener('scroll', function() {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = (scrollTop / docHeight) * 100;
+        bar.style.width = progress + '%';
+    });
+})();
+
+// ===== PROJECT FILTER TABS =====
+(function() {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var projectCards = document.querySelectorAll('.project-card');
+    if (!filterBtns.length || !projectCards.length) return;
+
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            var filter = this.getAttribute('data-filter');
+
+            projectCards.forEach(function(card) {
+                if (filter === 'all') {
+                    card.style.display = '';
+                    card.style.opacity = '1';
+                } else {
+                    var techs = (card.getAttribute('data-tech') || '').toLowerCase().split(' ');
+                    if (techs.indexOf(filter) > -1) {
+                        card.style.display = '';
+                        card.style.opacity = '1';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+                // Re-trigger reveal animation
+                card.classList.remove('active');
+                setTimeout(function() { card.classList.add('active'); }, 50);
+            });
+        });
+    });
+})();
+
+// ===== DARK/LIGHT MODE TOGGLE =====
+(function() {
+    var toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    var root = document.documentElement;
+
+    // Load saved theme
+    var saved = localStorage.getItem('theme') || 'dark';
+    if (saved === 'light') {
+        root.classList.add('light-theme');
+        toggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+    }
+
+    toggle.addEventListener('click', function() {
+        root.classList.toggle('light-theme');
+        var isLight = root.classList.contains('light-theme');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        this.innerHTML = isLight ? '<i class="bi bi-moon-fill"></i>' : '<i class="bi bi-sun-fill"></i>';
+    });
+})();
 </script>
 @endsection

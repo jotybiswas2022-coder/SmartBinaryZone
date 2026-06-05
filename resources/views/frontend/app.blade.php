@@ -15,6 +15,27 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Global Theme Styles -->
+    <style>
+        /* Light Theme - works on ALL pages */
+        .light-theme {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-nav: rgba(248, 250, 252, 0.92);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border-color: rgba(59, 130, 246, 0.15);
+            --border-hover: rgba(59, 130, 246, 0.35);
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-accent: 0 10px 40px rgba(59, 130, 246, 0.2);
+        }
+        .light-theme .footer { background: #e2e8f0; }
+        .light-theme .map-container iframe { filter: none; }
+    </style>
 </head>
 <body>
     @include('frontend.partials.menu')
