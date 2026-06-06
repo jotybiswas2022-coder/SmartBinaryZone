@@ -104,6 +104,44 @@
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ===== PAGE EXIT TRANSITION OVERLAY ===== */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99998;
+            background: var(--bg-primary, #0a0f1e);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .page-transition-overlay.active {
+            opacity: 1;
+        }
+        html.light-theme .page-transition-overlay {
+            background: var(--bg-primary, #f8fafc);
+        }
+
+        /* View Transitions API support */
+        @view-transition {
+            navigation: auto;
+        }
+
+        @keyframes viewTransitionFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes viewTransitionFadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-8px); }
+        }
+
+        ::view-transition-old(root) {
+            animation: viewTransitionFadeOut 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        ::view-transition-new(root) {
+            animation: viewTransitionFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
     </style>
 </head>
 <body>
@@ -113,7 +151,10 @@
             document.documentElement.classList.add('light-theme');
         }
     </script>
-    <!-- Loading Overlay -->
+    <!-- Page Transition Overlay (for link clicks) -->
+    <div class="page-transition-overlay" id="pageTransitionOverlay"></div>
+
+    <!-- Loading Overlay (initial page load) -->
     <div class="page-loader" id="pageLoader">
         <div class="loader-logo">{{ config('app.name', 'Portfolio') }}</div>
         <div class="loader-ring"></div>
@@ -131,10 +172,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     <script>
-    // ===== PAGE LOADING ANIMATION =====
+    // ===== PAGE LOADING ANIMATION (initial load) =====
     (function() {
         var loader = document.getElementById('pageLoader');
-        var content = document.getElementById('pageContent');
         if (!loader) return;
 
         window.addEventListener('load', function() {
@@ -149,6 +189,64 @@
                 loader.classList.add('hidden');
             }
         }, 3000);
+    })();
+
+    // ===== SMOOTH PAGE TRANSITIONS (link clicks) =====
+    (function() {
+        var overlay = document.getElementById('pageTransitionOverlay');
+        if (!overlay) return;
+
+        // Check if View Transitions API is supported
+        var supportsViewTransitions = typeof document.startViewTransition === 'function';
+
+        function navigateTo(url) {
+            if (supportsViewTransitions) {
+                // Use modern View Transitions API
+                document.startViewTransition(function() {
+                    window.location.href = url;
+                });
+            } else {
+                // Fallback: fade overlay then navigate
+                overlay.classList.add('active');
+                setTimeout(function() {
+                    window.location.href = url;
+                }, 350);
+            }
+        }
+
+        // Intercept all internal link clicks
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a');
+            if (!link) return;
+
+            var href = link.getAttribute('href');
+            if (!href) return;
+
+            // Only handle internal links (same origin or relative)
+            var isInternal = href.startsWith('/') || 
+                             href.startsWith('#') || 
+                             (href.startsWith(window.location.origin)) ||
+                             (href.startsWith('.') && !href.startsWith('..'));
+
+            // Skip anchor links (same page navigation)
+            if (href.startsWith('#')) return;
+
+            // Skip external links
+            if (href.startsWith('http') && !href.startsWith(window.location.origin)) return;
+
+            // Skip download links and files
+            if (link.hasAttribute('download')) return;
+            if (href.match(/\.(pdf|doc|docx|zip|png|jpg|jpeg)$/i)) return;
+
+            // Skip if user is holding modifier keys (open in new tab)
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+            // Skip if it's a logout or form submission
+            if (link.closest('form')) return;
+
+            e.preventDefault();
+            navigateTo(href);
+        });
     })();
 
     // ===== THEME TOGGLE (global - works on ALL pages) =====
