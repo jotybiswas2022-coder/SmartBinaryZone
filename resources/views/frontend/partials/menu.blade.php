@@ -40,7 +40,39 @@
         100% { background-position: 0% 50%; }
     }
 
-    /* ===== NAV RIGHT GROUP (theme toggle + lang + hamburger) ===== */
+    /* ===== DESKTOP NAV LINKS ===== */
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; margin: 0; padding: 0; }
+    .nav-links a { 
+        color: #94a3b8; font-weight: 500; font-size: 0.88rem;
+        padding: 0.5rem 0.9rem; border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        text-decoration: none; white-space: nowrap;
+    }
+    html.light-theme .nav-links a { color: #475569; }
+    .nav-links a:hover { color: #60a5fa; background: rgba(59, 130, 246, 0.08); }
+    .nav-links a.nav-active { color: #3b82f6; background: rgba(59, 130, 246, 0.12); }
+
+    .nav-action-login { 
+        color: #60a5fa !important; border: 1px solid rgba(59, 130, 246, 0.25); 
+        padding: 0.45rem 1rem !important; border-radius: 8px !important; font-weight: 600 !important;
+    }
+    .nav-action-login:hover { background: rgba(59, 130, 246, 0.12) !important; border-color: #3b82f6 !important; }
+    .nav-action-signup { 
+        background: linear-gradient(135deg, #3b82f6, #2563eb) !important; color: #fff !important; 
+        border: none !important; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+        padding: 0.45rem 1rem !important; border-radius: 8px !important; font-weight: 600 !important;
+    }
+    .nav-action-signup:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important; }
+    .nav-action-admin { 
+        background: rgba(59, 130, 246, 0.1) !important; color: #60a5fa !important; 
+        border: 1px solid rgba(59, 130, 246, 0.2) !important; font-weight: 600 !important;
+    }
+    .nav-action-logout { 
+        color: #f87171 !important; border: 1px solid rgba(248, 113, 113, 0.2) !important; font-weight: 600 !important;
+    }
+    .nav-action-logout:hover { background: rgba(248, 113, 113, 0.1) !important; }
+
+    /* ===== RIGHT GROUP ===== */
     .nav-right-group {
         display: flex;
         align-items: center;
@@ -70,36 +102,10 @@
         background: rgba(245, 158, 11, 0.2);
     }
 
-    .nav-links { display: flex; gap: 0.5rem; list-style: none; align-items: center; margin: 0; padding: 0; }
-    .nav-links a { 
-        color: #94a3b8; font-weight: 500; font-size: 0.88rem;
-        padding: 0.5rem 1rem; border-radius: 8px;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        position: relative;
-        text-decoration: none;
-    }
-    html.light-theme .nav-links a { color: #475569; }
-    .nav-links a:hover { color: #60a5fa; background: rgba(59, 130, 246, 0.08); }
-    .nav-links a.nav-active { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
-
-    .nav-action {
-        display: inline-flex !important; align-items: center; gap: 0.4rem;
-        padding: 0.45rem 1rem !important;
-        border-radius: 8px !important; font-weight: 600 !important;
-        font-size: 0.85rem !important;
-    }
-    .nav-action-login { color: #60a5fa !important; border: 1px solid rgba(59, 130, 246, 0.25); text-decoration: none !important; }
-    .nav-action-login:hover { background: rgba(59, 130, 246, 0.12) !important; border-color: #3b82f6 !important; }
-    .nav-action-signup { background: linear-gradient(135deg, #3b82f6, #2563eb) !important; color: #fff !important; border: none !important; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25); text-decoration: none !important; }
-    .nav-action-signup:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important; }
-    .nav-action-admin { background: rgba(59, 130, 246, 0.1) !important; color: #60a5fa !important; border: 1px solid rgba(59, 130, 246, 0.2) !important; text-decoration: none !important; }
-    .nav-action-logout { color: #f87171 !important; border: 1px solid rgba(248, 113, 113, 0.2) !important; text-decoration: none !important; }
-    .nav-action-logout:hover { background: rgba(248, 113, 113, 0.1) !important; }
-
     /* ===== HAMBURGER ===== */
     .hamburger {
         display: none; flex-direction: column; gap: 5px;
-        cursor: pointer; z-index: 1001; padding: 5px;
+        cursor: pointer; z-index: 1002; padding: 5px;
         background: none; border: none;
     }
     .hamburger span {
@@ -122,18 +128,202 @@
         letter-spacing: 0.3px;
     }
     .lang-btn:hover { color: #60a5fa; }
-    .lang-btn.active {
-        color: #3b82f6;
+    .lang-btn.active { color: #3b82f6; background: rgba(59, 130, 246, 0.12); }
+    .lang-divider { color: #475569; font-size: 0.75rem; }
+
+    /* ===== MOBILE: DRAWER + BACKDROP ===== */
+    .mobile-backdrop {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        cursor: pointer;
+    }
+    .mobile-backdrop.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    html.light-theme .mobile-backdrop {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .mobile-drawer {
+        position: fixed;
+        top: 0; right: 0;
+        width: 85%; max-width: 360px;
+        height: 100vh;
+        z-index: 1002;
+        background: rgba(10, 15, 30, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+    }
+    html.light-theme .mobile-drawer {
+        background: rgba(248, 250, 252, 0.98);
+    }
+    .mobile-drawer.open {
+        transform: translateX(0);
+    }
+
+    /* Drawer Header */
+    .drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.2rem;
+        border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        flex-shrink: 0;
+    }
+    .drawer-logo {
+        font-size: 1.1rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #3b82f6, #60a5fa, #a78bfa, #3b82f6);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: navGradient 4s ease infinite;
+        letter-spacing: -0.5px;
+        text-decoration: none;
+    }
+    .drawer-close {
+        width: 34px; height: 34px;
+        border-radius: 10px;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        background: rgba(59, 130, 246, 0.06);
+        color: var(--text-muted, #64748b);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+    .drawer-close:hover {
+        background: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+        transform: rotate(90deg);
+    }
+
+    /* Drawer Body */
+    .drawer-body {
+        flex: 1;
+        padding: 0.8rem 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .drawer-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .drawer-nav li {
+        margin-bottom: 2px;
+    }
+    .drawer-nav a,
+    .drawer-nav button {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.7rem 0.8rem;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text-secondary, #94a3b8);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-align: left;
+    }
+    .drawer-nav a i,
+    .drawer-nav button i {
+        width: 22px;
+        text-align: center;
+        font-size: 1.05rem;
+        color: var(--text-muted, #64748b);
+        transition: color 0.2s;
+    }
+    .drawer-nav a:hover {
+        background: rgba(59, 130, 246, 0.08);
+        color: #60a5fa;
+    }
+    .drawer-nav a:hover i {
+        color: #60a5fa;
+    }
+    .drawer-nav a.active {
         background: rgba(59, 130, 246, 0.12);
+        color: #3b82f6;
     }
-    .lang-divider {
-        color: #475569; font-size: 0.75rem;
+    .drawer-nav a.active i {
+        color: #3b82f6;
     }
 
-    html { padding-top: 0 !important; }
-    body { padding-top: 0 !important; }
+    /* Divider */
+    .drawer-divider {
+        height: 1px;
+        background: rgba(59, 130, 246, 0.1);
+        margin: 0.6rem 0;
+    }
 
-    /* ===== MOBILE OVERLAY MENU ===== */
+    /* Auth buttons in drawer */
+    .drawer-login-btn {
+        justify-content: center !important;
+        background: rgba(59, 130, 246, 0.08) !important;
+        border: 1px solid rgba(59, 130, 246, 0.25) !important;
+        color: #60a5fa !important;
+        font-weight: 600 !important;
+    }
+    .drawer-login-btn:hover {
+        background: rgba(59, 130, 246, 0.15) !important;
+    }
+    .drawer-signup-btn {
+        justify-content: center !important;
+        background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+        border: none !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+    .drawer-signup-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
+    }
+    .drawer-logout-btn {
+        color: #f87171 !important;
+    }
+    .drawer-logout-btn:hover {
+        background: rgba(248, 113, 113, 0.08) !important;
+        color: #f87171 !important;
+    }
+    .drawer-admin-btn {
+        color: #60a5fa !important;
+        border: 1px solid rgba(59, 130, 246, 0.2) !important;
+    }
+    .drawer-admin-btn:hover {
+        background: rgba(59, 130, 246, 0.1) !important;
+    }
+
+    /* Drawer Footer (lang) */
+    .drawer-footer {
+        margin-top: auto;
+        padding-top: 0.8rem;
+        border-top: 1px solid rgba(59, 130, 246, 0.08);
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
         .navbar-main {
             padding: 0.8rem 1.2rem;
@@ -144,279 +334,212 @@
         .nav-logo {
             font-size: 1.2rem;
         }
-
         .nav-links {
+            display: none !important;
+        }
+        .hamburger {
             display: flex;
-            position: fixed;
-            top: 0; right: 0;
-            width: 85%; max-width: 340px;
-            height: 100vh;
-            background: rgba(10, 15, 30, 0.98);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: flex-start;
-            padding: 5rem 1.5rem 2rem;
-            gap: 0.25rem;
-            transform: translateX(100%);
-            opacity: 0;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-            overflow-y: auto;
-        }
-        html.light-theme .nav-links {
-            background: rgba(248, 250, 252, 0.98);
-        }
-        .nav-links.open {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        /* Mobile menu header with close button */
-        .nav-links::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: -1;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .nav-links.open::before {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .nav-links li {
-            width: 100%;
-        }
-        .nav-links a,
-        .nav-links button {
-            font-size: 1rem !important;
-            padding: 0.75rem 1rem !important;
-            width: 100%;
-            justify-content: flex-start !important;
-            border-radius: 10px !important;
-            text-align: left;
-            border: none !important;
-            box-shadow: none !important;
-            background: transparent !important;
-        }
-        .nav-links a i {
-            width: 24px;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        .nav-links a:hover {
-            background: rgba(59, 130, 246, 0.1) !important;
-        }
-        .nav-links a.nav-active {
-            background: rgba(59, 130, 246, 0.15) !important;
-            color: #3b82f6 !important;
-        }
-
-        /* Divider between nav items and auth */
-        .nav-divider {
-            height: 1px;
-            background: rgba(59, 130, 246, 0.12);
-            margin: 0.8rem 1rem;
-        }
-
-        /* Close button */
-        .mobile-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            background: rgba(59, 130, 246, 0.06);
-            color: var(--text-muted, #64748b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .mobile-close-btn:hover {
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            transform: rotate(90deg);
-        }
-
-        .hamburger { display: flex; }
-
-        /* Hide theme toggle and lang from desktop nav-links on mobile */
-        .nav-links .theme-toggle-btn,
-        .nav-links .lang-switcher {
-            display: none;
         }
     }
 
-    /* Small mobile */
     @media (max-width: 480px) {
         .navbar-main {
-            padding: 0.7rem 1rem;
+            padding: 0.65rem 1rem;
         }
         .navbar-main.scrolled {
             padding: 0.4rem 1rem;
         }
         .nav-logo {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         .theme-toggle-btn {
-            width: 32px;
-            height: 32px;
-            font-size: 0.85rem;
+            width: 32px; height: 32px; font-size: 0.85rem;
         }
-        .lang-btn {
-            font-size: 0.72rem;
-            padding: 2px 4px;
-        }
-        .nav-links {
-            width: 100%;
-            max-width: none;
-            padding: 4.5rem 1.2rem 1.5rem;
-        }
-        .nav-links a,
-        .nav-links button {
-            font-size: 0.95rem !important;
-            padding: 0.65rem 0.8rem !important;
-        }
+        .lang-btn { font-size: 0.7rem; padding: 2px 4px; }
+        .mobile-drawer { width: 100%; max-width: none; }
+        .drawer-nav a, .drawer-nav button { font-size: 0.9rem; padding: 0.6rem 0.7rem; }
+    }
+
+    /* ===== BODY SCROLL LOCK ===== */
+    body.menu-open {
+        overflow: hidden !important;
     }
 </style>
+
 <nav class="navbar-main" id="navbar">
     <!-- Logo -->
     <a href="/" class="nav-logo">{{ config('app.name', 'Portfolio') }}</a>
 
-    <!-- Nav Links (Desktop) -->
+    <!-- Desktop Nav Links -->
     <ul class="nav-links" id="navLinks">
-        <!-- Close button (mobile only) -->
-        <li class="d-md-none" style="list-style: none; position: relative;">
-            <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </li>
-
-        <li><a href="/" class="{{ request()->is('/') ? 'nav-active' : '' }}"><i class="bi bi-house-fill"></i>{{ __('messages.home') }}</a></li>
-        <li><a href="/#about"><i class="bi bi-person-fill"></i>{{ __('messages.about') }}</a></li>
-        <li><a href="/#services"><i class="bi bi-gear"></i>{{ __('messages.services') }}</a></li>
-        <li><a href="/#skills"><i class="bi bi-lightning-fill"></i>{{ __('messages.skills') }}</a></li>
-        <li><a href="/#projects"><i class="bi bi-folder-fill"></i>{{ __('messages.projects') }}</a></li>
-        <li><a href="/#contact"><i class="bi bi-envelope-fill"></i>{{ __('messages.contact') }}</a></li>
-        <li><a href="/#faq"><i class="bi bi-question-circle"></i>FAQ</a></li>
-        <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') || request()->is('blog/*') ? 'nav-active' : '' }}"><i class="bi bi-journal-text"></i>{{ __('messages.blog') }}</a></li>
-
-        <li class="nav-divider d-md-none"></li>
+        <li><a href="/" class="{{ request()->is('/') ? 'nav-active' : '' }}">{{ __('messages.home') }}</a></li>
+        <li><a href="/#about">{{ __('messages.about') }}</a></li>
+        <li><a href="/#services">{{ __('messages.services') }}</a></li>
+        <li><a href="/#projects">{{ __('messages.projects') }}</a></li>
+        <li><a href="/#contact">{{ __('messages.contact') }}</a></li>
+        <li><a href="{{ url('/blog') }}">{{ __('messages.blog') }}</a></li>
 
         @auth
             @if(auth()->user()->is_admin == 1)
-                <!-- Desktop: use nav-action classes -->
-                <li class="d-none d-md-block">
-                    <a href="/admin" class="nav-action nav-action-admin">
-                        <i class="bi bi-speedometer2 me-1"></i> {{ __('messages.admin') }}
-                    </a>
-                </li>
-                <!-- Mobile: full-width styled -->
-                <li class="d-md-none">
-                    <a href="/admin" style="justify-content: flex-start !important; width: 100%; border-radius: 10px !important; padding: 0.75rem 1rem !important; font-size: 1rem !important; color: #60a5fa !important; border: 1px solid rgba(59,130,246,0.2) !important; display: flex !important; align-items: center; gap: 0.4rem;">
-                        <i class="bi bi-speedometer2" style="width: 24px;"></i> {{ __('messages.admin') }}
-                    </a>
-                </li>
+                <li><a href="/admin" class="nav-action-admin">{{ __('messages.admin') }}</a></li>
             @endif
-            <!-- Desktop logout -->
-            <li class="d-none d-md-block">
+            <li>
                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                     @csrf
-                    <button type="submit" class="nav-action nav-action-logout" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit; display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 1rem; border-radius:8px; font-weight:600; font-size:0.85rem;">
-                        <i class="bi bi-box-arrow-right me-1"></i> {{ __('messages.logout') }}
-                    </button>
-                </form>
-            </li>
-            <!-- Mobile logout -->
-            <li class="d-md-none">
-                <form action="{{ route('logout') }}" method="POST" class="w-100">
-                    @csrf
-                    <button type="submit" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:1rem !important; display:flex; align-items:center; gap:0.4rem; padding:0.75rem 1rem !important; border-radius:10px !important; font-weight:600; width:100%; color:#f87171 !important;">
-                        <i class="bi bi-box-arrow-right" style="width: 24px;"></i> {{ __('messages.logout') }}
+                    <button type="submit" class="nav-action-logout" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:0.88rem; display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 1rem; border-radius:8px; font-weight:600;">
+                        {{ __('messages.logout') }}
                     </button>
                 </form>
             </li>
         @else
-            <!-- Desktop login/signup -->
-            <li class="d-none d-md-block">
-                <a href="/login" class="nav-action nav-action-login">
-                    <i class="bi bi-person-circle me-1"></i> {{ __('messages.login') }}
-                </a>
-            </li>
-            <li class="d-none d-md-block">
-                <a href="/register" class="nav-action nav-action-signup">
-                    <i class="bi bi-person-plus me-1"></i> {{ __('messages.signup') }}
-                </a>
-            </li>
-            <!-- Mobile login/signup -->
-            <li class="d-md-none">
-                <a href="/login" style="justify-content: flex-start !important; width: 100%; border-radius: 10px !important; padding: 0.75rem 1rem !important; font-size: 1rem !important; color: #60a5fa !important; border: 1px solid rgba(59,130,246,0.3) !important; display: flex !important; align-items: center; gap: 0.4rem;">
-                    <i class="bi bi-person-circle" style="width: 24px;"></i> {{ __('messages.login') }}
-                </a>
-            </li>
-            <li class="d-md-none">
-                <a href="/register" style="justify-content: center !important; width: 100%; border-radius: 10px !important; padding: 0.75rem 1rem !important; font-size: 1rem !important; background: linear-gradient(135deg, #3b82f6, #2563eb) !important; color: #fff !important; border: none !important; display: flex !important; align-items: center; gap: 0.4rem;">
-                    <i class="bi bi-person-plus" style="width: 24px;"></i> {{ __('messages.signup') }}
-                </a>
-            </li>
+            <li><a href="/login" class="nav-action-login">{{ __('messages.login') }}</a></li>
+            <li><a href="/register" class="nav-action-signup">{{ __('messages.signup') }}</a></li>
         @endauth
-
-        <!-- Language Switcher (mobile) -->
-        <li class="d-md-none" style="list-style: none; margin-top: 0.5rem;">
-            <div class="lang-switcher justify-content-center" style="margin: 0;">
-                <a href="{{ route('language.switch', 'en') }}" 
-                   class="lang-btn {{ app()->getLocale() == 'en' ? 'active' : '' }}"
-                   title="{{ __('messages.english') }}">
-                    EN
-                </a>
-                <span class="lang-divider">|</span>
-                <a href="{{ route('language.switch', 'bn') }}" 
-                   class="lang-btn {{ app()->getLocale() == 'bn' ? 'active' : '' }}"
-                   title="{{ __('messages.bengali') }}">
-                    বাংলা
-                </a>
-            </div>
-        </li>
     </ul>
 
-    <!-- Right Group (Desktop - always visible) -->
+    <!-- Right Group -->
     <div class="nav-right-group">
-        <!-- Language Switcher (desktop) -->
         <div class="lang-switcher d-none d-md-flex">
             <a href="{{ route('language.switch', 'en') }}" 
                class="lang-btn {{ app()->getLocale() == 'en' ? 'active' : '' }}"
-               title="{{ __('messages.english') }}">
-                EN
-            </a>
+               title="{{ __('messages.english') }}">EN</a>
             <span class="lang-divider">|</span>
             <a href="{{ route('language.switch', 'bn') }}" 
                class="lang-btn {{ app()->getLocale() == 'bn' ? 'active' : '' }}"
-               title="{{ __('messages.bengali') }}">
-                বাংলা
-            </a>
+               title="{{ __('messages.bengali') }}">বাংলা</a>
         </div>
-
-        <!-- Theme Toggle (always visible in navbar) -->
         <button class="theme-toggle-btn" id="themeToggle" aria-label="{{ __('messages.toggle_theme') }}">
             <i class="bi bi-sun-fill"></i>
         </button>
-
-        <!-- Hamburger (mobile only) -->
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
     </div>
 </nav>
+
+<!-- Mobile Backdrop -->
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+    <!-- Drawer Header -->
+    <div class="drawer-header">
+        <a href="/" class="drawer-logo">{{ config('app.name', 'Portfolio') }}</a>
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <!-- Drawer Body -->
+    <div class="drawer-body">
+        <ul class="drawer-nav">
+            <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}"><i class="bi bi-house-fill"></i>{{ __('messages.home') }}</a></li>
+            <li><a href="/#about"><i class="bi bi-person-fill"></i>{{ __('messages.about') }}</a></li>
+            <li><a href="/#services"><i class="bi bi-gear"></i>{{ __('messages.services') }}</a></li>
+            <li><a href="/#skills"><i class="bi bi-lightning-fill"></i>{{ __('messages.skills') }}</a></li>
+            <li><a href="/#projects"><i class="bi bi-folder-fill"></i>{{ __('messages.projects') }}</a></li>
+            <li><a href="/#contact"><i class="bi bi-envelope-fill"></i>{{ __('messages.contact') }}</a></li>
+            <li><a href="/#faq"><i class="bi bi-question-circle"></i>FAQ</a></li>
+            <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') || request()->is('blog/*') ? 'active' : '' }}"><i class="bi bi-journal-text"></i>{{ __('messages.blog') }}</a></li>
+        </ul>
+
+        <div class="drawer-divider"></div>
+
+        <ul class="drawer-nav">
+            @auth
+                @if(auth()->user()->is_admin == 1)
+                    <li><a href="/admin" class="drawer-admin-btn"><i class="bi bi-speedometer2"></i>{{ __('messages.admin') }}</a></li>
+                @endif
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="drawer-logout-btn">
+                            <i class="bi bi-box-arrow-right"></i>{{ __('messages.logout') }}
+                        </button>
+                    </form>
+                </li>
+            @else
+                <li><a href="/login" class="drawer-login-btn"><i class="bi bi-person-circle"></i>{{ __('messages.login') }}</a></li>
+                <li><a href="/register" class="drawer-signup-btn"><i class="bi bi-person-plus"></i>{{ __('messages.signup') }}</a></li>
+            @endauth
+        </ul>
+
+        <div class="drawer-footer">
+            <a href="{{ route('language.switch', 'en') }}" 
+               class="lang-btn {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+               title="{{ __('messages.english') }}">EN</a>
+            <span class="lang-divider">|</span>
+            <a href="{{ route('language.switch', 'bn') }}" 
+               class="lang-btn {{ app()->getLocale() == 'bn' ? 'active' : '' }}"
+               title="{{ __('messages.bengali') }}">বাংলা</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// ===== MOBILE MENU TOGGLE =====
+(function() {
+    var hamburger = document.getElementById('hamburger');
+    var drawer = document.getElementById('mobileDrawer');
+    var backdrop = document.getElementById('mobileBackdrop');
+    var closeBtn = document.getElementById('drawerClose');
+    var body = document.body;
+
+    if (!hamburger || !drawer || !backdrop) return;
+
+    function openMenu() {
+        drawer.classList.add('open');
+        backdrop.classList.add('show');
+        hamburger.classList.add('active');
+        body.classList.add('menu-open');
+    }
+
+    function closeMenu() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('show');
+        hamburger.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (drawer.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMenu);
+    }
+
+    // Click backdrop to close
+    backdrop.addEventListener('click', closeMenu);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    // Close when a nav link is clicked
+    drawer.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close when logout form is submitted (but allow form to submit)
+    drawer.querySelectorAll('form').forEach(function(form) {
+        form.addEventListener('submit', function() {
+            // Small delay to allow form submission
+            setTimeout(closeMenu, 100);
+        });
+    });
+
+    // Prevent clicks inside drawer from closing via backdrop
+    drawer.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+})();
+</script>
