@@ -187,20 +187,48 @@ body {
 }
 @keyframes inputSlide { to{opacity:1; transform:translateY(0);} }
 @keyframes cardEntry { to{opacity:1; transform:translateY(0);} }
+/* ===== Mobile Responsive ===== */
+@media(max-width:768px){
+    .login-wrapper { max-width:92%; padding-bottom:30px; }
+    .login-body { padding:24px 24px; gap:18px; }
+    .login-header { font-size:22px; padding:22px 16px; }
+}
+
 @media(max-width:576px){
-    .login-wrapper { max-width:95%; padding-bottom: 30px; }
-    .login-card{padding-bottom:28px;}
-    .login-body{padding:16px 14px; gap:14px;}
-    .login-input{padding:10px 12px; font-size:14px;}
-    .login-btn{padding:10px; font-size:14px;}
-    .login-header{font-size:20px;padding:16px 12px;}
+    .login-wrapper { max-width:95%; }
+    .login-card { border-radius:28px; padding-bottom:24px; }
+    .login-header {
+        font-size:18px;
+        padding:18px 14px;
+        border-radius:28px 28px 0 0;
+        gap:12px;
+    }
+    .header-icon { width:44px; height:44px; border-radius:14px; }
+    .header-icon svg { width:20px; height:20px; }
+    .login-body { padding:18px 16px; gap:14px; }
+    .login-input { padding:10px 12px; font-size:14px; border-radius:14px; }
+    .login-btn { padding:12px; font-size:14px; border-radius:28px; }
+    .login-label { font-size:13px; }
+    .login-link { font-size:12px; }
+    .particle { display:none; }
+}
+
+@media(max-width:400px){
+    .login-wrapper { max-width:98%; padding-bottom:20px; }
+    .login-card { padding-bottom:20px; }
+    .login-header { font-size:16px; padding:14px 10px; gap:10px; }
+    .header-icon { width:38px; height:38px; border-radius:12px; }
+    .header-icon svg { width:18px; height:18px; }
+    .login-body { padding:14px 12px; gap:12px; }
+    .login-input { padding:8px 10px; font-size:13px; }
+    .login-btn { padding:10px; font-size:13px; }
 }
 </style>
 
 <script>
 const particlesContainer=document.getElementById('particles');
 const isMobile=window.innerWidth<=576;
-const particleCount=isMobile?12:35;
+const particleCount=isMobile?0:35;
 
 for(let i=0;i<particleCount;i++){
     const p=document.createElement('div');

@@ -249,14 +249,34 @@ body {
     box-shadow: 0 8px 25px rgba(59,130,246,.35), 0 0 40px rgba(59,130,246,0.1);
 }
 
-/* Mobile */
-@media(max-width:768px) {
-    .login-body {padding: 25px 20px;}
+/* ===== Mobile Responsive ===== */
+@media(max-width:768px){
+    .login-wrapper { max-width:92%; padding-bottom:30px; }
+    .login-body {padding: 25px 24px; gap:16px;}
+    .login-header {font-size: 20px; padding: 22px 16px;}
     .login-label {text-align: left;}
 }
 
-@media(max-width:576px) {
-    .login-header {font-size: 19px; padding: 18px;}
-    .login-body {padding: 20px 15px;}
+@media(max-width:576px){
+    .login-wrapper { max-width:95%; }
+    .login-card { border-radius:28px; }
+    .login-header {font-size: 18px; padding: 18px 14px; gap:12px;}
+    .login-body {padding: 18px 16px; gap:14px;}
+    .login-input { padding:10px 12px; font-size:14px; border-radius:14px; }
+    .login-btn { padding:12px; font-size:14px; }
+    .login-label { font-size:13px; }
+    .lock-icon { width:52px; height:52px; }
+    .lock-icon svg { width:22px; height:22px; }
+    .instructions { font-size:13px; }
+}
+
+@media(max-width:400px){
+    .login-wrapper { max-width:98%; padding-bottom:20px; }
+    .login-header {font-size: 16px; padding: 14px 10px; gap:10px;}
+    .login-body {padding: 14px 12px; gap:12px;}
+    .login-input { padding:8px 10px; font-size:13px; }
+    .login-btn { padding:10px; font-size:13px; }
+    .lock-icon { width:44px; height:44px; }
+    .lock-icon svg { width:18px; height:18px; }
 }
 </style>
