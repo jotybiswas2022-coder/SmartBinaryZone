@@ -2,155 +2,151 @@
 
 @section('content')
 
-<div class="container-fluid py-4">
+<div class="container-fluid py-3">
     <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
+        <div class="col-lg-9 col-md-11">
 
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-header bg-dark text-white rounded-top-4">
-                    <h5 class="mb-0">
-                        <i class="bi bi-plus-circle me-2"></i>
-                        Add New Testimonial
-                    </h5>
+            {{-- Header --}}
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div>
+                    <h4 class="fw-bold mb-1"><i class="bi bi-plus-circle me-2" style="color:#6366f1;"></i>Add New Testimonial</h4>
+                    <p class="text-muted small mb-0">Add a new client review to your portfolio</p>
+                </div>
+                <a href="{{ route('admin.testimonials.index') }}" class="btn btn-outline-secondary rounded-3 px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Back
+                </a>
+            </div>
+
+            <form action="{{ route('admin.testimonials.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                {{-- Client Info --}}
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-header bg-white border-bottom-0 pt-3 px-4">
+                        <h6 class="fw-bold mb-0"><i class="bi bi-person me-2" style="color:#6366f1;"></i>Client Information</h6>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label fw-medium">Client Name <span class="text-danger">*</span></label>
+                                <input type="text" id="name" name="name"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       value="{{ old('name') }}" placeholder="e.g. John Doe" required>
+                                @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="designation" class="form-label fw-medium">Designation</label>
+                                <input type="text" id="designation" name="designation"
+                                       class="form-control @error('designation') is-invalid @enderror"
+                                       value="{{ old('designation') }}" placeholder="e.g. CEO">
+                                @error('designation')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label for="company" class="form-label fw-medium">Company</label>
+                                <input type="text" id="company" name="company"
+                                       class="form-control @error('company') is-invalid @enderror"
+                                       value="{{ old('company') }}" placeholder="e.g. Acme Inc.">
+                                @error('company')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card-body p-4">
-                    <form action="{{ route('admin.testimonials.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="row">
-                            <!-- Name -->
-                            <div class="col-md-6 mb-3">
-                                <label for="name" class="form-label fw-semibold">Client Name <span class="text-danger">*</span></label>
-                                <input type="text" id="name" name="name"
-                                       class="form-control shadow-sm @error('name') is-invalid @enderror"
-                                       value="{{ old('name') }}"
-                                       placeholder="e.g. John Doe" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                {{-- Review --}}
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-header bg-white border-bottom-0 pt-3 px-4">
+                        <h6 class="fw-bold mb-0"><i class="bi bi-chat-quote me-2" style="color:#6366f1;"></i>Review</h6>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="message" class="form-label fw-medium">Review Message <span class="text-danger">*</span></label>
+                                <textarea id="message" name="message" rows="4"
+                                          class="form-control @error('message') is-invalid @enderror"
+                                          placeholder="What did the client say about your work?" required>{{ old('message') }}</textarea>
+                                @error('message')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-
-                            <!-- Sort Order -->
-                            <div class="col-md-3 mb-3">
-                                <label for="sort_order" class="form-label fw-semibold">Sort Order</label>
-                                <input type="number" id="sort_order" name="sort_order" min="0"
-                                       class="form-control shadow-sm @error('sort_order') is-invalid @enderror"
-                                       value="{{ old('sort_order', 0) }}">
-                                @error('sort_order')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <!-- Rating (Visual Star Picker) -->
-                            <div class="col-md-3 mb-3">
-                                <label class="form-label fw-semibold">Rating</label>
+                            <div class="col-md-4">
+                                <label class="form-label fw-medium">Rating</label>
                                 <div class="star-picker" id="starPicker">
                                     @for($i = 1; $i <= 5; $i++)
-                                        <i class="bi bi-star-fill star-btn" data-value="{{ $i }}" 
-                                           style="color: {{ old('rating', 5) >= $i ? '#f59e0b' : '#d1d5db' }}; font-size: 1.6rem; cursor: pointer; transition: all 0.15s ease;"></i>
+                                        <i class="bi bi-star-fill star-btn" data-value="{{ $i }}"
+                                           style="color: {{ old('rating', 5) >= $i ? '#f59e0b' : '#d1d5db' }}; font-size:1.5rem; cursor:pointer; transition:all 0.15s;"></i>
                                     @endfor
                                     <input type="hidden" name="rating" id="ratingInput" value="{{ old('rating', 5) }}">
                                 </div>
-                                @error('rating')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
+                                @error('rating')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <!-- Designation -->
-                            <div class="col-md-6 mb-3">
-                                <label for="designation" class="form-label fw-semibold">Designation</label>
-                                <input type="text" id="designation" name="designation"
-                                       class="form-control shadow-sm @error('designation') is-invalid @enderror"
-                                       value="{{ old('designation') }}"
-                                       placeholder="e.g. CEO">
-                                @error('designation')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div class="col-md-4">
+                                <label for="sort_order" class="form-label fw-medium">Sort Order</label>
+                                <input type="number" id="sort_order" name="sort_order" min="0"
+                                       class="form-control @error('sort_order') is-invalid @enderror"
+                                       value="{{ old('sort_order', 0) }}">
+                                @error('sort_order')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-
-                            <!-- Company -->
-                            <div class="col-md-6 mb-3">
-                                <label for="company" class="form-label fw-semibold">Company</label>
-                                <input type="text" id="company" name="company"
-                                       class="form-control shadow-sm @error('company') is-invalid @enderror"
-                                       value="{{ old('company') }}"
-                                       placeholder="e.g. Acme Inc.">
-                                @error('company')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="mb-3">
-                            <label for="message" class="form-label fw-semibold">Review Message <span class="text-danger">*</span></label>
-                            <textarea id="message" name="message" rows="4"
-                                      class="form-control shadow-sm @error('message') is-invalid @enderror"
-                                      placeholder="What did the client say about your work?" required>{{ old('message') }}</textarea>
-                            @error('message')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="row align-items-end">
-                            <!-- Avatar -->
-                            <div class="col-md-9 mb-3">
-                                <label for="avatar" class="form-label fw-semibold">Client Avatar</label>
-                                <input type="file" accept="image/*" id="avatar" name="avatar"
-                                       class="form-control shadow-sm @error('avatar') is-invalid @enderror"
-                                       onchange="previewImage(event)">
-                                @error('avatar')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                <div class="mt-2">
-                                    <img id="preview" src="" style="display:none; width:80px; height:80px; object-fit:cover;"
-                                         class="rounded-circle shadow-sm">
-                                </div>
-                            </div>
-
-                            <!-- Active Status -->
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 d-flex align-items-end pb-1">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active"
-                                           value="1" checked>
-                                    <label class="form-check-label fw-semibold" for="is_active">Active</label>
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" checked>
+                                    <label class="form-check-label fw-medium" for="is_active">Active</label>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Submit -->
-                        <div class="d-flex gap-2 mt-2">
-                            <a href="{{ route('admin.testimonials.index') }}" class="btn btn-secondary btn-lg rounded-3 px-4">
-                                <i class="bi bi-arrow-left me-1"></i> Back
-                            </a>
-                            <button type="submit" class="btn btn-dark btn-lg rounded-3 shadow-sm flex-grow-1">
-                                <i class="bi bi-check-circle me-1"></i>
-                                Create Testimonial
-                            </button>
-                        </div>
-
-                    </form>
+                    </div>
                 </div>
-            </div>
+
+                {{-- Avatar --}}
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-header bg-white border-bottom-0 pt-3 px-4">
+                        <h6 class="fw-bold mb-0"><i class="bi bi-image me-2" style="color:#6366f1;"></i>Client Avatar</h6>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                            <div>
+                                <div id="previewPlaceholder"
+                                     class="rounded-circle d-inline-flex align-items-center justify-content-center"
+                                     style="width:80px; height:80px; background:#f1f5f9; color:#94a3b8; font-size:2rem;">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                                <img id="preview" src="" style="display:none; width:80px; height:80px; object-fit:cover;"
+                                     class="rounded-circle shadow-sm">
+                            </div>
+                            <div>
+                                <input type="file" accept="image/*" id="avatar" name="avatar"
+                                       class="form-control @error('avatar') is-invalid @enderror"
+                                       onchange="previewImage(event)">
+                                @error('avatar')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Submit --}}
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{{ route('admin.testimonials.index') }}" class="btn btn-light border rounded-3 px-4">Cancel</a>
+                    <button type="submit" class="btn btn-primary rounded-3 px-5" style="background:#6366f1; border-color:#6366f1;">
+                        <i class="bi bi-check-circle me-1"></i> Create Testimonial
+                    </button>
+                </div>
+
+            </form>
 
         </div>
     </div>
 </div>
 
+@section('scripts')
 <script>
 function previewImage(event) {
     const input = event.target;
     const preview = document.getElementById('preview');
+    const placeholder = document.getElementById('previewPlaceholder');
     if (input.files && input.files[0]) {
         preview.src = URL.createObjectURL(input.files[0]);
-        preview.style.display = 'block';
+        preview.style.display = 'inline-block';
+        if (placeholder) placeholder.style.display = 'none';
     }
 }
 
-// Star Rating Picker
 document.querySelectorAll('.star-btn').forEach(function(star) {
     star.addEventListener('click', function() {
         var value = parseInt(this.getAttribute('data-value'));
@@ -176,35 +172,6 @@ document.querySelectorAll('.star-btn').forEach(function(star) {
     });
 });
 </script>
-
-<style>
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-}
-
-@media (prefers-color-scheme: dark) {
-    .card {
-        background-color: #1c1c1e;
-    }
-    .card-body, .card-header {
-        color: #f1f1f1;
-    }
-    input.form-control, textarea.form-control, select.form-select {
-        background-color: #2c2c2e;
-        color: #f1f1f1;
-        border-color: #444;
-    }
-    input.form-control:focus, textarea.form-control:focus, select.form-select:focus {
-        background-color: #2c2c2e;
-        color: #f1f1f1;
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
-    }
-}
-</style>
+@endsection
 
 @endsection
