@@ -10,15 +10,14 @@ use Illuminate\Support\Str;
         </button>
 
         {{-- Brand --}}
-        <a class="navbar-brand d-flex align-items-center fw-bold fs-5 py-0" href="/admin" style="color:#1e293b;">
-            <i class="bi bi-speedometer2 me-2 fs-3" style="background:linear-gradient(135deg,#6366f1,#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"></i>
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-5 py-0" href="/admin">
+            <i class="bi bi-speedometer2 me-2 fs-3" style="background:linear-gradient(135deg,#818cf8,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;"></i>
             <span class="d-none d-sm-inline">{{ config('app.name', 'Admin') }}</span>
             <span class="d-sm-none">Admin</span>
         </a>
 
         {{-- Toggler --}}
-        <button class="navbar-toggler border-0 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTopNav"
-                style="color:#64748b;">
+        <button class="navbar-toggler border-0 py-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTopNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -38,7 +37,7 @@ use Illuminate\Support\Str;
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
-                        <button type="submit" class="nav-link btn btn-link text-danger fw-semibold" style="font-size:0.85rem; text-decoration:none;">
+                        <button type="submit" class="nav-link btn btn-link fw-semibold" style="font-size:0.85rem; text-decoration:none;">
                             <i class="bi bi-box-arrow-right me-1"></i> Logout
                         </button>
                     </form>
