@@ -70,8 +70,8 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/admin/faq') }}"
-               class="{{ request()->is('admin/faq*') ? 'active' : '' }}">
+            <a href="{{ url('/admin/faqs') }}"
+               class="{{ request()->is('admin/faqs*') ? 'active' : '' }}">
                 <i class="bi bi-question-circle"></i>
                 <span>FAQs</span>
             </a>
