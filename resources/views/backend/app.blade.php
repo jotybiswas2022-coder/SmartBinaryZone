@@ -25,13 +25,13 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     {{-- Admin Layout: Sidebar + Content --}}
-    <div class="admin-layout">
+    <div class="admin-layout" style="display:flex; min-height:calc(100vh - 57px);">
 
         {{-- Sidebar --}}
         @include('backend.partials.sidebar')
 
         {{-- Main Content --}}
-        <main class="admin-main">
+        <main class="admin-main" style="flex:1; min-width:0; background:#f1f5f9; padding:1.5rem 2rem; overflow-y:auto;">
             @yield('content')
         </main>
 

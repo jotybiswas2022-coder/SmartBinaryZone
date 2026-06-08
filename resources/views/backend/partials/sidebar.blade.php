@@ -1,14 +1,14 @@
 <!-- Sidebar -->
-<aside class="sidebar" id="sidebarCollapse">
+<aside class="sidebar" id="sidebarCollapse" style="width:260px; min-width:260px; background:linear-gradient(180deg,#0f172a,#1e293b); position:sticky; top:0; height:calc(100vh - 57px); overflow-y:auto; display:flex; flex-direction:column; flex-shrink:0;">
     <!-- Close button for mobile -->
     <div class="sidebar-close d-md-none">
         <button type="button" class="btn-close btn-close-white" aria-label="Close sidebar"></button>
     </div>
 
-    <div class="sidebar-header">
-        <a href="/admin" class="brand">
-            <i class="bi bi-grid-1x2-fill"></i>
-            <span>{{ __('messages.admin') }} Panel</span>
+    <div class="sidebar-header" style="padding:1.2rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:0.5rem; flex-shrink:0;">
+        <a href="/admin" class="brand" style="display:flex; align-items:center; gap:0.75rem; color:#fff; text-decoration:none; font-size:1.2rem; font-weight:800; letter-spacing:-0.3px;">
+            <i class="bi bi-grid-1x2-fill" style="font-size:1.6rem; color:#6366f1;"></i>
+            <span style="background:linear-gradient(135deg,#fff 60%,#94a3b8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">{{ __('messages.admin') }} Panel</span>
         </a>
     </div>
 
