@@ -2,7 +2,7 @@
 use Illuminate\Support\Str;
 @endphp
 
-<nav class="navbar navbar-expand-lg navbar-top py-0" style="height:auto; min-height:57px;">
+<nav class="navbar navbar-expand-lg navbar-top py-0" style="height:auto; min-height:57px; background:linear-gradient(180deg,#0f172a,#1e293b); border-bottom:1px solid rgba(255,255,255,0.06); box-shadow:0 2px 12px rgba(0,0,0,0.15);">
     <div class="container-fluid px-3">
         {{-- Mobile Sidebar Toggle --}}
         <button class="btn d-md-none p-1 me-2 sidebar-toggle-btn" type="button" aria-label="Toggle sidebar">
