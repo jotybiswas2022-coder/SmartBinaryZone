@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<aside class="sidebar" id="sidebarCollapse" style="width:260px; min-width:260px; background:linear-gradient(180deg,#0f172a,#1e293b); position:sticky; top:0; height:calc(100vh - 57px); overflow-y:auto; display:flex; flex-direction:column; flex-shrink:0;">
+<aside class="sidebar" id="sidebarCollapse" style="width:260px; min-width:260px; background:linear-gradient(180deg,#0f172a,#1e293b); flex-shrink:0;">
     <!-- Close button for mobile -->
     <div class="sidebar-close d-md-none">
         <button type="button" class="btn-close btn-close-white" aria-label="Close sidebar"></button>
