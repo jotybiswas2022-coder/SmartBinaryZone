@@ -260,6 +260,7 @@
     .about-section { background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .about-image { position: relative; display: flex; justify-content: center; align-items: center; }
+    .about-name-highlight { color: var(--accent-light); font-weight: 700; }
     .about-image .img-wrapper {
         width: 320px; height: 320px; border-radius: 32px; overflow: hidden;
         border: 3px solid rgba(59, 130, 246, 0.25); position: relative;
@@ -1152,7 +1153,7 @@
                 </div>
                 <div class="about-text reveal reveal-delay-2">
                     <h3>{{ __('messages.about_heading') }}</h3>
-                    <p>Hi, I'm <span class="gradient-text">{{ $account->name }}</span>. {{ __('messages.about_desc_1') }}</p>
+                    <p>Hi, I'm <span class="about-name-highlight">{{ $account->name }}</span>. {{ __('messages.about_desc_1') }}</p>
                     <p>{{ __('messages.about_desc_2') }}</p>
                     <div class="about-stats">
                         <div class="stat-item">
