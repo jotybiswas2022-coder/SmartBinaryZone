@@ -8,10 +8,28 @@ use App\Models\Faq;
 
 class FaqController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $faqs = Faq::orderBy('sort_order')->get();
-        return view('backend.faq.index', compact('faqs'));
+        $query = $request->input('q');
+
+        $faqs = Faq::query()
+            ->when($query, function ($q) use ($query) {
+                $q->where('question', 'like', "%{$query}%")
+                  ->orWhere('answer', 'like', "%{$query}%");
+            })
+            ->orderBy('sort_order')
+            ->get();
+
+        if ($request->ajax()) {
+            $html = view('backend.faq._table_rows', compact('faqs'))->render();
+            return response()->json([
+                'html'  => $html,
+                'count' => $faqs->count(),
+                'query' => $query,
+            ]);
+        }
+
+        return view('backend.faq.index', compact('faqs', 'query'));
     }
 
     public function create()
