@@ -1394,6 +1394,7 @@
             <a href="#about">{{ __('messages.about') }}</a>
             <a href="#skills">{{ __('messages.skills') }}</a>
             <a href="#projects">{{ __('messages.projects') }}</a>
+            <a href="#faq">{{ __('messages.faq_title') }}</a>
             <a href="#contact">{{ __('messages.contact') }}</a>
         </div>
 

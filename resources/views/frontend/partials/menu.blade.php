@@ -375,11 +375,9 @@
         <li><a href="/" class="{{ request()->is('/') ? 'nav-active' : '' }}"><i class="bi bi-house-fill me-1"></i>{{ __('messages.home') }}</a></li>
         <li><a href="/#about"><i class="bi bi-person-fill me-1"></i>{{ __('messages.about') }}</a></li>
         <li><a href="/#services"><i class="bi bi-gear me-1"></i>{{ __('messages.services') }}</a></li>
-        <li><a href="/#skills"><i class="bi bi-lightning-fill me-1"></i>{{ __('messages.skills') }}</a></li>
         <li><a href="/#projects"><i class="bi bi-folder-fill me-1"></i>{{ __('messages.projects') }}</a></li>
-        <li><a href="/#contact"><i class="bi bi-envelope-fill me-1"></i>{{ __('messages.contact') }}</a></li>
-        <li><a href="/#faq"><i class="bi bi-question-circle me-1"></i>FAQ</a></li>
         <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') || request()->is('blog/*') ? 'nav-active' : '' }}"><i class="bi bi-journal-text me-1"></i>{{ __('messages.blog') }}</a></li>
+        <li><a href="/#contact"><i class="bi bi-envelope-fill me-1"></i>{{ __('messages.contact') }}</a></li>
 
         @auth
             @if(auth()->user()->is_admin == 1)
@@ -438,11 +436,9 @@
             <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}"><i class="bi bi-house-fill"></i>{{ __('messages.home') }}</a></li>
             <li><a href="/#about"><i class="bi bi-person-fill"></i>{{ __('messages.about') }}</a></li>
             <li><a href="/#services"><i class="bi bi-gear"></i>{{ __('messages.services') }}</a></li>
-            <li><a href="/#skills"><i class="bi bi-lightning-fill"></i>{{ __('messages.skills') }}</a></li>
             <li><a href="/#projects"><i class="bi bi-folder-fill"></i>{{ __('messages.projects') }}</a></li>
-            <li><a href="/#contact"><i class="bi bi-envelope-fill"></i>{{ __('messages.contact') }}</a></li>
-            <li><a href="/#faq"><i class="bi bi-question-circle"></i>FAQ</a></li>
             <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') || request()->is('blog/*') ? 'active' : '' }}"><i class="bi bi-journal-text"></i>{{ __('messages.blog') }}</a></li>
+            <li><a href="/#contact"><i class="bi bi-envelope-fill"></i>{{ __('messages.contact') }}</a></li>
         </ul>
 
         <div class="drawer-divider"></div>
