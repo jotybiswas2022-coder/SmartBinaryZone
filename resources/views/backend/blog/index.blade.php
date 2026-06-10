@@ -20,8 +20,41 @@
         </div>
     </div>
 
+    {{-- Live Search Bar --}}
+    <div class="mb-4">
+        <div class="d-flex gap-2 align-items-center">
+            <div class="input-group" style="max-width:380px;">
+                <span class="input-group-text bg-white border-end-0 rounded-start-3" style="border-color:#e2e8f0;">
+                    <i class="bi bi-search text-muted"></i>
+                </span>
+                <input type="text" id="liveSearch" name="q" value="{{ $query ?? '' }}" 
+                       class="form-control border-start-0 ps-0" 
+                       placeholder="Live search by title, category or content..."
+                       style="border-color:#e2e8f0; box-shadow:none;"
+                       autocomplete="off">
+                <span class="input-group-text bg-white border-start-0 rounded-end-3" style="border-color:#e2e8f0;" id="searchSpinner">
+                    <span class="spinner-border spinner-border-sm d-none" role="status" id="searchLoading"></span>
+                </span>
+            </div>
+            @if(request()->has('q') && request()->q != '')
+                <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-secondary rounded-3" style="border-color:#e2e8f0;">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            @endif
+        </div>
+        <div class="mt-2" id="searchInfo">
+            @if($query ?? false)
+                <small class="text-muted">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Showing results for "<strong>{{ $query }}</strong>" — 
+                    <span id="resultCount">{{ $posts->count() }}</span> post(s) found
+                </small>
+            @endif
+        </div>
+    </div>
+
     {{-- Table Card --}}
-    @if($posts->isEmpty())
+    @if($posts->isEmpty() && !request()->ajax())
         <div class="text-center py-5">
             <div class="empty-state">
                 <i class="bi bi-pencil"></i>
@@ -48,72 +81,8 @@
                             <th class="pe-4 py-3 text-muted small fw-semibold" style="width:120px;">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach($posts as $post)
-                            <tr>
-                                <td class="ps-4 fw-semibold text-muted">{{ $loop->iteration }}</td>
-                                <td>
-                                    @if($post->featured_image)
-                                        <img src="{{ config('app.storage_url') }}{{ $post->featured_image }}"
-                                             alt="{{ $post->title }}"
-                                             class="rounded" style="width:55px; height:38px; object-fit:cover;">
-                                    @else
-                                        <div class="rounded d-inline-flex align-items-center justify-content-center"
-                                             style="width:55px; height:38px; background:#f1f5f9; color:#cbd5e1;">
-                                            <i class="bi bi-image"></i>
-                                        </div>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="fw-semibold">{{ $post->title }}</div>
-                                    <a href="{{ url('/blog/' . $post->slug) }}" target="_blank" class="small text-decoration-none" style="color:#6366f1;">
-                                        <i class="bi bi-box-arrow-up-right"></i> View
-                                    </a>
-                                </td>
-                                <td>
-                                    @if($post->category)
-                                        <span class="badge rounded-pill px-3 py-1" style="background:rgba(99,102,241,0.08); color:#6366f1; font-weight:500;">
-                                            {{ $post->category }}
-                                        </span>
-                                    @else
-                                        <span class="text-muted small">—</span>
-                                    @endif
-                                </td>
-                                <td class="small text-muted">{{ $post->author->name ?? 'Unknown' }}</td>
-                                <td class="small">
-                                    <span class="badge rounded-pill px-3 py-1" style="background:#f1f5f9; color:#475569; font-weight:500; font-size:0.75rem;">
-                                        <i class="bi bi-calendar3 me-1"></i>{{ $post->formatted_date }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.blog.toggleStatus', $post->id) }}"
-                                       class="badge rounded-pill px-3 py-1 text-decoration-none status-badge {{ $post->is_published ? 'published-badge' : 'draft-badge' }}"
-                                       data-title="{{ $post->title }}">
-                                        {{ $post->is_published ? 'Published' : 'Draft' }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <a href="{{ route('admin.blog.edit', $post->id) }}"
-                                           class="btn btn-sm btn-outline-primary rounded-3 px-2">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-danger rounded-3 px-2 delete-btn"
-                                                data-id="{{ $post->id }}"
-                                                data-title="{{ $post->title }}">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                        <form id="delete-form-{{ $post->id }}"
-                                              action="{{ route('admin.blog.destroy', $post->id) }}"
-                                              method="POST" class="d-none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                    <tbody id="blogTableBody">
+                        @include('backend.blog._table_rows', ['posts' => $posts])
                     </tbody>
                 </table>
             </div>
@@ -131,53 +100,123 @@
 
 @section('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const id = this.dataset.id;
-            const title = this.dataset.title;
-            Swal.fire({
-                title: 'Delete Post?',
-                text: 'Are you sure you want to delete "' + title + '"? This cannot be undone.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#dc2626',
-                cancelButtonColor: '#64748b',
-                confirmButtonText: '<i class="bi bi-trash me-1"></i> Delete',
-                cancelButtonText: 'Cancel',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + id).submit();
-                }
+// ===== DELETE CONFIRMATION & STATUS TOGGLE =====
+(function() {
+    function bindBlogEvents() {
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const title = this.dataset.title;
+                Swal.fire({
+                    title: 'Delete Post?',
+                    text: 'Are you sure you want to delete "' + title + '"? This cannot be undone.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc2626',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: '<i class="bi bi-trash me-1"></i> Delete',
+                    cancelButtonText: 'Cancel',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + id).submit();
+                    }
+                });
             });
         });
+
+        document.querySelectorAll('.status-badge').forEach(badge => {
+            badge.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const title = this.dataset.title;
+                const current = this.textContent.trim();
+                Swal.fire({
+                    title: 'Toggle Status?',
+                    text: 'Change "' + title + '" from ' + current + ' to ' + (current === 'Published' ? 'Draft' : 'Published') + '?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#6366f1',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: '<i class="bi bi-arrow-repeat me-1"></i> Toggle',
+                    cancelButtonText: 'Cancel',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = href;
+                    }
+                });
+            });
+        });
+    }
+
+    bindBlogEvents();
+    window.bindBlogEvents = bindBlogEvents;
+})();
+
+// ===== LIVE SEARCH (AJAX) =====
+(function() {
+    var searchInput = document.getElementById('liveSearch');
+    var tableBody = document.getElementById('blogTableBody');
+    var searchInfo = document.getElementById('searchInfo');
+    var searchLoading = document.getElementById('searchLoading');
+
+    if (!searchInput || !tableBody) return;
+
+    var debounceTimer;
+
+    function performSearch(query) {
+        if (searchLoading) searchLoading.classList.remove('d-none');
+
+        var url = '{{ route('admin.blog.index') }}' + '?q=' + encodeURIComponent(query);
+
+        fetch(url, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            tableBody.innerHTML = data.html;
+
+            var countBadge = document.querySelector('.badge.rounded-pill.px-3.py-2');
+            if (countBadge) {
+                countBadge.innerHTML = '<i class="bi bi-database me-1"></i> ' + data.count + ' Posts';
+            }
+
+            if (searchInfo) {
+                if (query) {
+                    searchInfo.innerHTML = '<small class="text-muted"><i class="bi bi-info-circle me-1"></i>Showing results for "<strong>' + escapeHtml(query) + '</strong>" — ' + data.count + ' post(s) found</small>';
+                } else {
+                    searchInfo.innerHTML = '';
+                }
+            }
+
+            if (window.bindBlogEvents) window.bindBlogEvents();
+        })
+        .catch(function(error) {
+            console.error('Search error:', error);
+        })
+        .finally(function() {
+            if (searchLoading) searchLoading.classList.add('d-none');
+        });
+    }
+
+    searchInput.addEventListener('input', function() {
+        var query = this.value.trim();
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+            performSearch(query);
+        }, 300);
     });
 
-    document.querySelectorAll('.status-badge').forEach(badge => {
-        badge.addEventListener('click', function (e) {
-            e.preventDefault();
-            const href = this.getAttribute('href');
-            const title = this.dataset.title;
-            const current = this.textContent.trim();
-            Swal.fire({
-                title: 'Toggle Status?',
-                text: 'Change "' + title + '" from ' + current + ' to ' + (current === 'Published' ? 'Draft' : 'Published') + '?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#6366f1',
-                cancelButtonColor: '#64748b',
-                confirmButtonText: '<i class="bi bi-arrow-repeat me-1"></i> Toggle',
-                cancelButtonText: 'Cancel',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = href;
-                }
-            });
-        });
-    });
-});
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(text));
+        return div.innerHTML;
+    }
+})();
 </script>
 @endsection
 

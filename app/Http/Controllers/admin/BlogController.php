@@ -13,10 +13,29 @@ class BlogController extends Controller
     /**
      * Display a listing of the blog posts.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->get();
-        return view('backend.blog.index', compact('posts'));
+        $query = $request->input('q');
+
+        $posts = Post::query()
+            ->when($query, function ($q) use ($query) {
+                $q->where('title', 'like', "%{$query}%")
+                  ->orWhere('category', 'like', "%{$query}%")
+                  ->orWhere('content', 'like', "%{$query}%");
+            })
+            ->latest()
+            ->get();
+
+        if ($request->ajax()) {
+            $html = view('backend.blog._table_rows', compact('posts'))->render();
+            return response()->json([
+                'html'  => $html,
+                'count' => $posts->count(),
+                'query' => $query,
+            ]);
+        }
+
+        return view('backend.blog.index', compact('posts', 'query'));
     }
 
     /**
