@@ -8,10 +8,27 @@ use App\Models\Skill;
 
 class SkillController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $skills = Skill::orderBy('sort_order')->get();
-        return view('backend.skill.index', compact('skills'));
+        $query = $request->input('q');
+
+        $skills = Skill::query()
+            ->when($query, function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->orderBy('sort_order')
+            ->get();
+
+        if ($request->ajax()) {
+            $html = view('backend.skill._table_rows', compact('skills'))->render();
+            return response()->json([
+                'html'  => $html,
+                'count' => $skills->count(),
+                'query' => $query,
+            ]);
+        }
+
+        return view('backend.skill.index', compact('skills', 'query'));
     }
 
     public function create()
