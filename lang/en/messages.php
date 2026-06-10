@@ -36,7 +36,8 @@ return [
     'stat_projects'  => 'Projects',
     'stat_clients'   => 'Clients',
     'stat_years'     => 'Years Exp',
-    'download_cv'    => 'Download CV',
+    'download_cv'       => 'Download CV',
+    'click_to_download' => 'Click to download',
 
     // Services
     'services_title'    => 'My Services',

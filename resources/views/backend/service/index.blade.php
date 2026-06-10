@@ -23,7 +23,7 @@
     {{-- Live Search Bar --}}
     <div class="mb-4">
         <div class="d-flex gap-2 align-items-center">
-            <div class="input-group" style="max-width:380px;">
+            <div class="input-group" style="max-width:600px;">
                 <span class="input-group-text bg-white border-end-0 rounded-start-3" style="border-color:#e2e8f0;">
                     <i class="bi bi-search text-muted"></i>
                 </span>

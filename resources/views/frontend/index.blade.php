@@ -738,6 +738,105 @@
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
+    /* Download CV Button */
+    .btn-download {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.95rem 2.5rem;
+        background: linear-gradient(135deg, #059669, #10b981, #34d399);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none !important;
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.25);
+        letter-spacing: 0.3px;
+    }
+    .btn-download::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        transition: left 0.6s ease;
+    }
+    .btn-download:hover::before { left: 100%; }
+    .btn-download:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
+        color: #fff;
+    }
+    .btn-download:active {
+        transform: translateY(-1px) scale(0.98);
+    }
+    .btn-download .download-icon {
+        font-size: 1.2rem;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-download:hover .download-icon {
+        transform: translateY(3px) scale(1.15);
+        animation: downloadBounce 1s ease infinite;
+    }
+    @keyframes downloadBounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(4px) scale(1.1); }
+    }
+    .btn-download .format-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.2rem 0.6rem;
+        background: rgba(255,255,255,0.18);
+        border-radius: 6px;
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        backdrop-filter: blur(4px);
+        transition: background 0.3s ease;
+    }
+    .btn-download:hover .format-badge {
+        background: rgba(255,255,255,0.25);
+    }
+    .btn-download .btn-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .btn-download-wrapper {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .btn-download-wrapper .download-hint {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-download-wrapper:hover .download-hint {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    html.light-theme .btn-download {
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+    }
+    html.light-theme .btn-download:hover {
+        box-shadow: 0 12px 40px rgba(16, 185, 129, 0.45);
+    }
+
     /* Shared Utilities */
     .empty-state { text-align: center; padding: 4rem 2rem; }
     .empty-state i { font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; display: block; }
@@ -975,13 +1074,19 @@
 
                     <!-- Download CV Button -->
                     @if(isset($account) && $account->cv)
-                        <div class="mt-4">
+                        <div class="btn-download-wrapper">
                             <a href="{{ config('app.storage_url') }}{{ $account->cv }}" 
                                download
-                               class="btn-primary-custom magnetic"
-                               style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                                <i class="bi bi-file-earmark-pdf-fill"></i> {{ __('messages.download_cv') }}
+                               class="btn-download magnetic">
+                                <span class="download-icon"><i class="bi bi-cloud-arrow-down-fill"></i></span>
+                                <span class="btn-text">
+                                    {{ __('messages.download_cv') }}
+                                    <span class="format-badge"><i class="bi bi-filetype-pdf"></i> PDF</span>
+                                </span>
                             </a>
+                            <span class="download-hint">
+                                <i class="bi bi-arrow-down-circle"></i> {{ __('messages.click_to_download') }}
+                            </span>
                         </div>
                     @endif
                 </div>

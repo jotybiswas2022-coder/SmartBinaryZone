@@ -36,7 +36,8 @@ return [
     'stat_projects'  => 'প্রকল্প',
     'stat_clients'   => 'ক্লায়েন্ট',
     'stat_years'     => 'বছরের অভিজ্ঞতা',
-    'download_cv'    => 'সিভি ডাউনলোড',
+    'download_cv'       => 'সিভি ডাউনলোড',
+    'click_to_download' => 'ডাউনলোড করতে ক্লিক করুন',
 
     // Services
     'services_title'    => 'আমার সেবাসমূহ',
