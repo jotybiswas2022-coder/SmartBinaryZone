@@ -14,9 +14,10 @@
     position: fixed;
     top: -50%; left: -50%;
     width: 200%; height: 200%;
-    background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.03) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.03) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.02) 0%, transparent 50%);
+    background: radial-gradient(ellipse 800px 500px at 15% 30%, rgba(99,102,241,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 600px 600px at 85% 20%, rgba(139,92,246,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 500px 400px at 50% 80%, rgba(59,130,246,0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 400px 400px at 20% 70%, rgba(236,72,153,0.04) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
 }
@@ -59,19 +60,23 @@
 
 /* ─── Stat Cards ─── */
 .dsb-stat {
-    background: #fff;
-    border: none;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
     border-radius: 16px;
     padding: 1.25rem 1.4rem;
     position: relative;
     overflow: hidden;
     height: 100%;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.03);
 }
 .dsb-stat:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 6px 12px rgba(99,102,241,0.06);
+    background: rgba(255,255,255,0.88);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 6px 12px rgba(99,102,241,0.06);
+    border-color: rgba(255,255,255,0.9);
 }
 .dsb-stat-glow {
     position: absolute;
@@ -123,21 +128,25 @@
 
 /* ─── Content Cards ─── */
 .dsb-card {
-    background: #fff;
-    border: none;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 16px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03), 0 1px 4px rgba(0,0,0,0.02);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     height: 100%;
     overflow: hidden;
 }
 .dsb-card:hover {
-    box-shadow: 0 12px 32px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04);
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.03);
+    border-color: rgba(255,255,255,0.8);
     transform: translateY(-3px);
 }
 .dsb-card-hd {
     padding: 1.1rem 1.4rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -159,7 +168,7 @@
     align-items: center;
     gap: 0.85rem;
     padding: 0.75rem 1.4rem;
-    border-bottom: 1px solid #f8fafc;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
     transition: all 0.25s ease;
     text-decoration: none;
     color: inherit;
@@ -222,14 +231,19 @@
     padding-bottom: 4px;
 }
 .dsb-qa-wrap::-webkit-scrollbar { height: 3px; }
-.dsb-qa-wrap::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+.dsb-qa-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 3px; }
+
+.modal-backdrop { background: rgba(15,23,42,0.5); }
+.modal-backdrop.show { opacity: 1; }
 .dsb-qa {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
     padding: 0.5rem 0.95rem;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 10px;
     text-decoration: none;
     color: #1e293b;
@@ -239,7 +253,7 @@
     white-space: nowrap;
 }
 .dsb-qa:hover {
-    background: #fff;
+    background: rgba(255,255,255,0.8);
     border-color: #6366f1;
     color: #6366f1;
     transform: translateY(-2px);
@@ -526,7 +540,7 @@
     {{-- ─── MESSAGE MODAL ─── --}}
     <div class="modal fade" id="messageModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow" style="border-radius:16px;overflow:hidden;">
+            <div class="modal-content shadow" style="border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.6);">
                 <div class="modal-header" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:1.2rem 1.5rem;">
                     <h5 class="modal-title fw-semibold"><i class="bi bi-person-circle me-2"></i><span id="msgName"></span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
