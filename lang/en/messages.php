@@ -110,7 +110,7 @@ return [
     'no_results_desc' => 'Try searching with different keywords.',
 
     // Blog
-    'blog_title'           => 'My Blog',
+    'blog_title'           => 'My',
     'blog_subtitle'        => 'Thoughts, tutorials, and insights about web development',
     'no_posts'             => 'No Posts Yet',
     'no_posts_desc'        => 'Blog posts will appear here. Check back soon!',
