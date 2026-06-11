@@ -53,22 +53,6 @@ body {
     z-index: 1040;
 }
 
-/* Mobile close button */
-.sidebar-close {
-    display: none;
-    padding: 0.8rem 1rem;
-    text-align: right;
-}
-
-.sidebar-close .btn-close {
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-
-.sidebar-close .btn-close:hover {
-    opacity: 1;
-}
-
 .sidebar-header {
     padding: 1.2rem 1.5rem;
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -188,44 +172,8 @@ body {
 
 /* ===== TOP NAVBAR (sticky + z-index only; rest via inline) ===== */
 
-/* ===== SIDEBAR OVERLAY (mobile) ===== */
-.sidebar-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1035;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.sidebar-overlay.active {
-    display: block;
-    opacity: 1;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 767.98px) {
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        transform: translateX(-100%);
-        box-shadow: 4px 0 30px rgba(0,0,0,0.3);
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .sidebar-close {
-        display: block;
-    }
-
     .admin-main {
         padding: 1rem;
         width: 100%;
