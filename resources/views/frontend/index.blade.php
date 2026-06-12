@@ -2329,9 +2329,9 @@
 // ===== SERVICE WAVE WATER RIPPLE (mouse-responsive) =====
 (function() {
     var scenes = document.querySelectorAll('.wave-scene');
-    if (!waves.length) return;
+    if (!scenes.length) return;
     [].forEach.call(scenes, function(scene) {
-        var ripple = wave.querySelector('.wave-ripple');
+        var ripple = scene.querySelector('.wave-ripple');
         if (!ripple) return;
         wave.addEventListener('mousemove', function(e) {
             var rect = wave.getBoundingClientRect();
