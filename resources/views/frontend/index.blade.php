@@ -393,7 +393,7 @@
         box-shadow: 0 16px 50px rgba(59, 130, 246, 0.15) !important;
     }
 
-    /* ===== SERVICES — WATER EFFECT CARDS ===== */
+    /* ===== SERVICES — ORGANIC WATER WAVES ===== */
     .services-section {
         background: linear-gradient(180deg, #060b18 0%, #0a1628 40%, #0d1f36 70%, #0f2740 100%);
         position: relative;
@@ -450,203 +450,221 @@
         100% { transform: translateX(0) rotate(0deg); }
     }
 
-    /* Services card grid */
-    .services-grid {
+    /* Wave grid - organic flowing layout */
+    .services-waves {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2rem;
-        padding: 1rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 3rem;
+        padding: 1.5rem 0;
         position: relative;
         z-index: 2;
     }
 
-    /* Each service is a rectangular card with water effect */
-    .service-card {
+    /* Each service is an organic water wave blob */
+    .service-wave {
         position: relative;
-        padding: 2.2rem 1.8rem;
-        border-radius: var(--radius-lg);
+        padding: 0;
         cursor: pointer;
-        background: linear-gradient(135deg, rgba(17, 28, 46, 0.85), rgba(22, 35, 55, 0.85));
-        border: 1px solid rgba(59, 130, 246, 0.08);
-        overflow: hidden;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+        overflow: visible;
         user-select: none;
-    }
-    .service-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(59, 130, 246, 0.2);
-        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3), 0 0 60px rgba(59, 130, 246, 0.06);
+        min-height: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Flowing water current gradient background */
-    .service-card .water-flow {
+    /* The wave shape itself - organic undulating blob */
+    .service-wave .wave-blob {
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
         background: linear-gradient(
-            90deg,
-            rgba(59, 130, 246, 0.02),
-            rgba(99, 102, 241, 0.04),
-            rgba(56, 189, 248, 0.02),
-            rgba(59, 130, 246, 0.03),
-            rgba(99, 102, 241, 0.02),
-            rgba(59, 130, 246, 0.02)
+            145deg,
+            rgba(30, 58, 95, 0.6),
+            rgba(20, 45, 75, 0.5),
+            rgba(59, 130, 246, 0.08),
+            rgba(20, 45, 75, 0.5)
         );
-        background-size: 400% 100%;
-        animation: waterFlow 8s ease-in-out infinite;
-        pointer-events: none;
-        z-index: 0;
-        border-radius: inherit;
+        background-size: 200% 200%;
+        animation: waveMorph 12s ease-in-out infinite, waveBgShift 8s ease-in-out infinite;
+        animation-delay: var(--wave-delay, 0s);
+        border: 1px solid rgba(59, 130, 246, 0.08);
+        box-shadow:
+            0 8px 40px rgba(0, 0, 0, 0.2),
+            inset 0 -20px 40px rgba(59, 130, 246, 0.03),
+            inset 0 20px 40px rgba(255, 255, 255, 0.02);
+        transition: border-color 0.6s ease, box-shadow 0.6s ease;
     }
-    .service-card:hover .water-flow {
-        animation-duration: 4s;
-        background: linear-gradient(
-            90deg,
-            rgba(59, 130, 246, 0.04),
-            rgba(99, 102, 241, 0.07),
-            rgba(56, 189, 248, 0.04),
-            rgba(59, 130, 246, 0.05),
-            rgba(99, 102, 241, 0.04),
-            rgba(59, 130, 246, 0.04)
-        );
+    .service-wave:hover .wave-blob {
+        border-color: rgba(59, 130, 246, 0.2);
+        box-shadow:
+            0 12px 60px rgba(59, 130, 246, 0.1),
+            0 0 80px rgba(59, 130, 246, 0.04);
     }
-    @keyframes waterFlow {
+
+    /* Different blob shapes per card using nth-child */
+    .service-wave:nth-child(1) .wave-blob { --wave-delay: 0s; }
+    .service-wave:nth-child(2) .wave-blob { --wave-delay: -2s; }
+    .service-wave:nth-child(3) .wave-blob { --wave-delay: -4s; }
+    .service-wave:nth-child(4) .wave-blob { --wave-delay: -6s; }
+    .service-wave:nth-child(5) .wave-blob { --wave-delay: -1s; }
+    .service-wave:nth-child(6) .wave-blob { --wave-delay: -3s; }
+
+    @keyframes waveMorph {
+        0%   { border-radius: 42% 58% 60% 40% / 50% 40% 60% 50%; }
+        25%  { border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%; }
+        50%  { border-radius: 45% 55% 50% 50% / 55% 50% 50% 45%; }
+        75%  { border-radius: 50% 50% 55% 45% / 48% 52% 48% 52%; }
+        100% { border-radius: 42% 58% 60% 40% / 50% 40% 60% 50%; }
+    }
+    @keyframes waveBgShift {
         0%   { background-position: 0% 50%; }
         50%  { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
 
-    /* Animated bottom wave border on each card */
-    .service-card .card-wave {
+    /* Sub-wave ring that pulses around the blob */
+    .service-wave .wave-ring {
         position: absolute;
-        bottom: 0; left: -10%;
-        width: 120%; height: 12px;
-        border-radius: 100% 100% 0 0;
+        top: -8px; left: -8px; right: -8px; bottom: -8px;
+        border: 1px solid rgba(59, 130, 246, 0.04);
+        animation: waveMorph 14s ease-in-out infinite, ringPulse 4s ease-in-out infinite;
+        animation-delay: var(--wave-delay, 0s);
         pointer-events: none;
-        z-index: 1;
-        opacity: 0.4;
-        transition: opacity 0.4s ease, height 0.4s ease;
-    }
-    .service-card .card-wave.wave-1 {
-        background: rgba(59, 130, 246, 0.08);
-        animation: cardWave1 6s ease-in-out infinite;
-        bottom: -2px;
-    }
-    .service-card .card-wave.wave-2 {
-        background: rgba(99, 102, 241, 0.05);
-        animation: cardWave2 9s ease-in-out infinite;
-        bottom: -4px;
-        height: 10px;
-    }
-    .service-card:hover .card-wave {
-        opacity: 0.7;
-        height: 16px;
-    }
-    .service-card:hover .card-wave.wave-1 { height: 16px; }
-    .service-card:hover .card-wave.wave-2 { height: 14px; }
-
-    @keyframes cardWave1 {
-        0%   { transform: translateX(0) scaleY(1);   opacity: 0.35; }
-        25%  { transform: translateX(-8%) scaleY(1.3); opacity: 0.55; }
-        50%  { transform: translateX(0) scaleY(1);    opacity: 0.35; }
-        75%  { transform: translateX(8%) scaleY(1.2); opacity: 0.50; }
-        100% { transform: translateX(0) scaleY(1);    opacity: 0.35; }
-    }
-    @keyframes cardWave2 {
-        0%   { transform: translateX(5%) scaleY(1);    opacity: 0.25; }
-        33%  { transform: translateX(-10%) scaleY(1.4); opacity: 0.45; }
-        66%  { transform: translateX(8%) scaleY(1.1);  opacity: 0.30; }
-        100% { transform: translateX(5%) scaleY(1);    opacity: 0.25; }
-    }
-
-    /* Mouse-responsive water ripple overlay */
-    .service-card .water-ripple {
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08), transparent 60%);
-        pointer-events: none;
-        z-index: 1;
         opacity: 0;
-        transition: opacity 0.5s ease;
-        border-radius: inherit;
+        transition: opacity 0.6s ease;
     }
-    .service-card:hover .water-ripple {
+    .service-wave:hover .wave-ring {
+        opacity: 1;
+    }
+    @keyframes ringPulse {
+        0%, 100% { transform: scale(1); opacity: 0.2; border-width: 1px; }
+        50% { transform: scale(1.04); opacity: 0.05; border-width: 2px; }
+    }
+
+    /* Second outer ring */
+    .service-wave .wave-ring-2 {
+        position: absolute;
+        top: -16px; left: -16px; right: -16px; bottom: -16px;
+        border: 1px solid rgba(99, 102, 241, 0.03);
+        animation: waveMorph 18s ease-in-out infinite reverse, ringPulse 6s ease-in-out infinite 1s;
+        animation-delay: var(--wave-delay, 0s);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+    }
+    .service-wave:hover .wave-ring-2 {
         opacity: 1;
     }
 
-    /* Floating water droplets rising from bottom */
-    .service-card .droplets {
+    /* Mouse-responsive ripple on wave surface */
+    .service-wave .wave-ripple {
         position: absolute;
-        bottom: 0; left: 0; right: 0;
-        height: 100%;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
         pointer-events: none;
-        z-index: 1;
-        overflow: hidden;
-        border-radius: inherit;
-    }
-    .service-card .droplets .drop {
-        position: absolute;
-        bottom: -10px;
-        width: 6px; height: 6px;
-        border-radius: 50% 50% 50% 0;
-        background: rgba(59, 130, 246, 0.15);
-        animation: dropRise var(--dur, 4s) ease-in infinite;
-        animation-delay: var(--delay, 0s);
         opacity: 0;
-        transform: rotate(-45deg);
+        transition: opacity 0.5s ease;
+        animation: waveMorph 12s ease-in-out infinite;
+        animation-delay: var(--wave-delay, 0s);
     }
-    .service-card .droplets .drop:nth-child(1) { left: 12%; --dur: 3.5s; --delay: 0.2s; width: 5px; height: 5px; }
-    .service-card .droplets .drop:nth-child(2) { left: 28%; --dur: 4.8s; --delay: 1.0s; width: 4px; height: 4px; background: rgba(99, 102, 241, 0.12); }
-    .service-card .droplets .drop:nth-child(3) { left: 45%; --dur: 3.2s; --delay: 0.6s; width: 7px; height: 7px; background: rgba(56, 189, 248, 0.10); }
-    .service-card .droplets .drop:nth-child(4) { left: 62%; --dur: 5.2s; --delay: 1.8s; width: 3px; height: 3px; }
-    .service-card .droplets .drop:nth-child(5) { left: 78%; --dur: 4.0s; --delay: 0.0s; width: 5px; height: 5px; background: rgba(99, 102, 241, 0.10); }
-    .service-card .droplets .drop:nth-child(6) { left: 90%; --dur: 3.8s; --delay: 1.3s; width: 4px; height: 4px; }
-
-    @keyframes dropRise {
-        0%   { transform: translateY(0) rotate(-45deg) scale(1);   opacity: 0; }
-        15%  { opacity: 0.8; }
-        50%  { opacity: 0.4; }
-        85%  { opacity: 0.1; }
-        100% { transform: translateY(calc(-100% - 320px)) rotate(-45deg) scale(0.3); opacity: 0; }
+    .service-wave:hover .wave-ripple {
+        opacity: 1;
     }
 
-    /* Content inside card */
-    .service-card .card-content {
+    /* Internal ripples (multiple concentric circles that expand) */
+    .service-wave .wave-internal {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        overflow: hidden;
+        pointer-events: none;
+        animation: waveMorph 12s ease-in-out infinite;
+        animation-delay: var(--wave-delay, 0s);
+    }
+    .service-wave .wave-internal .ripple-circle {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(59, 130, 246, 0.06);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+    .service-wave .wave-internal .ripple-circle:nth-child(1) {
+        animation: internalRipple 6s ease-out infinite;
+        animation-delay: calc(var(--wave-delay, 0s) + 0s);
+    }
+    .service-wave .wave-internal .ripple-circle:nth-child(2) {
+        animation: internalRipple 6s ease-out infinite;
+        animation-delay: calc(var(--wave-delay, 0s) + 2s);
+    }
+    .service-wave .wave-internal .ripple-circle:nth-child(3) {
+        animation: internalRipple 6s ease-out infinite;
+        animation-delay: calc(var(--wave-delay, 0s) + 4s);
+    }
+    @keyframes internalRipple {
+        0%   { width: 0; height: 0; opacity: 0.4; border-width: 2px; }
+        50%  { opacity: 0.15; }
+        100% { width: 80%; height: 80%; opacity: 0; border-width: 0.5px; }
+    }
+
+    /* Content inside the wave */
+    .service-wave .wave-content {
         position: relative;
-        z-index: 2;
+        z-index: 3;
+        padding: 2.2rem 2rem;
+        text-align: center;
+        max-width: 90%;
     }
-    .service-card .service-icon {
-        width: 52px;
-        height: 52px;
+    .service-wave .wave-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         color: var(--accent-light);
-        margin-bottom: 1rem;
-        background: rgba(59, 130, 246, 0.08);
+        background: rgba(59, 130, 246, 0.1);
         border: 1px solid rgba(59, 130, 246, 0.15);
-        border-radius: 16px;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border-radius: 18px;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .service-card:hover .service-icon {
+    .service-wave:hover .wave-icon {
         background: var(--accent-gradient);
         border-color: transparent;
         color: #fff;
-        transform: scale(1.1) rotate(-5deg);
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+        transform: scale(1.15) rotate(-5deg);
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
     }
-    .service-card h3 {
-        font-size: 1.15rem;
+    .service-wave h3 {
+        font-size: 1.2rem;
         font-weight: 700;
         color: var(--text-primary);
         margin-bottom: 0.6rem;
-        line-height: 1.35;
+        line-height: 1.4;
     }
-    .service-card p {
+    .service-wave p {
         font-size: 0.88rem;
         color: var(--text-secondary);
         line-height: 1.7;
         margin: 0;
+    }
+
+    /* Soft glow at the base of each wave */
+    .service-wave .wave-glow {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 40px;
+        background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06), transparent 70%);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+    .service-wave:hover .wave-glow {
+        opacity: 1;
     }
 
     /* Bottom water waves for section */
@@ -698,62 +716,40 @@
             radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.04), transparent 50%),
             radial-gradient(ellipse at 80% 30%, rgba(56, 189, 248, 0.03), transparent 50%);
     }
-    html.light-theme .service-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 244, 255, 0.92));
-        border-color: rgba(59, 130, 246, 0.1);
-    }
-    html.light-theme .service-card:hover {
-        border-color: rgba(59, 130, 246, 0.2);
-        box-shadow: 0 16px 50px rgba(59, 130, 246, 0.12), 0 0 60px rgba(59, 130, 246, 0.04);
-    }
-    html.light-theme .service-card .water-flow {
+    html.light-theme .service-wave .wave-blob {
         background: linear-gradient(
-            90deg,
-            rgba(59, 130, 246, 0.03),
-            rgba(99, 102, 241, 0.05),
-            rgba(56, 189, 248, 0.03),
+            145deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(240, 244, 255, 0.9),
             rgba(59, 130, 246, 0.04),
-            rgba(99, 102, 241, 0.03),
-            rgba(59, 130, 246, 0.03)
+            rgba(240, 244, 255, 0.9)
         );
+        border-color: rgba(59, 130, 246, 0.08);
     }
-    html.light-theme .service-card:hover .water-flow {
-        background: linear-gradient(
-            90deg,
-            rgba(59, 130, 246, 0.05),
-            rgba(99, 102, 241, 0.08),
-            rgba(56, 189, 248, 0.05),
-            rgba(59, 130, 246, 0.06),
-            rgba(99, 102, 241, 0.05),
-            rgba(59, 130, 246, 0.05)
-        );
+    html.light-theme .service-wave:hover .wave-blob {
+        border-color: rgba(59, 130, 246, 0.18);
+        box-shadow: 0 12px 60px rgba(59, 130, 246, 0.08);
     }
-    html.light-theme .service-card .card-wave.wave-1 {
+    html.light-theme .service-wave .wave-ring {
+        border-color: rgba(59, 130, 246, 0.06);
+    }
+    html.light-theme .service-wave .wave-ring-2 {
+        border-color: rgba(99, 102, 241, 0.04);
+    }
+    html.light-theme .service-wave .wave-ripple {
+        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05), transparent 60%);
+    }
+    html.light-theme .service-wave .wave-internal .ripple-circle {
+        border-color: rgba(59, 130, 246, 0.05);
+    }
+    html.light-theme .service-wave h3 { color: #0f172a; }
+    html.light-theme .service-wave p { color: #475569; }
+    html.light-theme .service-wave .wave-icon {
         background: rgba(59, 130, 246, 0.06);
+        border-color: rgba(59, 130, 246, 0.12);
     }
-    html.light-theme .service-card .card-wave.wave-2 {
-        background: rgba(99, 102, 241, 0.04);
-    }
-    html.light-theme .service-card .water-ripple {
-        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
-    }
-    html.light-theme .service-card h3 { color: #0f172a; }
-    html.light-theme .service-card p { color: #475569; }
-    html.light-theme .service-card .service-icon {
-        background: rgba(59, 130, 246, 0.06);
-        border-color: rgba(59, 130, 246, 0.15);
-    }
-    html.light-theme .service-card .droplets .drop {
-        background: rgba(59, 130, 246, 0.12);
-    }
-    html.light-theme .service-card .droplets .drop:nth-child(2) {
-        background: rgba(99, 102, 241, 0.10);
-    }
-    html.light-theme .service-card .droplets .drop:nth-child(3) {
-        background: rgba(56, 189, 248, 0.08);
-    }
-    html.light-theme .service-card .droplets .drop:nth-child(5) {
-        background: rgba(99, 102, 241, 0.08);
+    html.light-theme .service-wave .wave-glow {
+        background: radial-gradient(ellipse, rgba(59, 130, 246, 0.05), transparent 70%);
     }
     html.light-theme .services-section .water-surface .wave:nth-child(1) {
         background: rgba(59, 130, 246, 0.04);
@@ -773,25 +769,27 @@
 
     /* ---- Mobile ---- */
     @media (max-width: 968px) {
-        .services-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .services-waves { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
     }
     @media (max-width: 768px) {
         .services-section .water-surface { height: 30px; }
         .services-section .water-surface .wave { height: 40px; }
         .services-section .bottom-waves { height: 40px; }
-        .service-card { padding: 1.8rem 1.4rem; }
-        .service-card h3 { font-size: 1.05rem; }
-        .service-card p { font-size: 0.85rem; }
-        .service-card .service-icon { width: 46px; height: 46px; font-size: 1.3rem; }
-        .service-card .droplets .drop { display: none; }
-        .service-card .card-wave { display: none; }
+        .service-wave { min-height: 230px; }
+        .service-wave .wave-content { padding: 1.8rem 1.5rem; }
+        .service-wave h3 { font-size: 1.05rem; }
+        .service-wave p { font-size: 0.82rem; }
+        .service-wave .wave-icon { width: 48px; height: 48px; font-size: 1.3rem; }
+        .service-wave .wave-ring, .service-wave .wave-ring-2 { display: none; }
+        .service-wave .wave-internal .ripple-circle { display: none; }
     }
     @media (max-width: 480px) {
-        .services-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-        .service-card { padding: 1.5rem 1.2rem; }
-        .service-card h3 { font-size: 0.95rem; }
-        .service-card p { font-size: 0.82rem; }
-        .service-card .service-icon { width: 42px; height: 42px; font-size: 1.2rem; margin-bottom: 0.7rem; }
+        .services-waves { grid-template-columns: 1fr; gap: 2rem; }
+        .service-wave { min-height: 200px; }
+        .service-wave .wave-content { padding: 1.5rem 1.2rem; }
+        .service-wave h3 { font-size: 0.95rem; }
+        .service-wave p { font-size: 0.78rem; }
+        .service-wave .wave-icon { width: 42px; height: 42px; font-size: 1.1rem; margin-bottom: 0.7rem; }
     }
 
     /* Timeline */
@@ -1647,29 +1645,28 @@
                     <div class="wave"></div>
                     <div class="wave"></div>
                 </div>
-                <div class="services-grid">
+                <div class="services-waves">
                     @foreach($services as $index => $service)
                         @php $delay = ($index % 4) + 1; @endphp
-                        <div class="service-card reveal reveal-delay-{{ $delay }}">
-                            <!-- Flowing water background -->
-                            <div class="water-flow"></div>
-                            <!-- Mouse-responsive ripple overlay -->
-                            <div class="water-ripple" id="waterRipple{{ $index }}"></div>
-                            <!-- Animated bottom wave borders -->
-                            <div class="card-wave wave-1"></div>
-                            <div class="card-wave wave-2"></div>
-                            <!-- Floating water droplets -->
-                            <div class="droplets">
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
+                        <div class="service-wave reveal reveal-delay-{{ $delay }}">
+                            <!-- Organic wave blob shape -->
+                            <div class="wave-blob"></div>
+                            <!-- Outer pulse rings -->
+                            <div class="wave-ring"></div>
+                            <div class="wave-ring-2"></div>
+                            <!-- Mouse-responsive ripple -->
+                            <div class="wave-ripple"></div>
+                            <!-- Internal expanding ripples -->
+                            <div class="wave-internal">
+                                <div class="ripple-circle"></div>
+                                <div class="ripple-circle"></div>
+                                <div class="ripple-circle"></div>
                             </div>
-                            <!-- Content -->
-                            <div class="card-content">
-                                <div class="service-icon">
+                            <!-- Bottom glow -->
+                            <div class="wave-glow"></div>
+                            <!-- Content floating within the wave -->
+                            <div class="wave-content">
+                                <div class="wave-icon">
                                     <i class="bi {{ $service->icon ?: 'bi-star' }}"></i>
                                 </div>
                                 <h3>{{ $service->title }}</h3>
@@ -2283,20 +2280,20 @@
 })();
 
 
-// ===== SERVICE CARD WATER RIPPLE (mouse-responsive) =====
+// ===== SERVICE WAVE WATER RIPPLE (mouse-responsive) =====
 (function() {
-    var cards = document.querySelectorAll('.service-card');
-    if (!cards.length) return;
-    [].forEach.call(cards, function(card) {
-        var ripple = card.querySelector('.water-ripple');
+    var waves = document.querySelectorAll('.service-wave');
+    if (!waves.length) return;
+    [].forEach.call(waves, function(wave) {
+        var ripple = wave.querySelector('.wave-ripple');
         if (!ripple) return;
-        card.addEventListener('mousemove', function(e) {
-            var rect = card.getBoundingClientRect();
+        wave.addEventListener('mousemove', function(e) {
+            var rect = wave.getBoundingClientRect();
             var x = ((e.clientX - rect.left) / rect.width) * 100;
             var y = ((e.clientY - rect.top) / rect.height) * 100;
             ripple.style.background = 'radial-gradient(circle at ' + x + '% ' + y + '%, rgba(59, 130, 246, 0.15), transparent 60%)';
         });
-        card.addEventListener('mouseleave', function() {
+        wave.addEventListener('mouseleave', function() {
             ripple.style.background = 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08), transparent 60%)';
         });
     });
@@ -2550,15 +2547,15 @@
 // ===== PROJECT CARD TILT =====
 (function() {
     document.querySelectorAll('.project-card').forEach(function(card) {
-        card.addEventListener('mousemove', function(e) {
-            var rect = card.getBoundingClientRect();
+        wave.addEventListener('mousemove', function(e) {
+            var rect = wave.getBoundingClientRect();
             var x = e.clientX - rect.left;
             var y = e.clientY - rect.top;
             var rotateX = (y - rect.height/2) / 20;
             var rotateY = (rect.width/2 - x) / 20;
             card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px)';
         });
-        card.addEventListener('mouseleave', function() {
+        wave.addEventListener('mouseleave', function() {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
         });
     });
