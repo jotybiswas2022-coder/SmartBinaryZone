@@ -393,7 +393,7 @@
         box-shadow: 0 16px 50px rgba(59, 130, 246, 0.15) !important;
     }
 
-    /* ===== SERVICES — REAL WATER WAVES (horizontal flowing bands) ===== */
+    /* ===== SERVICES — PURE WATER WAVE EFFECT (no boxes, no grid) ===== */
     .services-section {
         background: linear-gradient(180deg, #060b18 0%, #0a1628 40%, #0d1f36 70%, #0f2740 100%);
         position: relative;
@@ -450,216 +450,220 @@
         100% { transform: translateX(0) rotate(0deg); }
     }
 
-    /* Wave grid */
-    .services-waves {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-        gap: 3rem;
-        padding: 1.5rem 0;
+    /* ===== WAVE SCENE — continuous full-width water body ===== */
+    .wave-scene {
         position: relative;
         z-index: 2;
-    }
-
-    /* ===== EACH SERVICE = A HORIZONTAL WAVE BAND ===== */
-    /* No closed shapes — just flowing water layers with content floating on top */
-    .service-wave {
-        position: relative;
-        padding: 0;
-        cursor: pointer;
+        min-height: 500px;
+        padding: 2rem 0;
         overflow: hidden;
-        user-select: none;
-        min-height: 280px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(
-            180deg,
-            rgba(12, 25, 45, 0.3) 0%,
-            rgba(8, 18, 35, 0.5) 50%,
-            rgba(12, 22, 42, 0.3) 100%
-        );
-        border: 1px solid rgba(59, 130, 246, 0.05);
-        border-radius: var(--radius-lg);
-        transition: border-color 0.5s ease, box-shadow 0.5s ease;
-    }
-    .service-wave:hover {
-        border-color: rgba(59, 130, 246, 0.14);
-        box-shadow: 0 8px 50px rgba(59, 130, 246, 0.05);
     }
 
-    /* ---- Wave Bands: wide pseudo-elements with border-radius that create sine-wave crests ---- */
-    /* Each band translates horizontally at different speeds like flowing water currents */
-
-    /* Wave Band 1 — main wave crest (top layer) */
-    .service-wave::before {
+    /* ---- Full-width flowing wave layers ---- */
+    /* Wave Layer 1 — deepest, slowest, darkest */
+    .wave-scene::before {
         content: '';
         position: absolute;
-        top: 10%;
+        top: 15%;
         left: -50%;
         width: 200%;
-        height: 50%;
+        height: 70%;
         background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(59, 130, 246, 0.02) 10%,
-            rgba(59, 130, 246, 0.07) 25%,
-            rgba(99, 102, 241, 0.05) 45%,
-            rgba(59, 130, 246, 0.07) 65%,
-            rgba(56, 189, 248, 0.03) 80%,
-            transparent 100%
-        );
-        border-radius: 38%;
-        pointer-events: none;
-        z-index: 0;
-        animation: waveBand1 7s ease-in-out infinite;
-        will-change: transform;
-    }
-
-    /* Wave Band 2 — secondary (different speed, position, color) */
-    .service-wave::after {
-        content: '';
-        position: absolute;
-        top: 30%;
-        left: -50%;
-        width: 200%;
-        height: 55%;
-        background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(56, 189, 248, 0.015) 15%,
-            rgba(6, 182, 212, 0.05) 35%,
-            rgba(99, 102, 241, 0.04) 55%,
-            rgba(6, 182, 212, 0.05) 75%,
-            transparent 100%
-        );
-        border-radius: 42%;
-        pointer-events: none;
-        z-index: 0;
-        animation: waveBand2 11s ease-in-out infinite;
-        will-change: transform;
-    }
-
-    /* Wave Band 3 — deeper layer (child element) */
-    .service-wave .wave-band {
-        position: absolute;
-        top: 45%;
-        left: -50%;
-        width: 200%;
-        height: 65%;
-        background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(139, 92, 246, 0.01) 20%,
-            rgba(59, 130, 246, 0.04) 40%,
-            rgba(99, 102, 241, 0.03) 60%,
-            rgba(59, 130, 246, 0.04) 80%,
+            transparent 0%, 
+            rgba(30, 58, 95, 0.20) 20%,
+            rgba(20, 50, 80, 0.30) 40%,
+            rgba(30, 58, 95, 0.20) 60%,
             transparent 100%
         );
         border-radius: 40%;
         pointer-events: none;
         z-index: 0;
-        animation: waveBand3 9s ease-in-out infinite reverse;
+        animation: waveDeep 14s ease-in-out infinite;
+        will-change: transform;
+    }
+    /* Wave Layer 2 — mid, medium speed */
+    .wave-scene::after {
+        content: '';
+        position: absolute;
+        top: 25%;
+        left: -50%;
+        width: 200%;
+        height: 60%;
+        background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(59, 130, 246, 0.03) 15%,
+            rgba(59, 130, 246, 0.08) 35%,
+            rgba(99, 102, 241, 0.05) 55%,
+            rgba(56, 189, 248, 0.03) 75%,
+            transparent 100%
+        );
+        border-radius: 36%;
+        pointer-events: none;
+        z-index: 1;
+        animation: waveMid 10s ease-in-out infinite;
         will-change: transform;
     }
 
-    /* Water surface shimmer overlay (sparkle on top of waves) */
-    .service-wave .wave-shimmer {
+    /* Wave Layer 3 — foreground, faster */
+    .wave-scene .wave-layer {
+        position: absolute;
+        top: 35%;
+        left: -50%;
+        width: 200%;
+        height: 65%;
+        background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(6, 182, 212, 0.02) 10%,
+            rgba(59, 130, 246, 0.06) 30%,
+            rgba(99, 102, 241, 0.04) 50%,
+            rgba(59, 130, 246, 0.06) 70%,
+            transparent 100%
+        );
+        border-radius: 44%;
+        pointer-events: none;
+        z-index: 2;
+        animation: waveFront 8s ease-in-out infinite reverse;
+        will-change: transform;
+    }
+
+    /* Wave Layer 4 — very foreground, opposite direction */
+    .wave-scene .wave-layer-2 {
+        position: absolute;
+        top: 45%;
+        left: -50%;
+        width: 200%;
+        height: 75%;
+        background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(139, 92, 246, 0.015) 20%,
+            rgba(59, 130, 246, 0.04) 40%,
+            rgba(56, 189, 248, 0.03) 60%,
+            rgba(59, 130, 246, 0.04) 80%,
+            transparent 100%
+        );
+        border-radius: 38%;
+        pointer-events: none;
+        z-index: 3;
+        animation: waveFront2 12s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    /* Wave flow keyframes */
+    @keyframes waveDeep {
+        0%   { transform: translateX(0) scaleY(1); opacity: 0.4; }
+        50%  { transform: translateX(-20%) scaleY(1.15); opacity: 0.6; }
+        100% { transform: translateX(0) scaleY(1); opacity: 0.4; }
+    }
+    @keyframes waveMid {
+        0%   { transform: translateX(-10%) scaleY(1); }
+        50%  { transform: translateX(15%) scaleY(1.08); }
+        100% { transform: translateX(-10%) scaleY(1); }
+    }
+    @keyframes waveFront {
+        0%   { transform: translateX(5%) scaleY(1); }
+        50%  { transform: translateX(-25%) scaleY(0.92); }
+        100% { transform: translateX(5%) scaleY(1); }
+    }
+    @keyframes waveFront2 {
+        0%   { transform: translateX(-5%) scaleY(1); }
+        33%  { transform: translateX(20%) scaleY(1.06); }
+        66%  { transform: translateX(-15%) scaleY(0.95); }
+        100% { transform: translateX(-5%) scaleY(1); }
+    }
+
+    /* Water surface shimmer — sweeps across the full scene */
+    .wave-scene .wave-shimmer {
         position: absolute;
         top: 0; left: -100%; right: 0; bottom: 0;
         width: 300%;
         background: linear-gradient(90deg,
             transparent 0%,
             transparent 30%,
-            rgba(255, 255, 255, 0.02) 45%,
-            rgba(255, 255, 255, 0.04) 50%,
-            rgba(255, 255, 255, 0.02) 55%,
+            rgba(255, 255, 255, 0.015) 45%,
+            rgba(255, 255, 255, 0.03) 50%,
+            rgba(255, 255, 255, 0.015) 55%,
             transparent 70%,
             transparent 100%
         );
         pointer-events: none;
-        z-index: 0;
-        animation: shimmerSweep 4s ease-in-out infinite;
-        opacity: 0;
-        transition: opacity 0.6s ease;
-    }
-    .service-wave:hover .wave-shimmer {
-        opacity: 1;
+        z-index: 4;
+        animation: shimmerSweep 5s ease-in-out infinite;
+        opacity: 0.5;
     }
     @keyframes shimmerSweep {
         0%   { transform: translateX(0); }
         100% { transform: translateX(33.33%); }
     }
 
-    /* Floating water droplets rising from the wave */
-    .service-wave .wave-droplets {
+    /* Mouse-responsive water ripple */
+    .wave-scene .wave-ripple {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04), transparent 60%);
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+    .wave-scene:hover .wave-ripple {
+        opacity: 1;
+    }
+
+    /* Floating bubbles rising through the water */
+    .wave-scene .wave-bubbles {
         position: absolute;
         bottom: 0; left: 0; right: 0;
         height: 100%;
         pointer-events: none;
-        z-index: 0;
+        z-index: 2;
         overflow: hidden;
     }
-    .service-wave .wave-droplets .drop {
+    .wave-scene .wave-bubbles .bub {
         position: absolute;
-        bottom: -10px;
-        width: 4px;
-        height: 4px;
+        bottom: -8px;
+        width: 4px; height: 4px;
         border-radius: 50%;
-        background: rgba(59, 130, 246, 0.2);
+        background: rgba(59, 130, 246, 0.12);
         opacity: 0;
     }
-    .service-wave .wave-droplets .drop:nth-child(1) { left: 10%;  width: 3px;  height: 3px;  animation: dropRise 4s ease-out infinite; animation-delay: 0s; }
-    .service-wave .wave-droplets .drop:nth-child(2) { left: 25%;  width: 5px;  height: 5px;  animation: dropRise 5s ease-out infinite; animation-delay: 1.2s; }
-    .service-wave .wave-droplets .drop:nth-child(3) { left: 42%;  width: 3px;  height: 3px;  animation: dropRise 3.5s ease-out infinite; animation-delay: 0.7s; }
-    .service-wave .wave-droplets .drop:nth-child(4) { left: 58%;  width: 4px;  height: 4px;  animation: dropRise 4.5s ease-out infinite; animation-delay: 2s; }
-    .service-wave .wave-droplets .drop:nth-child(5) { left: 75%;  width: 6px;  height: 6px;  animation: dropRise 5.5s ease-out infinite; animation-delay: 0.3s; }
-    .service-wave .wave-droplets .drop:nth-child(6) { left: 90%;  width: 3px;  height: 3px;  animation: dropRise 4s ease-out infinite; animation-delay: 1.8s; }
-    @keyframes dropRise {
+    .wave-scene .wave-bubbles .bub:nth-child(1)  { left: 5%;  width: 3px;  height: 3px;  animation: bubRise 5s ease-out infinite; animation-delay: 0s; }
+    .wave-scene .wave-bubbles .bub:nth-child(2)  { left: 12%; width: 5px;  height: 5px;  animation: bubRise 6s ease-out infinite; animation-delay: 0.8s; }
+    .wave-scene .wave-bubbles .bub:nth-child(3)  { left: 22%; width: 2px;  height: 2px;  animation: bubRise 4s ease-out infinite; animation-delay: 0.4s; }
+    .wave-scene .wave-bubbles .bub:nth-child(4)  { left: 30%; width: 4px;  height: 4px;  animation: bubRise 5.5s ease-out infinite; animation-delay: 1.6s; }
+    .wave-scene .wave-bubbles .bub:nth-child(5)  { left: 40%; width: 3px;  height: 3px;  animation: bubRise 4.5s ease-out infinite; animation-delay: 0.2s; }
+    .wave-scene .wave-bubbles .bub:nth-child(6)  { left: 48%; width: 6px;  height: 6px;  animation: bubRise 7s ease-out infinite; animation-delay: 2s; }
+    .wave-scene .wave-bubbles .bub:nth-child(7)  { left: 55%; width: 3px;  height: 3px;  animation: bubRise 5s ease-out infinite; animation-delay: 1s; }
+    .wave-scene .wave-bubbles .bub:nth-child(8)  { left: 65%; width: 4px;  height: 4px;  animation: bubRise 6.5s ease-out infinite; animation-delay: 0.6s; }
+    .wave-scene .wave-bubbles .bub:nth-child(9)  { left: 75%; width: 2px;  height: 2px;  animation: bubRise 3.8s ease-out infinite; animation-delay: 1.4s; }
+    .wave-scene .wave-bubbles .bub:nth-child(10) { left: 85%; width: 5px;  height: 5px;  animation: bubRise 5.5s ease-out infinite; animation-delay: 0.3s; }
+    .wave-scene .wave-bubbles .bub:nth-child(11) { left: 93%; width: 3px;  height: 3px;  animation: bubRise 4.2s ease-out infinite; animation-delay: 1.8s; }
+    .wave-scene .wave-bubbles .bub:nth-child(12) { left: 98%; width: 4px;  height: 4px;  animation: bubRise 6s ease-out infinite; animation-delay: 0.9s; }
+    @keyframes bubRise {
         0%   { transform: translateY(0) scale(0); opacity: 0; }
-        20%  { opacity: 0.5; }
-        50%  { opacity: 0.3; transform: translateY(calc(-100% - 280px)) scale(1); }
-        100% { transform: translateY(calc(-100% - 280px)) scale(0); opacity: 0; }
+        15%  { opacity: 0.4; }
+        60%  { opacity: 0.2; transform: translateY(calc(-100% - 400px)) scale(1); }
+        100% { transform: translateY(calc(-100% - 400px)) scale(0); opacity: 0; }
     }
 
-    /* ---- Wave flow keyframes ---- */
-    @keyframes waveBand1 {
-        0%   { transform: translateX(0) scaleY(1); }
-        33%  { transform: translateX(-18%) scaleY(1.12); }
-        66%  { transform: translateX(12%) scaleY(0.92); }
-        100% { transform: translateX(0) scaleY(1); }
-    }
-    @keyframes waveBand2 {
-        0%   { transform: translateX(-8%) scaleY(1); }
-        50%  { transform: translateX(22%) scaleY(1.06); }
-        100% { transform: translateX(-8%) scaleY(1); }
-    }
-    @keyframes waveBand3 {
-        0%   { transform: translateX(8%) scaleY(1); }
-        33%  { transform: translateX(-22%) scaleY(0.9); }
-        66%  { transform: translateX(12%) scaleY(1.08); }
-        100% { transform: translateX(8%) scaleY(1); }
-    }
-
-    /* Mouse-responsive ripple on water surface */
-    .service-wave .wave-ripple {
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-    .service-wave:hover .wave-ripple {
-        opacity: 1;
-    }
-
-    /* Content floating on the wave */
-    .service-wave .wave-content {
+    /* ---- Service content floating within the waves (no boxes!) ---- */
+    .wave-services {
         position: relative;
-        z-index: 2;
-        padding: 2.2rem 2rem;
-        text-align: center;
-        max-width: 90%;
+        z-index: 6;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2.5rem 3rem;
+        padding: 3rem 0;
     }
-    .service-wave .wave-icon {
+
+    .wave-service {
+        flex: 0 1 280px;
+        text-align: center;
+        padding: 0;
+        position: relative;
+        cursor: default;
+    }
+    .wave-service .ws-icon {
         width: 56px;
         height: 56px;
         margin: 0 auto 1rem;
@@ -668,48 +672,32 @@
         justify-content: center;
         font-size: 1.6rem;
         color: var(--accent-light);
-        background: rgba(59, 130, 246, 0.1);
-        border: 1px solid rgba(59, 130, 246, 0.15);
+        background: rgba(59, 130, 246, 0.08);
+        border: 1px solid rgba(59, 130, 246, 0.10);
         border-radius: 18px;
-        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: all 0.4s ease;
     }
-    .service-wave:hover .wave-icon {
+    .wave-service:hover .ws-icon {
         background: var(--accent-gradient);
         border-color: transparent;
         color: #fff;
-        transform: scale(1.15) rotate(-5deg);
-        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+        transform: scale(1.1) rotate(-4deg);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
     }
-    .service-wave h3 {
-        font-size: 1.2rem;
+    .wave-service h3 {
+        font-size: 1.15rem;
         font-weight: 700;
         color: var(--text-primary);
-        margin-bottom: 0.6rem;
-        line-height: 1.4;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
-    .service-wave p {
-        font-size: 0.88rem;
+    .wave-service p {
+        font-size: 0.85rem;
         color: var(--text-secondary);
-        line-height: 1.7;
+        line-height: 1.6;
         margin: 0;
-    }
-
-    /* Glow at the base */
-    .service-wave .wave-glow {
-        position: absolute;
-        bottom: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        height: 40px;
-        background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06), transparent 70%);
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0;
-        transition: opacity 0.6s ease;
-    }
-    .service-wave:hover .wave-glow {
-        opacity: 1;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
 
     /* Bottom section waves */
@@ -761,64 +749,66 @@
             radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.04), transparent 50%),
             radial-gradient(ellipse at 80% 30%, rgba(56, 189, 248, 0.03), transparent 50%);
     }
-    html.light-theme .service-wave {
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.85) 0%,
-            rgba(240, 245, 255, 0.85) 50%,
-            rgba(255, 255, 255, 0.85) 100%
-        );
-        border-color: rgba(59, 130, 246, 0.08);
-    }
-    html.light-theme .service-wave:hover {
-        border-color: rgba(59, 130, 246, 0.18);
-        box-shadow: 0 8px 50px rgba(59, 130, 246, 0.06);
-    }
-    html.light-theme .service-wave::before {
+    html.light-theme .wave-scene::before {
         background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(59, 130, 246, 0.03) 10%,
-            rgba(59, 130, 246, 0.08) 25%,
-            rgba(99, 102, 241, 0.06) 45%,
-            rgba(59, 130, 246, 0.08) 65%,
-            rgba(56, 189, 248, 0.04) 80%,
+            transparent 0%, 
+            rgba(30, 58, 95, 0.10) 20%,
+            rgba(20, 50, 80, 0.15) 40%,
+            rgba(30, 58, 95, 0.10) 60%,
             transparent 100%
         );
     }
-    html.light-theme .service-wave::after {
+    html.light-theme .wave-scene::after {
         background: linear-gradient(90deg,
             transparent 0%,
-            rgba(56, 189, 248, 0.02) 15%,
-            rgba(6, 182, 212, 0.06) 35%,
-            rgba(99, 102, 241, 0.05) 55%,
-            rgba(6, 182, 212, 0.06) 75%,
+            rgba(59, 130, 246, 0.04) 15%,
+            rgba(59, 130, 246, 0.10) 35%,
+            rgba(99, 102, 241, 0.07) 55%,
+            rgba(56, 189, 248, 0.04) 75%,
             transparent 100%
         );
     }
-    html.light-theme .service-wave .wave-band {
+    html.light-theme .wave-scene .wave-layer {
+        background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(6, 182, 212, 0.03) 10%,
+            rgba(59, 130, 246, 0.08) 30%,
+            rgba(99, 102, 241, 0.06) 50%,
+            rgba(59, 130, 246, 0.08) 70%,
+            transparent 100%
+        );
+    }
+    html.light-theme .wave-scene .wave-layer-2 {
         background: linear-gradient(90deg,
             transparent 0%,
             rgba(139, 92, 246, 0.02) 20%,
             rgba(59, 130, 246, 0.05) 40%,
-            rgba(99, 102, 241, 0.04) 60%,
+            rgba(56, 189, 248, 0.04) 60%,
             rgba(59, 130, 246, 0.05) 80%,
             transparent 100%
         );
     }
-    html.light-theme .service-wave .wave-ripple {
-        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05), transparent 60%);
+    html.light-theme .wave-scene .wave-ripple {
+        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04), transparent 60%);
     }
-    html.light-theme .service-wave .wave-droplets .drop {
-        background: rgba(59, 130, 246, 0.15);
+    html.light-theme .wave-scene .wave-bubbles .bub {
+        background: rgba(59, 130, 246, 0.10);
     }
-    html.light-theme .service-wave h3 { color: #0f172a; }
-    html.light-theme .service-wave p { color: #475569; }
-    html.light-theme .service-wave .wave-icon {
-        background: rgba(59, 130, 246, 0.06);
-        border-color: rgba(59, 130, 246, 0.12);
+    html.light-theme .wave-service h3 {
+        color: #0f172a;
+        text-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
     }
-    html.light-theme .service-wave .wave-glow {
-        background: radial-gradient(ellipse, rgba(59, 130, 246, 0.05), transparent 70%);
+    html.light-theme .wave-service p {
+        color: #475569;
+        text-shadow: 0 1px 4px rgba(255, 255, 255, 0.3);
+    }
+    html.light-theme .wave-service .ws-icon {
+        background: rgba(255, 255, 255, 0.7);
+        border-color: rgba(59, 130, 246, 0.15);
+    }
+    html.light-theme .wave-service:hover .ws-icon {
+        background: var(--accent-gradient);
+        border-color: transparent;
     }
     html.light-theme .services-section .water-surface .wave:nth-child(1) {
         background: rgba(59, 130, 246, 0.04);
@@ -837,29 +827,26 @@
     }
 
     /* ---- Mobile ---- */
-    @media (max-width: 968px) {
-        .services-waves { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
-    }
     @media (max-width: 768px) {
         .services-section .water-surface { height: 30px; }
         .services-section .water-surface .wave { height: 40px; }
         .services-section .bottom-waves { height: 40px; }
-        .service-wave { min-height: 230px; }
-        .service-wave .wave-content { padding: 1.8rem 1.5rem; }
-        .service-wave h3 { font-size: 1.05rem; }
-        .service-wave p { font-size: 0.82rem; }
-        .service-wave .wave-icon { width: 48px; height: 48px; font-size: 1.3rem; }
-        .service-wave .wave-droplets .drop { display: none; }
-        .service-wave .wave-shimmer { display: none; }
+        .wave-scene { min-height: auto; padding: 1rem 0; }
+        .wave-services { gap: 2rem 1.5rem; padding: 2rem 0; }
+        .wave-service { flex: 0 1 220px; }
+        .wave-service h3 { font-size: 1rem; }
+        .wave-service p { font-size: 0.8rem; }
+        .wave-service .ws-icon { width: 48px; height: 48px; font-size: 1.3rem; }
+        .wave-scene .wave-bubbles .bub { display: none; }
+        .wave-scene .wave-shimmer { opacity: 0.3; }
     }
     @media (max-width: 480px) {
-        .services-waves { grid-template-columns: 1fr; gap: 2rem; }
-        .service-wave { min-height: 200px; }
-        .service-wave .wave-content { padding: 1.5rem 1.2rem; }
-        .service-wave h3 { font-size: 0.95rem; }
-        .service-wave p { font-size: 0.78rem; }
-        .service-wave .wave-icon { width: 42px; height: 42px; font-size: 1.1rem; margin-bottom: 0.7rem; }
-        .service-wave .wave-band { display: none; }
+        .wave-services { flex-direction: column; align-items: center; gap: 2rem; }
+        .wave-service { flex: 0 0 auto; max-width: 260px; }
+        .wave-service h3 { font-size: 0.95rem; }
+        .wave-service p { font-size: 0.78rem; }
+        .wave-service .ws-icon { width: 44px; height: 44px; font-size: 1.1rem; }
+        .wave-scene .wave-layer-2 { display: none; }
     }
 
     /* Timeline */
@@ -1715,30 +1702,27 @@
                     <div class="wave"></div>
                     <div class="wave"></div>
                 </div>
-                <div class="services-waves">
-                    @foreach($services as $index => $service)
-                        @php $delay = ($index % 4) + 1; @endphp
-                        <div class="service-wave reveal reveal-delay-{{ $delay }}">
-                            <!-- Flowing water wave bands -->
-                            <div class="wave-band"></div>
-                            <!-- Water surface shimmer -->
-                            <div class="wave-shimmer"></div>
-                            <!-- Rising water droplets -->
-                            <div class="wave-droplets">
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                                <div class="drop"></div>
-                            </div>
-                            <!-- Mouse-responsive ripple on surface -->
-                            <div class="wave-ripple"></div>
-                            <!-- Bottom glow -->
-                            <div class="wave-glow"></div>
-                            <!-- Content floating on the wave -->
-                            <div class="wave-content">
-                                <div class="wave-icon">
+                <div class="wave-scene">
+                    <!-- Flowing wave layers (4 layers) -->
+                    <div class="wave-layer"></div>
+                    <div class="wave-layer-2"></div>
+                    <!-- Surface shimmer -->
+                    <div class="wave-shimmer"></div>
+                    <!-- Mouse ripple -->
+                    <div class="wave-ripple"></div>
+                    <!-- Floating bubbles -->
+                    <div class="wave-bubbles">
+                        <div class="bub"></div><div class="bub"></div><div class="bub"></div>
+                        <div class="bub"></div><div class="bub"></div><div class="bub"></div>
+                        <div class="bub"></div><div class="bub"></div><div class="bub"></div>
+                        <div class="bub"></div><div class="bub"></div><div class="bub"></div>
+                    </div>
+                    <!-- Services floating within the waves (no boxes!) -->
+                    <div class="wave-services">
+                        @foreach($services as $index => $service)
+                            @php $delay = ($index % 4) + 1; @endphp
+                            <div class="wave-service reveal reveal-delay-{{ $delay }}">
+                                <div class="ws-icon">
                                     <i class="bi {{ $service->icon ?: 'bi-star' }}"></i>
                                 </div>
                                 <h3>{{ $service->title }}</h3>
@@ -1746,8 +1730,8 @@
                                     <p>{{ $service->short_description }}</p>
                                 @endif
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
                 <div class="bottom-waves">
                     <div class="wave"></div>
@@ -2354,9 +2338,9 @@
 
 // ===== SERVICE WAVE WATER RIPPLE (mouse-responsive) =====
 (function() {
-    var waves = document.querySelectorAll('.service-wave');
+    var scenes = document.querySelectorAll('.wave-scene');
     if (!waves.length) return;
-    [].forEach.call(waves, function(wave) {
+    [].forEach.call(scenes, function(scene) {
         var ripple = wave.querySelector('.wave-ripple');
         if (!ripple) return;
         wave.addEventListener('mousemove', function(e) {
