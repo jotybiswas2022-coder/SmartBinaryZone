@@ -901,128 +901,82 @@
     /* Skills */
     .skills-section { background: linear-gradient(180deg, #080d1a 0%, var(--bg-secondary) 100%); }
     html.light-theme .skills-section { background: linear-gradient(180deg, #f1f5f9 0%, #eef2f7 100%); }
-    /* Skills Floating Balls */
-    .skills-balls-container {
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    .skill-card {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(17, 28, 46, 0.9));
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem 1rem;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: default;
         position: relative;
-        width: 100%;
-        height: 480px;
         overflow: hidden;
-        border-radius: var(--radius-xl);
-        background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.03), transparent 70%);
-        border: 1px solid rgba(59, 130, 246, 0.06);
     }
-    html.light-theme .skills-balls-container {
-        background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06), transparent 70%);
-        border-color: rgba(59, 130, 246, 0.1);
+    html.light-theme .skill-card {
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(59, 130, 246, 0.12);
     }
-    .skill-ball {
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.92), rgba(17, 28, 46, 0.96));
-        border: 2px solid var(--border-color);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-        z-index: 2;
-        user-select: none;
-        will-change: transform;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    html.light-theme .skill-ball {
-        background: linear-gradient(145deg, #ffffff, #f0f4ff);
-        border-color: rgba(59, 130, 246, 0.15);
-        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    }
-    html.light-theme .skill-ball:hover {
+    .skill-card:hover {
+        transform: translateY(-6px);
         border-color: var(--accent);
-        box-shadow: 0 0 40px rgba(59, 130, 246, 0.18), 0 12px 40px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
     }
-    html.light-theme .skill-ball .ball-icon {
+    .skill-card .skill-icon {
+        font-size: 2rem;
+        color: var(--accent-light);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    html.light-theme .skill-card .skill-icon {
         color: var(--accent);
     }
-    html.light-theme .skill-ball .ball-name {
-        color: #475569;
-    }
-    html.light-theme .skill-ball .ball-shine {
-        background: radial-gradient(ellipse, rgba(255, 255, 255, 0.7), transparent 70%);
-    }
-    html.light-theme .skill-ball .ball-percent {
-        border-color: #f8fafc;
-    }
-    html.light-theme .skill-ball .ball-glow {
-        background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.12), transparent 60%);
-    }
-    .skill-ball:hover {
-        border-color: var(--accent);
-        box-shadow: 0 0 40px rgba(59, 130, 246, 0.25), 0 8px 32px rgba(0, 0, 0, 0.3);
-        z-index: 10;
-    }
-    .skill-ball .ball-icon {
-        font-size: 1.8rem;
-        color: var(--accent-light);
-        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        line-height: 1;
-    }
-    .skill-ball:hover .ball-icon {
-        transform: scale(1.3);
-    }
-    .skill-ball .ball-name {
-        font-size: 0.62rem;
+    .skill-card .skill-name {
         font-weight: 700;
-        color: var(--text-secondary);
-        margin-top: 3px;
-        letter-spacing: 0.3px;
-        text-align: center;
-        line-height: 1.2;
-        max-width: 72px;
+        font-size: 0.88rem;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+        display: block;
+    }
+    .skill-card .skill-bar-wrapper {
+        height: 5px;
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 10px;
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        margin-bottom: 0.3rem;
     }
-    .skill-ball .ball-percent {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        background: var(--accent-gradient);
-        color: #fff;
-        font-size: 0.55rem;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
-        border: 2px solid var(--bg-primary);
-    }
-    .skill-ball .ball-glow {
-        position: absolute;
-        width: 100%;
+    .skill-card .skill-bar-fill {
         height: 100%;
-        border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.1), transparent 60%);
+        border-radius: 10px;
+        background: var(--accent-gradient);
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .skill-card .skill-percent {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+    html.light-theme .skill-card .skill-percent {
+        color: var(--text-secondary);
+    }
+    .skill-card .skill-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04), transparent 60%);
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.4s ease;
     }
-    .skill-ball:hover .ball-glow {
+    .skill-card:hover .skill-glow {
         opacity: 1;
-    }
-    .skill-ball .ball-shine {
-        position: absolute;
-        top: 12%;
-        left: 18%;
-        width: 30%;
-        height: 20%;
-        border-radius: 50%;
-        background: radial-gradient(ellipse, rgba(255, 255, 255, 0.15), transparent 70%);
-        pointer-events: none;
     }
 
     /* Filter Tabs */
@@ -1494,11 +1448,10 @@
         .hero-buttons .btn-outline-custom { width: 100%; justify-content: center; padding: 0.75rem 1.5rem; font-size: 0.88rem; }
         .hero::before { width: 300px; height: 300px; }
         
-        .skills-balls-container { height: 320px; }
-        .skill-ball { width: 78px; height: 78px; }
-        .skill-ball .ball-icon { font-size: 1.4rem; }
-        .skill-ball .ball-name { font-size: 0.5rem; max-width: 56px; }
-        .skill-ball .ball-percent { width: 22px; height: 22px; font-size: 0.48rem; top: -4px; right: -4px; }
+        .skills-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.8rem; }
+        .skill-card { padding: 1.2rem 0.8rem; }
+        .skill-card .skill-icon { font-size: 1.6rem; }
+        .skill-card .skill-name { font-size: 0.8rem; }
         
         .about-grid { gap: 2rem; }
         .about-image .img-wrapper { width: 150px; height: 150px; border-radius: 24px; }
@@ -1564,8 +1517,8 @@
         .cursor-dot, .cursor-ring { display: none !important; }
         #particles-canvas { display: none; }
         .magnetic { transition: none !important; }
-        .project-card, .skill-ball { transform: none !important; }
-        .project-card:hover, .skill-ball:hover { transform: translateY(-4px) !important; }
+        .project-card { transform: none !important; }
+        .project-card:hover { transform: translateY(-4px) !important; }
     }
     
     /* Very Small Screens (max 360px) */
@@ -1573,11 +1526,10 @@
         .hero h1 { font-size: 1.5rem; }
         .about-image .img-wrapper { width: 130px; height: 130px; }
         .about-image .glow-ring { width: 150px; height: 150px; }
-        .skills-balls-container { height: 260px; }
-        .skill-ball { width: 68px; height: 68px; }
-        .skill-ball .ball-icon { font-size: 1.2rem; }
-        .skill-ball .ball-name { font-size: 0.45rem; max-width: 48px; }
-        .skill-ball .ball-percent { width: 20px; height: 20px; font-size: 0.42rem; top: -3px; right: -3px; }
+        .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+        .skill-card { padding: 1rem 0.6rem; }
+        .skill-card .skill-icon { font-size: 1.3rem; }
+        .skill-card .skill-name { font-size: 0.72rem; }
         .stat-item { min-width: 100% !important; }
         .about-stats { flex-direction: column; }
         .section-title h2 { font-size: 1.4rem; }
@@ -1799,14 +1751,16 @@
             </div>
 
             @if($skills->isNotEmpty())
-                <div class="skills-balls-container reveal" id="skillsBallContainer">
+                <div class="skills-grid">
                     @foreach($skills as $index => $skill)
-                        <div class="skill-ball" data-percent="{{ $skill->percentage }}">
-                            <div class="ball-glow"></div>
-                            <div class="ball-shine"></div>
-                            <div class="ball-icon"><i class="bi {{ $skill->icon ?: 'bi-star' }}"></i></div>
-                            <div class="ball-name">{{ $skill->name }}</div>
-                            <div class="ball-percent">{{ $skill->percentage }}%</div>
+                        <div class="skill-card reveal" style="transition-delay: {{ $index * 0.05 }}s">
+                            <div class="skill-glow"></div>
+                            <span class="skill-icon"><i class="bi {{ $skill->icon ?: 'bi-star' }}"></i></span>
+                            <span class="skill-name">{{ $skill->name }}</span>
+                            <div class="skill-bar-wrapper">
+                                <div class="skill-bar-fill" data-width="{{ $skill->percentage }}%"></div>
+                            </div>
+                            <span class="skill-percent">{{ $skill->percentage }}%</span>
                         </div>
                     @endforeach
                 </div>
@@ -2333,13 +2287,13 @@
     [].forEach.call(scenes, function(scene) {
         var ripple = scene.querySelector('.wave-ripple');
         if (!ripple) return;
-        wave.addEventListener('mousemove', function(e) {
-            var rect = wave.getBoundingClientRect();
+        scene.addEventListener('mousemove', function(e) {
+            var rect = scene.getBoundingClientRect();
             var x = ((e.clientX - rect.left) / rect.width) * 100;
             var y = ((e.clientY - rect.top) / rect.height) * 100;
             ripple.style.background = 'radial-gradient(circle at ' + x + '% ' + y + '%, rgba(59, 130, 246, 0.15), transparent 60%)';
         });
-        wave.addEventListener('mouseleave', function() {
+        scene.addEventListener('mouseleave', function() {
             ripple.style.background = 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08), transparent 60%)';
         });
     });
@@ -2398,6 +2352,14 @@
                 }, 30);
             }
         });
+        // Skill bar animation
+        [].forEach.call(document.querySelectorAll('.skill-bar-fill'), function(bar) {
+            if (bar.dataset.animated) return;
+            if (bar.getBoundingClientRect().top < winHeight - 80) {
+                bar.dataset.animated = 'true';
+                bar.style.width = bar.getAttribute('data-width');
+            }
+        });
     }
 
     // rAF-coalesced scroll for zero layout thrashing
@@ -2416,192 +2378,18 @@
     window.addEventListener('resize', onScroll);
 })();
 
-// ===== SKILL BALLS FLOATING ANIMATION =====
-(function() {
-    var container = document.getElementById('skillsBallContainer');
-    if (!container) return;
-    var balls = container.querySelectorAll('.skill-ball');
-    var count = balls.length;
-    if (!count) return;
-
-    // Particle states: each ball gets x, y, vx, vy, base vx/vy, size
-    var states = [];
-    var cw = container.offsetWidth;
-    var ch = container.offsetHeight;
-
-    // Ball sizes vary slightly
-    var sizeRange = { min: 80, max: 110 };
-    // For mobile
-    if (cw < 768) { sizeRange.min = 72; sizeRange.max = 84; }
-    if (cw < 480) { sizeRange.min = 62; sizeRange.max = 72; }
-
-    balls.forEach(function(ball, i) {
-        var size = sizeRange.min + (i % 3) * ((sizeRange.max - sizeRange.min) / 2);
-        ball.style.width = size + 'px';
-        ball.style.height = size + 'px';
-
-        // Place balls in a loose grid-ish pattern initially, then they'll drift
-        var cols = Math.min(count, Math.ceil(Math.sqrt(count * cw / ch)));
-        var rows = Math.ceil(count / cols);
-        var col = i % cols;
-        var row = Math.floor(i / cols);
-        var cellW = (cw - size) / cols;
-        var cellH = (ch - size) / rows;
-        var x = col * cellW + Math.random() * cellW * 0.9;
-        var y = row * cellH + Math.random() * cellH * 0.9;
-        // Clamp to container
-        x = Math.max(0, Math.min(x, cw - size));
-        y = Math.max(0, Math.min(y, ch - size));
-
-        states.push({
-            el: ball,
-            x: x,
-            y: y,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            size: size,
-            baseVx: (Math.random() - 0.5) * 0.5,
-            baseVy: (Math.random() - 0.5) * 0.5,
-            phaseX: Math.random() * Math.PI * 2,
-            phaseY: Math.random() * Math.PI * 2,
-        });
-
-        ball.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-    });
-
-    // Mouse tracking (relative to container)
-    var mouseX = -9999;
-    var mouseY = -9999;
-    var mouseInside = false;
-
-    // Use cached rect — no getBoundingClientRect on every mouse move!
-    document.addEventListener('mousemove', function(e) {
-        var mx = e.clientX - containerRect.left;
-        var my = e.clientY - containerRect.top;
-        if (mx >= 0 && mx <= containerRect.width && my >= 0 && my <= containerRect.height) {
-            mouseX = mx;
-            mouseY = my;
-            mouseInside = true;
-        } else {
-            mouseInside = false;
-        }
-    });
-
-    container.addEventListener('mouseleave', function() {
-        mouseInside = false;
-    });
-
-
-    // Cache container dimensions — recalculate ONLY on resize/scroll, NOT every frame!
-    var cwCache = container.clientWidth;
-    var chCache = container.clientHeight;
-    // Cached rect for mouse tracking — updated on scroll + resize to avoid layout thrash
-    var containerRect = container.getBoundingClientRect();
-
-    var time = 0;
-
-    // Pause animation when container is not visible (save CPU/GPU)
-    var paused = false;
-    var visibilityObserver = new IntersectionObserver(function(entries) {
-        paused = !entries[0].isIntersecting;
-    }, { threshold: 0 });
-    visibilityObserver.observe(container);
-
-    function animateFloatingBalls() {
-        if (paused) {
-            // Still keep the loop alive but skip CPU-heavy logic
-            requestAnimationFrame(animateFloatingBalls);
-            return;
-        }
-        time += 0.005;
-        // Use cached dimensions to avoid layout thrashing from getBoundingClientRect
-        var cw = cwCache;
-        var ch = chCache;
-
-        states.forEach(function(s) {
-            // Natural sinusoidal drift — gives organic floating motion
-            s.vx += Math.sin(time * 0.7 + s.phaseX) * 0.008;
-            s.vy += Math.cos(time * 0.5 + s.phaseY) * 0.008;
-
-            // Pull gently toward base velocity
-            s.vx += (s.baseVx - s.vx) * 0.005;
-            s.vy += (s.baseVy - s.vy) * 0.005;
-
-            // Mouse repulsion (when mouse is near)
-            if (mouseInside) {
-                var dx = s.x + s.size / 2 - mouseX;
-                var dy = s.y + s.size / 2 - mouseY;
-                var dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 160 && dist > 1) {
-                    var force = Math.pow((160 - dist) / 160, 2) * 1.8;
-                    s.vx += (dx / dist) * force * 0.08;
-                    s.vy += (dy / dist) * force * 0.08;
-                }
-            }
-
-            // Damping
-            s.vx *= 0.97;
-            s.vy *= 0.97;
-            // Speed limit
-            var speed = Math.sqrt(s.vx * s.vx + s.vy * s.vy);
-            if (speed > 1.5) { s.vx = (s.vx / speed) * 1.5; s.vy = (s.vy / speed) * 1.5; }
-
-            // Update position
-            s.x += s.vx;
-            s.y += s.vy;
-
-            // Bounce off walls
-            if (s.x < 0) { s.x = 0; s.vx *= -0.7; }
-            if (s.x > cw - s.size) { s.x = cw - s.size; s.vx *= -0.7; }
-            if (s.y < 0) { s.y = 0; s.vy *= -0.7; }
-            if (s.y > ch - s.size) { s.y = ch - s.size; s.vy *= -0.7; }
-
-            // Apply position via translate for GPU-accelerated rendering
-            s.el.style.transform = 'translate(' + s.x + 'px, ' + s.y + 'px)';
-        });
-
-        requestAnimationFrame(animateFloatingBalls);
-    }
-
-    animateFloatingBalls();
-
-    // Recalculate on resize ONLY — no getBoundingClientRect in the animation loop!
-    var resizeTimer;
-    function updateCache() {
-        cwCache = container.clientWidth;
-        chCache = container.clientHeight;
-        containerRect = container.getBoundingClientRect();
-        states.forEach(function(s) {
-            // Keep balls within new bounds
-            s.x = Math.max(0, Math.min(s.x, cwCache - s.size));
-            s.y = Math.max(0, Math.min(s.y, chCache - s.size));
-        });
-    }
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(updateCache, 200);
-    });
-    // Also update rect cache on scroll since the container moves
-    window.addEventListener('scroll', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            containerRect = container.getBoundingClientRect();
-        }, 200);
-    }, { passive: true });
-})();
-
 // ===== PROJECT CARD TILT =====
 (function() {
     document.querySelectorAll('.project-card').forEach(function(card) {
-        wave.addEventListener('mousemove', function(e) {
-            var rect = wave.getBoundingClientRect();
+        card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
             var x = e.clientX - rect.left;
             var y = e.clientY - rect.top;
             var rotateX = (y - rect.height/2) / 20;
             var rotateY = (rect.width/2 - x) / 20;
             card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px)';
         });
-        wave.addEventListener('mouseleave', function() {
+        card.addEventListener('mouseleave', function() {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
         });
     });
