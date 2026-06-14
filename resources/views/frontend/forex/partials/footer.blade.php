@@ -47,10 +47,7 @@
                 <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
                     <li><a href="{{ route('forex.home') }}" style="color: rgba(234,234,234,0.4); text-decoration: none; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;"
                     onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(234,234,234,0.4)'"><span style="width: 0; height: 2px; background: #005fe7; transition: width 0.3s ease; display: inline-block;" class="link-indicator"></span>Home</a></li>
-                    <li><a href="{{ route('forex.partnership') }}" style="color: rgba(234,234,234,0.4); text-decoration: none; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;"
-                    onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(234,234,234,0.4)'"><span style="width: 0; height: 2px; background: #005fe7; transition: width 0.3s ease; display: inline-block;" class="link-indicator"></span>Partners</a></li>
-                    <li><a href="{{ route('forex.partnership') }}" style="color: rgba(234,234,234,0.4); text-decoration: none; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;"
-                    onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(234,234,234,0.4)'"><span style="width: 0; height: 2px; background: #005fe7; transition: width 0.3s ease; display: inline-block;" class="link-indicator"></span>Affiliates</a></li>
+
                 </ul>
             </div>
 
@@ -61,8 +58,6 @@
                     Support
                 </h3>
                 <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-                    <li><a href="{{ route('forex.knowledgebase') }}" style="color: rgba(234,234,234,0.4); text-decoration: none; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;"
-                    onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(234,234,234,0.4)'"><span style="width: 0; height: 2px; background: #005fe7; transition: width 0.3s ease; display: inline-block;" class="link-indicator"></span>Knowledge Base</a></li>
                     <li><a href="{{ route('forex.contact-us') }}" style="color: rgba(234,234,234,0.4); text-decoration: none; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;"
                     onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(234,234,234,0.4)'"><span style="width: 0; height: 2px; background: #005fe7; transition: width 0.3s ease; display: inline-block;" class="link-indicator"></span>Contact Us</a></li>
                     <li><a href="https://t.me/SmartBinarySupport" target="_blank" rel="noopener" style="color: rgba(234,234,234,0.4); text-decoration: none; font-size: 14px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;"

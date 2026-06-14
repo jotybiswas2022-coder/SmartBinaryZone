@@ -610,30 +610,6 @@
             </div>
         </div>
 
-        {{-- Source Codes --}}
-        <div class="db-stat-card" style="--accent:#F59E0B;--accent-bg:rgba(245,158,11,0.1);--accent-border:rgba(245,158,11,0.15);">
-            <div class="db-stat-inner">
-                <div class="db-stat-top">
-                    <div class="db-stat-icon" style="color:var(--clr-accent-amber)"><i class="bi bi-code-slash"></i></div>
-                    <span class="db-stat-badge" style="color:var(--clr-accent-amber);background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.12);">Code</span>
-                </div>
-                <span class="db-stat-value">{{ $totalSourceCodes }}</span>
-                <span class="db-stat-label">Source Codes</span>
-            </div>
-        </div>
-
-        {{-- Partners --}}
-        <div class="db-stat-card" style="--accent:#F43F5E;--accent-bg:rgba(244,63,94,0.1);--accent-border:rgba(244,63,94,0.15);">
-            <div class="db-stat-inner">
-                <div class="db-stat-top">
-                    <div class="db-stat-icon" style="color:var(--clr-accent-rose)"><i class="bi bi-people-fill"></i></div>
-                    <span class="db-stat-badge" style="color:var(--clr-accent-rose);background:rgba(244,63,94,0.08);border-color:rgba(244,63,94,0.12);">Partners</span>
-                </div>
-                <span class="db-stat-value">{{ $totalPartners }}</span>
-                <span class="db-stat-label">Partnerships</span>
-            </div>
-        </div>
-
     </div>
 
     {{-- ===================== TWO-COLUMN GRID ===================== --}}
@@ -848,27 +824,11 @@
                 </div>
                 <i class="bi bi-chevron-right db-action-arrow"></i>
             </a>
-            <a href="{{ route('admin.source-codes.index') }}" class="db-action-item">
-                <div class="db-action-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;"><i class="bi bi-code-slash"></i></div>
-                <div class="db-action-info">
-                    <div class="db-action-title">Manage Source Codes</div>
-                    <div class="db-action-desc">Add, edit or remove source codes</div>
-                </div>
-                <i class="bi bi-chevron-right db-action-arrow"></i>
-            </a>
             <a href="{{ route('admin.orders.index') }}" class="db-action-item">
                 <div class="db-action-icon" style="background:rgba(0,255,159,0.08);color:#00FF9F;"><i class="bi bi-bag-fill"></i></div>
                 <div class="db-action-info">
                     <div class="db-action-title">View Orders</div>
                     <div class="db-action-desc">Track and manage customer orders</div>
-                </div>
-                <i class="bi bi-chevron-right db-action-arrow"></i>
-            </a>
-            <a href="{{ route('admin.partners.index') }}" class="db-action-item">
-                <div class="db-action-icon" style="background:rgba(244,63,94,0.1);color:#F43F5E;"><i class="bi bi-people-fill"></i></div>
-                <div class="db-action-info">
-                    <div class="db-action-title">Manage Partners</div>
-                    <div class="db-action-desc">Review and manage partnership requests</div>
                 </div>
                 <i class="bi bi-chevron-right db-action-arrow"></i>
             </a>

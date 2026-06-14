@@ -85,13 +85,6 @@ function toggleSidebar() {
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.partners.index') }}"
-               class="{{ request()->is('admin/partners*') ? 'active' : '' }}">
-                <i class="bi bi-people-fill"></i>
-                <span>Partners</span>
-            </a>
-        </li>
-        <li>
             <a href="{{ route('admin.total-sell') }}"
                class="{{ request()->is('admin/total-sell*') ? 'active' : '' }}">
                 <i class="bi bi-currency-dollar"></i>
@@ -106,10 +99,10 @@ function toggleSidebar() {
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.source-codes.index') }}"
-               class="{{ request()->is('admin/source-codes*') ? 'active' : '' }}">
-                <i class="bi bi-code-slash"></i>
-                <span>Source Codes</span>
+            <a href="{{ route('admin.banner') }}"
+               class="{{ request()->is('admin/banner*') ? 'active' : '' }}">
+                <i class="bi bi-image"></i>
+                <span>Banner</span>
             </a>
         </li>
     </ul>

@@ -10,9 +10,9 @@ if (!function_exists('setting')) {
 }
 
 if (!function_exists('formatPrice')) {
-    function formatPrice(float $amount, int $decimals = 2): string
+    function formatPrice(?float $amount, int $decimals = 2): string
     {
-        $formatted = number_format($amount, $decimals);
+        $formatted = number_format($amount ?? 0, $decimals);
         $currency = setting('currency');
 
         if (!$currency) return $formatted;

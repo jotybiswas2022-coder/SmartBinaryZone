@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
-use App\Models\Partner;
 use App\Models\Product;
-use App\Models\SourceCode;
+use App\Models\Setting;
 
 class ForexController extends Controller
 {
@@ -208,25 +207,6 @@ class ForexController extends Controller
         ];
     }
 
-    // Knowledgebase data
-    private function getKbArticles()
-    {
-        return [
-            ['title' => 'Getting Started with Your First EA', 'category' => 'Getting Started', 'date' => '2026-01-15', 'content' => 'Welcome to SMART BINARY ZONE! This guide will walk you through the process of setting up your first Expert Advisor. From installation to configuration, we cover everything you need to know to start automated trading successfully.'],
-            ['title' => 'How to Install EAs on MT4', 'category' => 'Installation Guide', 'date' => '2026-01-10', 'content' => 'Installing Expert Advisors on MetaTrader 4 is straightforward. Download your EA files, place them in the Experts folder, and refresh your Navigator panel. Detailed step-by-step instructions with screenshots included.'],
-            ['title' => 'How to Install EAs on MT5', 'category' => 'Installation Guide', 'date' => '2026-01-08', 'content' => 'MetaTrader 5 installation process differs slightly from MT4. Learn how to properly install and configure your EAs on the MT5 platform for optimal performance.'],
-            ['title' => 'Common EA Issues and Solutions', 'category' => 'Troubleshooting', 'date' => '2025-12-20', 'content' => 'Encountering issues with your EA? This comprehensive guide covers the most common problems traders face, including connection issues, order placement problems, and performance concerns.'],
-            ['title' => 'Optimizing EA Settings for Maximum Profit', 'category' => 'Troubleshooting', 'date' => '2025-12-15', 'content' => 'Learn how to fine-tune your EA settings for different market conditions. Discover the optimal parameters for trend, range, and volatile markets.'],
-            ['title' => 'Best Brokers for Automated Trading', 'category' => 'Broker Settings', 'date' => '2025-12-01', 'content' => 'Not all brokers are created equal for automated trading. We review the best brokers for EAs based on execution speed, spreads, and compatibility.'],
-            ['title' => 'VPS Setup Guide for 24/7 Trading', 'category' => 'Installation Guide', 'date' => '2025-11-25', 'content' => 'Running your EAs on a VPS ensures 24/7 operation without interruptions. Step-by-step guide to setting up your VPS with your Expert Advisors.'],
-            ['title' => 'Understanding Your License Key', 'category' => 'License & Account', 'date' => '2025-11-20', 'content' => 'Everything you need to know about EA license keys: how to activate, transfer between accounts, and troubleshoot activation issues.'],
-            ['title' => 'Risk Management Best Practices', 'category' => 'Getting Started', 'date' => '2025-11-15', 'content' => 'Protect your trading capital with these essential risk management strategies. Learn about position sizing, maximum drawdown limits, and portfolio diversification.'],
-            ['title' => 'Broker Settings for Dark EAs', 'category' => 'Broker Settings', 'date' => '2025-11-10', 'content' => 'Specific broker configuration recommendations for our Dark series EAs. Optimize your broker settings for the best performance with Dark Algo, Nova, Kronos, and more.'],
-            ['title' => 'Account Management Dashboard Guide', 'category' => 'License & Account', 'date' => '2025-11-05', 'content' => 'Learn how to use your account dashboard to manage licenses, view download history, and track your EA performance.'],
-            ['title' => 'Advanced Trading Strategies with Multiple EAs', 'category' => 'Getting Started', 'date' => '2025-10-28', 'content' => 'Combine multiple Expert Advisors for diversified trading. Learn how to run Dark Algo, Dark Nova, and Dark Kronos simultaneously without conflicts.'],
-        ];
-    }
-
     // Home page
     public function home()
     {
@@ -247,7 +227,9 @@ class ForexController extends Controller
             ['icon' => 'check-circle', 'title' => 'No False Promises, Just Results', 'text' => 'Verified Myfxbook & MQL5 Track-records', 'sub' => '99.90% backtest precision, real account results'],
             ['icon' => 'globe', 'title' => 'Chosen by Traders Worldwide', 'text' => 'Explore Our Global Footprint', 'sub' => '120+ countries, mql5.com statistics'],
         ];
-        return view('frontend.forex.home', compact('products', 'bundles', 'reviews', 'faq', 'features', 'trustMetrics'));
+        $heroBanner = Setting::getValue('hero_banner');
+        $dbProducts = Product::where('available', true)->orderBy('name')->get();
+        return view('frontend.forex.home', compact('products', 'bundles', 'reviews', 'faq', 'features', 'trustMetrics', 'heroBanner', 'dbProducts'));
     }
 
     // Product page
@@ -301,70 +283,6 @@ class ForexController extends Controller
         return view('frontend.forex.product-detail', compact('product', 'slug', 'faq'));
     }
 
-    // Source codes listing (dynamic from DB)
-    public function sourceCodes()
-    {
-        $sourceCodes = SourceCode::where('available', true)->orderBy('name')->paginate(12);
-        return view('frontend.forex.source-codes', compact('sourceCodes'));
-    }
-
-    // Source code detail (dynamic from DB)
-    public function sourceCodeDetail($slug)
-    {
-        $sourceCode = SourceCode::where('slug', $slug)->where('available', true)->firstOrFail();
-        return view('frontend.forex.source-code-detail', compact('sourceCode'));
-    }
-
-    // Partnership - show page
-    public function partnership()
-    {
-        return view('frontend.forex.partnership');
-    }
-
-    // Partnership - view my applications
-    public function myPartnership(Request $request)
-    {
-        $query = Partner::where('email', auth()->user()->email);
-
-        // Apply status filter if provided
-        if ($request->filled('status')) {
-            $status = $request->status;
-            if (in_array($status, ['pending', 'approved', 'rejected'])) {
-                $query->where('status', $status);
-            }
-        }
-
-        $applications = $query->orderBy('created_at', 'desc')
-            ->paginate(10)
-            ->withQueryString();
-
-        return view('frontend.forex.my-partnership', compact('applications'));
-    }
-
-    // Partnership - submit form
-    public function partnerSubmit(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|max:100',
-            'website' => 'nullable|string|max:255',
-            'message' => 'nullable|string|max:5000',
-        ]);
-
-        Partner::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'website' => $validated['website'] ?? null,
-            'message' => $validated['message'] ?? null,
-            'status' => 'pending',
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Application submitted successfully! We will contact you within 24 hours.',
-        ]);
-    }
-
     // Contact us — show page
     public function contactUs()
     {
@@ -400,14 +318,6 @@ class ForexController extends Controller
     public function paymentDetails()
     {
         return view('frontend.forex.payment-details');
-    }
-
-    // Knowledgebase
-    public function knowledgebase()
-    {
-        $articles = $this->getKbArticles();
-        $categories = array_unique(array_column($articles, 'category'));
-        return view('frontend.forex.knowledgebase', compact('articles', 'categories'));
     }
 
     // Legal pages

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\SourceCode;
 use Illuminate\Http\Request;
 
 class TotalSellController extends Controller
@@ -33,23 +32,15 @@ class TotalSellController extends Controller
                 $lineTotal = $price * $qty;
                 $type = 'N/A';
 
-                if (str_starts_with($itemId, 'src-')) {
-                    $slug = substr($itemId, 4);
-                    $sourceCode = SourceCode::where('slug', $slug)->first();
-                    if ($sourceCode) {
-                        $type = 'Source Code';
-                    }
-                } else {
-                    $lastDash = strrpos($itemId, '-');
-                    if ($lastDash !== false) {
-                        $slug = substr($itemId, 0, $lastDash);
-                        $planIndex = (int) substr($itemId, $lastDash + 1);
-                        $product = Product::where('slug', $slug)->first();
-                        if ($product) {
-                            $plans = $product->plans ?? [];
-                            if (isset($plans[$planIndex])) {
-                                $type = 'Product';
-                            }
+                $lastDash = strrpos($itemId, '-');
+                if ($lastDash !== false) {
+                    $slug = substr($itemId, 0, $lastDash);
+                    $planIndex = (int) substr($itemId, $lastDash + 1);
+                    $product = Product::where('slug', $slug)->first();
+                    if ($product) {
+                        $plans = $product->plans ?? [];
+                        if (isset($plans[$planIndex])) {
+                            $type = 'Product';
                         }
                     }
                 }

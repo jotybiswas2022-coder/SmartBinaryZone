@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Order;
-use App\Models\Partner;
 use App\Models\Product;
-use App\Models\SourceCode;
 
 class DashboardController extends Controller
 {
@@ -20,8 +18,6 @@ class DashboardController extends Controller
         $totalContacts = Contact::count();
         $totalOrders  = Order::count();
         $totalProducts = Product::count();
-        $totalSourceCodes = SourceCode::count();
-        $totalPartners = Partner::count();
 
         // Recent items
         $contacts = Contact::latest()->take(10)->get();
@@ -34,8 +30,6 @@ class DashboardController extends Controller
             'totalContacts',
             'totalOrders',
             'totalProducts',
-            'totalSourceCodes',
-            'totalPartners',
             'contacts',
             'recentOrders',
             'pendingOrders'

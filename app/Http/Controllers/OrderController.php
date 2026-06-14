@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\SourceCode;
 use App\Models\UserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,16 +120,8 @@ class OrderController extends Controller
                         $itemId = $item['id'] ?? '';
                         $link = null;
 
-                        // Source code items: id format is "src-{slug}"
-                        if (str_starts_with($itemId, 'src-')) {
-                            $slug = substr($itemId, 4);
-                            $sourceCode = SourceCode::where('slug', $slug)->first();
-                            if ($sourceCode && $sourceCode->download_link) {
-                                $link = $sourceCode->download_link;
-                            }
-                        }
                         // Product items: id format is "{slug}-{planIndex}"
-                        else {
+                        
                             // Extract slug and plan index from "{slug}-{planIndex}"
                             $lastDash = strrpos($itemId, '-');
                             if ($lastDash !== false) {

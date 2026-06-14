@@ -14,10 +14,6 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->string('download_link')->nullable()->after('image');
         });
-
-        Schema::table('source_codes', function (Blueprint $table) {
-            $table->string('download_link')->nullable()->after('image');
-        });
     }
 
     /**
@@ -26,10 +22,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('download_link');
-        });
-
-        Schema::table('source_codes', function (Blueprint $table) {
             $table->dropColumn('download_link');
         });
     }

@@ -25,22 +25,7 @@
                     Products
                     <span style="position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--brand-rainbow); transform: scaleX({{ $currentRoute === 'forex.products' ? '1' : '0' }}); transition: transform 0.3s ease; transform-origin: left;" class="nav-underline"></span>
                 </a>
-                 <a href="{{ route('forex.source-codes') }}" style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{ $currentRoute === 'forex.source-codes' ? '#ffffff' : 'var(--text-secondary)' }}; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; position: relative; display: inline-block;{{ $currentRoute === 'forex.source-codes' ? 'background: rgba(255,255,255,0.04);' : '' }}"
-                onmouseover="this.style.color='#ffffff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='{{ $currentRoute === 'forex.source-codes' ? '#ffffff' : 'var(--text-secondary)' }}';this.style.background='{{ $currentRoute === 'forex.source-codes' ? 'rgba(255,255,255,0.04)' : 'transparent' }}'">
-                    Source Codes
-                    <span style="position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--brand-rainbow); transform: scaleX({{ $currentRoute === 'forex.source-codes' ? '1' : '0' }}); transition: transform 0.3s ease; transform-origin: left;" class="nav-underline"></span>
-                </a>
-                <a href="{{ route('forex.partnership') }}" style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{ $currentRoute === 'forex.partnership' ? '#ffffff' : 'var(--text-secondary)' }}; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; position: relative; display: inline-block;{{ $currentRoute === 'forex.partnership' ? 'background: rgba(255,255,255,0.04);' : '' }}"
-                onmouseover="this.style.color='#ffffff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='{{ $currentRoute === 'forex.partnership' ? '#ffffff' : 'var(--text-secondary)' }}';this.style.background='{{ $currentRoute === 'forex.partnership' ? 'rgba(255,255,255,0.04)' : 'transparent' }}'">
-                    Partnership
-                    <span style="position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--brand-rainbow); transform: scaleX({{ $currentRoute === 'forex.partnership' ? '1' : '0' }}); transition: transform 0.3s ease; transform-origin: left;" class="nav-underline"></span>
-                </a>
-                <a href="{{ route('forex.knowledgebase') }}" style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{ $currentRoute === 'forex.knowledgebase' ? '#ffffff' : 'var(--text-secondary)' }}; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; position: relative; display: inline-block;{{ $currentRoute === 'forex.knowledgebase' ? 'background: rgba(255,255,255,0.04);' : '' }}"
-                onmouseover="this.style.color='#ffffff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='{{ $currentRoute === 'forex.knowledgebase' ? '#ffffff' : 'var(--text-secondary)' }}';this.style.background='{{ $currentRoute === 'forex.knowledgebase' ? 'rgba(255,255,255,0.04)' : 'transparent' }}'">
-                    Knowledge Base
-                    <span style="position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--brand-rainbow); transform: scaleX({{ $currentRoute === 'forex.knowledgebase' ? '1' : '0' }}); transition: transform 0.3s ease; transform-origin: left;" class="nav-underline"></span>
-                </a>
-                <a href="{{ route('forex.contact-us') }}" style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{ $currentRoute === 'forex.contact-us' ? '#ffffff' : 'var(--text-secondary)' }}; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; position: relative; display: inline-block;{{ $currentRoute === 'forex.contact-us' ? 'background: rgba(255,255,255,0.04);' : '' }}"
+                 <a href="{{ route('forex.contact-us') }}" style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{ $currentRoute === 'forex.contact-us' ? '#ffffff' : 'var(--text-secondary)' }}; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; position: relative; display: inline-block;{{ $currentRoute === 'forex.contact-us' ? 'background: rgba(255,255,255,0.04);' : '' }}"
                 onmouseover="this.style.color='#ffffff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='{{ $currentRoute === 'forex.contact-us' ? '#ffffff' : 'var(--text-secondary)' }}';this.style.background='{{ $currentRoute === 'forex.contact-us' ? 'rgba(255,255,255,0.04)' : 'transparent' }}'">
                     Contact
                     <span style="position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--brand-rainbow); transform: scaleX({{ $currentRoute === 'forex.contact-us' ? '1' : '0' }}); transition: transform 0.3s ease; transform-origin: left;" class="nav-underline"></span>
@@ -156,11 +141,6 @@
                                 <svg style="width: 16px; height: 16px; color: #005fe7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                                 My Orders
                             </a>
-                            <a href="{{ route('forex.my-partnership') }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; font-size: 14px; color: #d1d5db; text-decoration: none; transition: all 0.2s ease;"
-                            onmouseover="this.style.color='#fff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='#d1d5db';this.style.background='transparent'">
-                                <svg style="width: 16px; height: 16px; color: #F59E0B;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                                My Partnership
-                            </a>
                             <a href="{{ route('forex.profile') }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; font-size: 14px; color: #d1d5db; text-decoration: none; transition: all 0.2s ease;"
                             onmouseover="this.style.color='#fff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='#d1d5db';this.style.background='transparent'">
                                 <svg style="width: 16px; height: 16px; color: #005fe7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
@@ -224,25 +204,9 @@
                 <span>Products</span>
                 <svg style="width: 16px; height: 16px; color: #4b5563; transition: color 0.2s ease;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="{{ route('forex.source-codes') }}" style="display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 500; color: #fff; text-decoration: none; padding: 12px 16px; border-radius: 12px; transition: all 0.2s ease;"
-            onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='transparent'">
-                <span>Source Codes</span>
-                <svg style="width: 16px; height: 16px; color: #4b5563; transition: color 0.2s ease;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
-
-            <a href="{{ route('forex.partnership') }}" style="display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 500; color: #fff; text-decoration: none; padding: 12px 16px; border-radius: 12px; transition: all 0.2s ease;"
-            onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='transparent'">
-                <span>Partnership</span>
-                <svg style="width: 16px; height: 16px; color: #4b5563; transition: color 0.2s ease;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
             <a href="{{ route('forex.contact-us') }}" style="display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 500; color: #fff; text-decoration: none; padding: 12px 16px; border-radius: 12px; transition: all 0.2s ease;"
             onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='transparent'">
                 <span>Contact</span>
-                <svg style="width: 16px; height: 16px; color: #4b5563; transition: color 0.2s ease;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
-            <a href="{{ route('forex.knowledgebase') }}" style="display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 500; color: #fff; text-decoration: none; padding: 12px 16px; border-radius: 12px; transition: all 0.2s ease;"
-            onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background='transparent'">
-                <span>Knowledge Base</span>
                 <svg style="width: 16px; height: 16px; color: #4b5563; transition: color 0.2s ease;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
 
@@ -291,11 +255,6 @@
                     <svg style="width: 16px; height: 16px; color: #005fe7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                     My Orders
                 </a>
-                <a href="{{ route('forex.my-partnership') }}" style="display: flex; align-items: center; gap: 12px; width: 100%; font-size: 14px; color: #d1d5db; text-decoration: none; padding: 12px 16px; border-radius: 12px; transition: all 0.2s ease; box-sizing: border-box;"
-                onmouseover="this.style.color='#fff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='#d1d5db';this.style.background='transparent'">
-                    <svg style="width: 16px; height: 16px; color: #F59E0B;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                    My Partnership
-                </a>
                 <a href="{{ route('forex.profile') }}" style="display: flex; align-items: center; gap: 12px; width: 100%; font-size: 14px; color: #d1d5db; text-decoration: none; padding: 12px 16px; border-radius: 12px; transition: all 0.2s ease; box-sizing: border-box;"
                 onmouseover="this.style.color='#fff';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.color='#d1d5db';this.style.background='transparent'">
                     <svg style="width: 16px; height: 16px; color: #005fe7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
@@ -327,7 +286,7 @@
                     </div>
                     <div>
                         <h3 style="color: #fff; font-size: 16px; font-weight: 600; margin: 0; font-family: 'DM Sans', sans-serif;">Store</h3>
-                        <p style="color: rgba(234,234,234,0.35); font-size: 12px; margin: 2px 0 0 0;">Browse our products & source codes</p>
+                        <p style="color: rgba(234,234,234,0.35); font-size: 12px; margin: 2px 0 0 0;">Browse our products</p>
                     </div>
                 </div>
                 <button id="storeDrawerCloseBtn" style="width: 32px; height: 32px; border-radius: 8px; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #9ca3af; transition: all 0.2s ease;"
@@ -371,42 +330,9 @@
                         @endforelse
                     </div>
                 </div>
-
                 <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 0 0 28px 0;"></div>
 
-                <!-- Source Codes Section -->
-                <div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <svg style="width: 16px; height: 16px; color: #A855F7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                            <span style="color: #EAEAEA; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;">Source Codes</span>
-                        </div>
-                        <a href="{{ route('forex.source-codes') }}" style="color: #A855F7; font-size: 12px; font-weight: 500; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View All →</a>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 6px;">
-                        @forelse($storeSourceCodes as $sc)
-                        <a href="{{ route('forex.source-code-detail', $sc->slug) }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; text-decoration: none; transition: all 0.2s ease; border: 1px solid rgba(255,255,255,0.04);"
-                        onmouseover="this.style.background='rgba(168,85,247,0.08)';this.style.borderColor='rgba(168,85,247,0.2)'" onmouseout="this.style.background='';this.style.borderColor='rgba(255,255,255,0.04)'">
-                            <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(168,85,247,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                @if($sc->image)
-                                <img src="{{ config('app.storage_url') }}{{ $sc->image }}" alt="{{ $sc->name }}" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;">
-                                @else
-                                <svg style="width: 18px; height: 18px; color: #A855F7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                                @endif
-                            </div>
-                            <div style="flex: 1; min-width: 0;">
-                                <p style="color: #EAEAEA; font-size: 14px; font-weight: 500; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $sc->name }}</p>
-                                <p style="color: rgba(234,234,234,0.4); font-size: 12px; margin: 1px 0 0 0;">{{ $sc->language ?? $sc->category ?? 'Source Code' }}</p>
-                            </div>
-                            @if($sc->price)
-                            <span style="color: #005fe7; font-size: 13px; font-weight: 700; white-space: nowrap;">{{ formatPrice($sc->price, 0) }}</span>
-                            @endif
-                        </a>
-                        @empty
-                        <p style="color: rgba(234,234,234,0.3); font-size: 13px; text-align: center; padding: 20px 0;">No source codes available yet.</p>
-                        @endforelse
-                    </div>
-                </div>
+
             </div>
 
             <!-- Footer CTA -->
@@ -414,10 +340,6 @@
                 <a href="{{ route('forex.products') }}" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: linear-gradient(135deg, #2255ff, #005fe7); color: #fff; font-weight: 600; font-size: 14px; border-radius: 10px; text-decoration: none; transition: all 0.3s; box-sizing: border-box;" onmouseover="this.style.boxShadow='0 6px 25px rgba(34,85,255,0.25)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='none';this.style.transform=''">
                     <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                     Browse All Products
-                </a>
-                <a href="{{ route('forex.source-codes') }}" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px; background: transparent; color: rgba(234,234,234,0.6); font-weight: 500; font-size: 14px; border-radius: 10px; border: 1px solid rgba(168,85,247,0.2); text-decoration: none; transition: all 0.3s; box-sizing: border-box;" onmouseover="this.style.borderColor='rgba(168,85,247,0.4)';this.style.color='#EAEAEA';this.style.background='rgba(168,85,247,0.04)'" onmouseout="this.style.borderColor='rgba(168,85,247,0.2)';this.style.color='rgba(234,234,234,0.6)';this.style.background='transparent'">
-                    <svg style="width: 16px; height: 16px; color: #A855F7;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                    Browse All Source Codes
                 </a>
             </div>
     </div>
