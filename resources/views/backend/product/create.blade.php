@@ -81,14 +81,6 @@
                         </div>
 
                         <div class="prod-fg">
-                            <label class="prod-label">Download Link</label>
-                            <input type="url" name="download_link" class="prod-input" value="{{ old('download_link', $product->download_link ?? '') }}"
-                                placeholder="e.g. https://example.com/download/product.zip">
-                            <span class="prod-hint">Direct URL for users to download the product after purchase</span>
-                            @error('download_link') <span class="prod-err">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="prod-fg">
                             <label class="prod-label">Product Image</label>
                             <div class="prod-img-upload" id="imgUploadArea">
                                 <input type="file" name="image" id="prodImage" accept="image/jpeg,image/png,image/webp" style="display:none">
@@ -277,8 +269,8 @@
                         ['name' => '', 'price' => '', 'old_price' => '', 'base_price' => '', 'licenses' => 10, 'vps' => '3 Months', 'features' => '', 'popular' => false],
                         ['name' => '', 'price' => '', 'old_price' => '', 'base_price' => '', 'licenses' => '', 'vps' => 'Lifetime', 'features' => '', 'popular' => false],
                     ]);
-                    $planLabels = ['Plan Name', 'Price ($)', 'Original ($)', 'Base Price ($)', 'Licenses', 'Validity', 'Features'];
-                    $planKeys = ['name', 'price', 'old_price', 'base_price', 'licenses', 'vps', 'features'];
+                    $planLabels = ['Plan Name', 'Price ($)', 'Original ($)', 'Base Price ($)', 'Licenses', 'Validity', 'Download Link', 'Features'];
+                    $planKeys = ['name', 'price', 'old_price', 'base_price', 'licenses', 'vps', 'download_link', 'features'];
                 @endphp
                 <div class="prod-plans-table">
                     <div class="ppt-header">
@@ -309,6 +301,9 @@
                                     @elseif($key === 'vps')
                                         <input type="text" name="plans[{{ $i }}][vps]" class="ppt-input"
                                             value="{{ $plan['vps'] ?? '' }}" placeholder="e.g. 1 Month">
+                                    @elseif($key === 'download_link')
+                                        <input type="url" name="plans[{{ $i }}][download_link]" class="ppt-input"
+                                            value="{{ $plan['download_link'] ?? '' }}" placeholder="e.g. https://...">
                                     @elseif($key === 'popular')
                                         <label class="ppt-toggle">
                                             <input type="checkbox" name="plans[{{ $i }}][popular]" value="1"

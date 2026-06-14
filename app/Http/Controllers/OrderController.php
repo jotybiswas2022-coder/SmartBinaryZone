@@ -131,13 +131,17 @@ class OrderController extends Controller
                         }
                         // Product items: id format is "{slug}-{planIndex}"
                         else {
-                            // Extract slug by removing the last -{number}
+                            // Extract slug and plan index from "{slug}-{planIndex}"
                             $lastDash = strrpos($itemId, '-');
                             if ($lastDash !== false) {
                                 $slug = substr($itemId, 0, $lastDash);
+                                $planIndex = (int) substr($itemId, $lastDash + 1);
                                 $product = Product::where('slug', $slug)->first();
-                                if ($product && $product->download_link) {
-                                    $link = $product->download_link;
+                                if ($product) {
+                                    $plans = $product->plans ?? [];
+                                    if (isset($plans[$planIndex]['download_link']) && $plans[$planIndex]['download_link']) {
+                                        $link = $plans[$planIndex]['download_link'];
+                                    }
                                 }
                             }
                         }

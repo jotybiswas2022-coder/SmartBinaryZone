@@ -37,7 +37,6 @@ class ProductController extends Controller
             'tagline' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'download_link' => 'nullable|string|max:2048',
             'indicator' => 'nullable|string|max:255',
             'pairs' => 'nullable|string',
             'reviews' => 'nullable|integer|min:0',
@@ -60,6 +59,7 @@ class ProductController extends Controller
             'plans.*.vps' => 'nullable|string|max:255',
             'plans.*.popular' => 'nullable|boolean',
             'plans.*.features' => 'nullable|string',
+            'plans.*.download_link' => 'nullable|string|max:2048',
             'available' => 'nullable|boolean',
         ]);
 
@@ -118,7 +118,6 @@ class ProductController extends Controller
             'tagline' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'download_link' => 'nullable|string|max:2048',
             'indicator' => 'nullable|string|max:255',
             'pairs' => 'nullable|string',
             'reviews' => 'nullable|integer|min:0',
@@ -141,6 +140,7 @@ class ProductController extends Controller
             'plans.*.vps' => 'nullable|string|max:255',
             'plans.*.popular' => 'nullable|boolean',
             'plans.*.features' => 'nullable|string',
+            'plans.*.download_link' => 'nullable|string|max:2048',
             'available' => 'nullable|boolean',
         ]);
 
