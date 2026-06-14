@@ -3,7 +3,7 @@
         <div style="display: flex; align-items: center; justify-content: space-between; height: 64px;">
             <!-- Logo -->                <a href="{{ route('forex.home') }}" style="display: flex; align-items: center; gap: 10px; text-decoration: none;" class="logo-group">
                 <div style="position: relative; display: flex; align-items: center;">
-                    <span style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">
+                    <span style="font-size: 24px; font-weight: 800; letter-spacing: 1px; white-space: nowrap;">
                         <span style="color: #ffffff;">SMART</span>
                         <span style="background: linear-gradient(180deg, #6b9fff, #005fe7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> BINARY</span>
                         <span style="background: linear-gradient(180deg, #ff7aad, #ff2d78); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> ZONE</span>
@@ -198,7 +198,7 @@
     <div class="glass-card" style="position: absolute; right: 0; top: 0; bottom: 0; width: 320px; max-width: 85vw; padding: 24px; overflow-y: auto; box-shadow: -10px 0 40px rgba(0,0,0,0.5); border:none; border-radius:0;">
         <!-- Mobile logo -->
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding-top: 16px;">
-            <a href="{{ route('forex.home') }}" style="font-size: 20px; font-weight: 800; letter-spacing: 1px; text-decoration: none;">
+            <a href="{{ route('forex.home') }}" style="font-size: 20px; font-weight: 800; letter-spacing: 1px; text-decoration: none; white-space: nowrap;">
                 <span>
                     <span style="color: #ffffff;">SMART</span>
                     <span style="background: linear-gradient(180deg, #6b9fff, #005fe7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> BINARY</span>
