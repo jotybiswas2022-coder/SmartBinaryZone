@@ -20,12 +20,12 @@ class ProductController extends Controller
             $q->where('name', 'like', "%{$query}%");
         })->latest()->paginate(20);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->has('ajax')) {
             $rows = view('backend.product._table', compact('products'))->render();
             $pagination = $products->hasPages()
                 ? view('backend.product._pagination', compact('products'))->render()
                 : '';
-            return $rows . '{{--PAGINATION--}}' . $pagination;
+            return response()->json(['rows' => $rows, 'pagination' => $pagination]);
         }
 
         return view('backend.product.index', compact('products'));

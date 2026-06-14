@@ -308,15 +308,20 @@ function fetchPage(url) {
         tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:32px;color:#64748b"><div style="width:20px;height:20px;border:2px solid rgba(96,165,250,0.2);border-top-color:#60A5FA;border-radius:50%;animation:pspin 0.7s linear infinite;margin:0 auto 8px"></div>Searching...</td></tr>';
     }
 
-    fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-        .then(function(r) { return r.text(); })
-        .then(function(html) {
-            var parts = html.split('{{--PAGINATION--}}');
-            if (tbody) tbody.innerHTML = parts[0] || html;
-            if (pagination && parts[1]) pagination.innerHTML = parts[1];
-            else if (pagination) pagination.innerHTML = '';
+    var sep = url.indexOf('?') === -1 ? '?' : '&';
+    fetch(url + sep + 'ajax=1', { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function(data) {
+            if (tbody) tbody.innerHTML = data.rows;
+            if (pagination) pagination.innerHTML = data.pagination || '';
             bindDeleteButtons();
             bindPaginationLinks();
+        })
+        .catch(function(err) {
+            if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:32px;color:#ef4444">Error: ' + err.message + '</td></tr>';
         });
 }
 
