@@ -60,7 +60,9 @@
   color:var(--cyan);
   font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   padding:7px 16px;border-radius:50px;width:fit-content;
+  animation:fadeUp 0.6s ease 0.1s both, badge-float 3s ease-in-out infinite 0.7s;
 }
+@keyframes badge-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse-dot 1.8s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 
@@ -93,17 +95,19 @@
   display:inline-flex;align-items:center;gap:8px;text-decoration:none;
   box-shadow:0 0 20px rgba(0,95,231,0.35);
   transition:all .2s;
+  animation:fadeUp 0.6s ease 0.5s both, btn-pulse 3s ease-in-out infinite 0.8s;
 }
-.btn-cyan:hover{box-shadow:0 0 30px rgba(0,95,231,0.55);transform:translateY(-1px)}
+@keyframes btn-pulse{0%,100%{box-shadow:0 0 20px rgba(0,95,231,0.35)}50%{box-shadow:0 0 30px rgba(0,95,231,0.5),0 0 60px rgba(0,95,231,0.15)}}
+.btn-cyan:hover{box-shadow:0 0 30px rgba(0,95,231,0.55);transform:translateY(-1px);animation:none}
 .btn-cyan-outline{
   background:transparent;color:#fff;
   border:1.5px solid rgba(255,45,120,0.5);
   padding:13px 28px;border-radius:7px;
   font-size:13px;font-weight:700;letter-spacing:.5px;cursor:pointer;
   display:inline-flex;align-items:center;gap:8px;text-decoration:none;
-  transition:all .2s;
+  transition:all .25s;
 }
-.btn-cyan-outline:hover{border-color:var(--purple);background:rgba(255,45,120,0.08)}
+.btn-cyan-outline:hover{border-color:var(--purple);background:rgba(255,45,120,0.08);transform:translateY(-1px);box-shadow:0 4px 20px rgba(255,45,120,0.15)}
 
 /* HERO RIGHT - banner / chart panel */
 .hero-right{position:relative;display:flex;align-items:center;justify-content:center;z-index:2}
@@ -115,6 +119,16 @@
   border:1px solid rgba(0,95,231,0.2);
   box-shadow:0 0 40px rgba(0,95,231,0.08), 0 0 80px rgba(255,45,120,0.06);
   position:relative;
+}
+.hero-banner-wrap::after{
+  content:'';position:absolute;inset:0;
+  border-radius:16px;
+  padding:3px;
+  background:conic-gradient(from 0deg,#005fe7,#ff2d78,#2255ff,#ff00aa,#005fe7);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;z-index:2;
 }
 .hero-banner-img{
   width:100%;height:auto;display:block;
@@ -129,10 +143,22 @@
   overflow:hidden;
   box-shadow:0 0 40px rgba(0,95,231,0.08), 0 0 80px rgba(255,45,120,0.06);
   position:relative;
+  animation:chart-glow 3s ease-in-out infinite alternate;
 }
+@keyframes chart-glow{0%{box-shadow:0 0 40px rgba(0,95,231,0.08), 0 0 80px rgba(255,45,120,0.06)}100%{box-shadow:0 0 50px rgba(0,95,231,0.14), 0 0 90px rgba(255,45,120,0.10)}}
 .chart-frame::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent);
+}
+.chart-frame::after{
+  content:'';position:absolute;inset:0;
+  border-radius:16px;
+  padding:3px;
+  background:conic-gradient(from 0deg,#005fe7,#ff2d78,#2255ff,#ff00aa,#005fe7);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;z-index:2;
 }
 
 .chart-topbar{
