@@ -12,9 +12,22 @@ class ProductController extends Controller
     /**
      * Display a listing of products.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(20);
+        $query = $request->input('search');
+
+        $products = Product::when($query, function ($q) use ($query) {
+            $q->where('name', 'like', "%{$query}%");
+        })->latest()->paginate(20);
+
+        if ($request->ajax()) {
+            $rows = view('backend.product._table', compact('products'))->render();
+            $pagination = $products->hasPages()
+                ? view('backend.product._pagination', compact('products'))->render()
+                : '';
+            return $rows . '{{--PAGINATION--}}' . $pagination;
+        }
+
         return view('backend.product.index', compact('products'));
     }
 

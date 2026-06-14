@@ -33,7 +33,14 @@
     {{-- Card with Table --}}
     <div class="prod-card-wrap">
         <div class="prod-card">
-            <div class="table-scroll-wrap">
+            <div class="prod-search-bar">
+                <i class="bi bi-search prod-search-icon"></i>
+                <input type="text" id="productSearch" class="prod-search-input" placeholder="Search products by name..." autocomplete="off">
+                <button type="button" id="searchClearBtn" class="prod-search-clear" style="display:none">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="table-scroll-wrap" id="productTableWrap">
                 <table class="prod-table">
                     <thead>
                         <tr>
@@ -47,101 +54,77 @@
                             <th style="width:100px;"><i class="bi bi-gear me-1"></i> Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @forelse ($products as $product)
-                            <tr>
-                                <td>
-                                    @if($product->image)
-                                        <img src="{{ config('app.storage_url') }}{{ $product->image }}" alt="{{ $product->name }}"
-                                            style="width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid var(--pborder)">
-                                    @else
-                                        <div style="width:44px;height:44px;border-radius:8px;background:rgba(96,165,250,0.1);display:flex;align-items:center;justify-content:center;color:var(--pprimary);font-size:18px;border:1px solid var(--pborder)">
-                                            <i class="bi bi-image"></i>
-                                        </div>
-                                    @endif
-                                </td>
-                                <td class="text-start">
-                                    <div class="prod-name">{{ $product->name }}</div>
-                                    @if($product->tagline)
-                                        <div class="prod-tagline">{{ $product->tagline }}</div>
-                                    @endif
-                                </td>
-                                <td><span class="prod-slug-badge">{{ $product->slug }}</span></td>
-                                <td><span class="prod-indicator">{{ $product->indicator ?? '—' }}</span></td>
-                                <td>
-                                    @if($product->plans && count($product->plans) > 0)
-                                        <span class="prod-price">
-                                            {{ formatPrice(min(array_column($product->plans, 'price')), 0) }}
-                                            –
-                                            {{ formatPrice(max(array_column($product->plans, 'price')), 0) }}
-                                        </span>
-                                    @else
-                                        <span style="color:var(--psub)">—</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($product->available)
-                                        <span class="prod-status-dot" style="background:#10b981" title="Available"></span>
-                                        <span style="color:#10b981;font-size:12px;font-weight:500">Active</span>
-                                    @else
-                                        <span class="prod-status-dot" style="background:#ef4444" title="Unavailable"></span>
-                                        <span style="color:#ef4444;font-size:12px;font-weight:500">Hidden</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <span class="date-badge">{{ $product->created_at->format('d M Y') }}</span>
-                                </td>
-                                <td>
-                                    <div class="prod-actions">
-                                        <a href="{{ route('admin.products.edit', $product->id) }}" class="prod-edit-btn" title="Edit">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}"
-                                          class="delete-product-form"
-                                          data-name="{{ $product->name }}">
-                                        @csrf @method('DELETE')
-                                        <button type="button" class="prod-delete-btn delete-btn-trigger" title="Delete">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="8" class="empty-row">
-                                    <div class="empty-state">
-                                        <i class="bi bi-box-seam empty-icon"></i>
-                                        <div class="empty-title">No Products Found</div>
-                                        <div class="empty-sub">Create your first product to get started.</div>
-                                        <a href="{{ route('admin.products.create') }}" class="prod-btn-add" style="margin-top:16px;display:inline-flex">
-                                            <i class="bi bi-plus-lg"></i>
-                                            Add Your First Product
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
+                    <tbody id="productTableBody">
+                        @include('backend.product._table')
                     </tbody>
                 </table>
             </div>
-
-            {{-- Pagination --}}
-            @if($products->hasPages())
-            <div class="prod-pagination-wrap">
-                <div class="prod-pagination-info">
-                    Showing {{ $products->firstItem() }}–{{ $products->lastItem() }} of {{ $products->total() }} products
+            <div id="productPagination">
+                @if($products->hasPages())
+                <div class="prod-pagination-wrap">
+                    <div class="prod-pagination-info">
+                        Showing {{ $products->firstItem() }}–{{ $products->lastItem() }} of {{ $products->total() }} products
+                    </div>
+                    <div class="prod-pagination-links">
+                        {{ $products->links() }}
+                    </div>
                 </div>
-                <div class="prod-pagination-links">
-                    {{ $products->links() }}
-                </div>
+                @endif
             </div>
-            @endif
         </div>
     </div>
 </div>
 
 <style>
+/* Search bar */
+.prod-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--pborder);
+    background: rgba(10,10,10,0.2);
+}
+.prod-search-icon {
+    color: var(--psub);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+.prod-search-input {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    background: rgba(10,10,10,0.5);
+    border: 1px solid var(--pborder);
+    border-radius: 8px;
+    color: var(--ptext);
+    outline: none;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.prod-search-input:focus {
+    border-color: var(--pprimary);
+    box-shadow: 0 0 0 2px rgba(96,165,250,0.1);
+}
+.prod-search-input::placeholder {
+    color: var(--psub);
+    opacity: 0.6;
+}
+.prod-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--psub);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-size: 11px;
+}
+.prod-search-clear:hover {
+    color: var(--ptext);
+    background: rgba(255,255,255,0.05);
+}
+@keyframes pspin { to { transform: rotate(360deg); } }
 :root {
     --pbg: #0f172a;
     --prd: rgba(255,255,255,0.04);
@@ -314,29 +297,50 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    var sessionSuccess = document.getElementById('sessionSuccess');
-    if (sessionSuccess) {
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: sessionSuccess.value,
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 4000,
-            timerProgressBar: true,
-            background: '#1e293b',
-            color: '#f1f5f9',
-            iconColor: '#60A5FA',
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer);
-                toast.addEventListener('mouseleave', Swal.resumeTimer);
-            }
-        });
+var searchTimer;
+
+function fetchPage(url) {
+    var tbody = document.getElementById('productTableBody');
+    var pagination = document.getElementById('productPagination');
+    var wrap = document.getElementById('productTableWrap');
+
+    if (wrap && tbody) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:32px;color:#64748b"><div style="width:20px;height:20px;border:2px solid rgba(96,165,250,0.2);border-top-color:#60A5FA;border-radius:50%;animation:pspin 0.7s linear infinite;margin:0 auto 8px"></div>Searching...</td></tr>';
     }
 
-    // SweetAlert delete confirmation
+    fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+            var parts = html.split('{{--PAGINATION--}}');
+            if (tbody) tbody.innerHTML = parts[0] || html;
+            if (pagination && parts[1]) pagination.innerHTML = parts[1];
+            else if (pagination) pagination.innerHTML = '';
+            bindDeleteButtons();
+            bindPaginationLinks();
+        });
+}
+
+function liveSearch(query) {
+    var searchInput = document.getElementById('productSearch');
+    window.__currentSearch = query;
+    fetchPage(window.location.pathname + '?search=' + encodeURIComponent(query));
+}
+
+function bindPaginationLinks() {
+    document.querySelectorAll('#productPagination a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var url = this.getAttribute('href');
+            if (window.__currentSearch) {
+                var sep = url.indexOf('?') === -1 ? '?' : '&';
+                url += sep + 'search=' + encodeURIComponent(window.__currentSearch);
+            }
+            fetchPage(url);
+        });
+    });
+}
+
+function bindDeleteButtons() {
     document.querySelectorAll('.delete-btn-trigger').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             var form = this.closest('form');
@@ -367,6 +371,60 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var sessionSuccess = document.getElementById('sessionSuccess');
+    if (sessionSuccess) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: sessionSuccess.value,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            background: '#1e293b',
+            color: '#f1f5f9',
+            iconColor: '#60A5FA',
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+    }
+
+    bindDeleteButtons();
+    bindPaginationLinks();
+
+    var searchInput = document.getElementById('productSearch');
+    var clearBtn = document.getElementById('searchClearBtn');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            var val = this.value.trim();
+            if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function() { liveSearch(val); }, 350);
+        });
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                if (clearBtn) clearBtn.style.display = 'none';
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(function() { liveSearch(''); }, 50);
+            }
+        });
+    }
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+            if (searchInput) { searchInput.value = ''; }
+            clearBtn.style.display = 'none';
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function() { liveSearch(''); }, 50);
+            if (searchInput) searchInput.focus();
+        });
+    }
 });
 </script>
 
