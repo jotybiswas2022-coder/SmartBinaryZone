@@ -265,12 +265,12 @@
             <div class="prod-form-card-bd">
                 @php
                     $plans = old('plans', $product->plans ?? [
-                        ['name' => '', 'price' => '', 'old_price' => '', 'base_price' => '', 'licenses' => 5, 'vps' => '1 Month', 'features' => '', 'popular' => false],
-                        ['name' => '', 'price' => '', 'old_price' => '', 'base_price' => '', 'licenses' => 10, 'vps' => '3 Months', 'features' => '', 'popular' => false],
-                        ['name' => '', 'price' => '', 'old_price' => '', 'base_price' => '', 'licenses' => '', 'vps' => 'Lifetime', 'features' => '', 'popular' => false],
+                        ['name' => '', 'price' => '', 'old_price' => '', 'licenses' => 5, 'vps' => '1 Month', 'features' => '', 'popular' => false],
+                        ['name' => '', 'price' => '', 'old_price' => '', 'licenses' => 10, 'vps' => '3 Months', 'features' => '', 'popular' => false],
+                        ['name' => '', 'price' => '', 'old_price' => '', 'licenses' => '', 'vps' => 'Lifetime', 'features' => '', 'popular' => false],
                     ]);
-                    $planLabels = ['Plan Name', 'Selling Price ($)', 'Strikethrough ($)', 'Base Price ($)', 'Licenses', 'Validity', 'Download Link', 'Features'];
-                    $planKeys = ['name', 'price', 'old_price', 'base_price', 'licenses', 'vps', 'download_link', 'features'];
+                    $planLabels = ['Plan Name', 'Selling Price ($)', 'Strikethrough ($)', 'Licenses', 'Validity', 'Download Link', 'Features'];
+                    $planKeys = ['name', 'price', 'old_price', 'licenses', 'vps', 'download_link', 'features'];
                 @endphp
                 <div class="prod-plans-table">
                     <div class="ppt-header">
@@ -310,7 +310,7 @@
                                                 {{ (isset($plan['popular']) && $plan['popular']) ? 'checked' : '' }}>
                                             <span class="ppt-toggle-slider"></span>
                                         </label>
-                                    @elseif(in_array($key, ['price', 'old_price', 'base_price']))
+                                    @elseif(in_array($key, ['price', 'old_price']))
                                         <input type="number" name="plans[{{ $i }}][{{ $key }}]" class="ppt-input"
                                             value="{{ $plan[$key] ?? '' }}" min="0" step="0.01" placeholder="0">
                                     @elseif($key === 'licenses')
