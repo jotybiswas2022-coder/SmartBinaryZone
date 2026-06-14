@@ -404,82 +404,146 @@
 .stats-bar{
   background:linear-gradient(135deg,#06091a,#0a0f22);
   border:1px solid var(--border);
-  margin:0 40px 60px;
-  border-radius:16px;
+  margin:0 40px 48px;
+  border-radius:14px;
   display:flex;
   overflow:hidden;
 }
 .stat-item{
-  flex:1;padding:30px 24px;
-  display:flex;align-items:center;gap:16px;
+  flex:1;padding:20px 20px;
+  display:flex;align-items:center;gap:14px;
   border-right:1px solid var(--border);
+  transition:all .35s;
+  cursor:default;
 }
+.stat-item:hover{background:rgba(255,255,255,0.02);transform:translateY(-2px)}
 .stat-item:last-child{border-right:none}
 .stat-icon-wrap{
-  width:52px;height:52px;border-radius:50%;
+  width:42px;height:42px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all .35s;
 }
+.stat-item:hover .stat-icon-wrap{transform:scale(1.1) rotate(6deg)}
 .stat-icon-wrap.cyan-ring{border:2px solid rgba(0,95,231,0.4);background:rgba(0,95,231,0.08);color:var(--cyan)}
 .stat-icon-wrap.green-ring{border:2px solid rgba(34,197,94,0.4);background:rgba(34,197,94,0.08);color:#22c55e}
 .stat-icon-wrap.purple-ring{border:2px solid rgba(255,45,120,0.4);background:rgba(255,45,120,0.08);color:var(--purple)}
 .stat-icon-wrap.pink-ring{border:2px solid rgba(236,72,153,0.4);background:rgba(236,72,153,0.08);color:#ec4899}
-.stat-num{font-size:28px;font-weight:900;color:#fff}
-.stat-label{font-size:12px;color:var(--muted);margin-top:2px}
+.stat-num{font-size:22px;font-weight:700;color:#fff;transition:all .35s}
+.stat-item:hover .stat-num{text-shadow:0 0 20px rgba(0,95,231,0.2)}
+.stat-label{font-size:11px;color:var(--muted);margin-top:2px;transition:color .35s}
+.stat-item:hover .stat-label{color:rgba(234,234,234,0.5)}
 
-/* ===================== SCROLL ARROWS ===================== */
-.scroll-arrows-wrap{position:relative}
-.scroll-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:10;
-  width:42px;height:42px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(8,12,26,0.85);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  transition:all .25s cubic-bezier(.16,1,.3,1);
-  box-shadow:0 4px 20px rgba(0,0,0,0.3);
-  opacity:0;
+/* ===================== BROKER LOGOS ===================== */
+.broker-section{padding:48px 40px 56px;background:var(--bg-primary);border-top:1px solid var(--border);position:relative;overflow:hidden}
+.broker-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 30% 50%,rgba(0,95,231,0.04) 0%,transparent 60%);
   pointer-events:none;
 }
-.scroll-arrows-wrap:hover .scroll-arrow{
-  opacity:1;
-  pointer-events:auto;
+.broker-header{text-align:center;margin-bottom:36px;position:relative;z-index:2}
+.broker-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,95,231,0.06);border:1px solid rgba(0,95,231,0.15);
+  padding:5px 14px;border-radius:50px;
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:10px;
 }
-.scroll-arrow:hover{
-  border-color:var(--cyan);
-  background:rgba(0,95,231,0.15);
-  box-shadow:0 4px 25px rgba(0,95,231,0.25),0 0 0 4px rgba(0,95,231,0.08);
-  transform:translateY(-50%) scale(1.08);
+.broker-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:pulse-dot 1.8s ease-in-out infinite}
+.broker-title{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.3px}
+.broker-title span{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.broker-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+.broker-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px;
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:0 auto;
 }
-.scroll-arrow:active{transform:translateY(-50%) scale(.95)}
-.scroll-arrow-prev{left:-20px}
-.scroll-arrow-next{right:-20px}
-.scroll-arrow svg{width:18px;height:18px;transition:transform .2s}
-.scroll-arrow-prev:hover svg{transform:translateX(-2px)}
-.scroll-arrow-next:hover svg{transform:translateX(2px)}
+.broker-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:calc(20% - 11.2px);
+  max-width:calc(20% - 11.2px);
+  padding:22px 12px 18px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:12px;
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.broker-item::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  border-radius:0 0 2px 2px;
+  transition:width .35s cubic-bezier(.16,1,.3,1);
+}
+.broker-item:hover::before{width:70%}
+.broker-item:hover{
+  border-color:rgba(0,95,231,0.2);
+  background:rgba(255,255,255,0.04);
+  transform:translateY(-3px);
+  box-shadow:0 8px 30px rgba(0,95,231,0.08),0 0 0 1px rgba(0,95,231,0.05);
+}
+.broker-logo-wrap{
+  width:80px;height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .4s cubic-bezier(.16,1,.3,1);
+}
+.broker-item:hover .broker-logo-wrap{transform:scale(1.06)}
+.broker-logo-wrap svg{max-width:100%;max-height:100%}
+.broker-name{font-size:9.5px;font-weight:600;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;text-align:center;transition:color .3s}
+.broker-item:hover .broker-name{color:rgba(234,234,234,0.6)}
+.broker-mt5{
+  font-size:8px;font-weight:700;color:var(--cyan);
+  letter-spacing:1px;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;
+  background:rgba(0,95,231,0.08);
+  opacity:0;
+  transform:translateY(4px);
+  transition:all .35s cubic-bezier(.16,1,.3,1);
+}
+.broker-item:hover .broker-mt5{opacity:1;transform:translateY(0)}
+
+@media(max-width:992px){
+  .broker-item{min-width:calc(25% - 10.5px);max-width:calc(25% - 10.5px)}
+}
 @media(max-width:768px){
-  .scroll-arrow{display:none}
+  .broker-section{padding:36px 16px 44px}
+  .broker-item{min-width:calc(33.333% - 9.3px);max-width:calc(33.333% - 9.3px)}
+  .broker-logo-wrap{width:64px;height:32px}
+  .broker-title{font-size:18px}
+}
+@media(max-width:480px){
+  .broker-item{min-width:calc(50% - 7px);max-width:calc(50% - 7px)}
 }
 
+/* ===================== SCROLL ARROWS ===================== */
 /* ===================== RESPONSIVE ===================== */
-@media(max-width:1100px){
-  .hero{grid-template-columns:1fr;padding:80px 24px 40px}
-  .hero-title{font-size:42px}
-  .prod-card{min-width:calc(50% - 9px);max-width:calc(50% - 9px)}
-  .platform-bar{flex-wrap:wrap}
-  .plat-item{min-width:50%;border-bottom:1px solid var(--border)}
-  .stats-bar{margin:0 24px 40px;flex-wrap:wrap}
-  .stat-item{min-width:50%}
+@media(max-width:1200px){
+  .prod-card{min-width:calc(25% - 13.5px);max-width:calc(25% - 13.5px)}
+}
+@media(max-width:992px){
+  .prod-card{min-width:calc(33.333% - 12px);max-width:calc(33.333% - 12px)}
 }
 @media(max-width:768px){
-  .prod-card{min-width:calc(100% - 0px);max-width:calc(100% - 0px)}
+  .prod-card{min-width:calc(50% - 9px);max-width:calc(50% - 9px)}
   .prod-chart-area{height:200px}
+  .prod-card--featured .prod-chart-area{height:220px}
+  .prod-card--featured{transform:scale(1.06)}
+  .prod-card--featured .prod-name{font-size:20px}
+  .prod-card--featured .prod-price{font-size:24px}
 }
 @media(max-width:600px){
   .hero-title{font-size:32px}
@@ -528,7 +592,7 @@
 <!-- ======= HERO ======= -->
 <section class="hero">
   <div class="hero-left">
-    <span class="hero-badge" style="animation:fadeUp 0.6s ease 0.1s both">
+    <span class="hero-badge">
       <span class="badge-dot"></span>
       Professional Trading Indicators
     </span>
@@ -658,8 +722,8 @@
 <!-- ======= PLATFORM BAR ======= -->
 <div class="platform-bar">
   <div class="plat-item">
-    <div class="plat-icon-wrap cyan-glow">
-      <svg width="28" height="28" fill="#005fe7" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    <div class="plat-icon-wrap" style="width:auto;height:48px;padding:0 10px;border-radius:8px;background:rgba(0,95,231,0.08);">
+      <img src="{{ url('/assets/frontend/img/mt4-brokers.png') }}" alt="MT4 Brokers" style="height:36px;width:auto;object-fit:contain;filter:brightness(1.1)">
     </div>
     <div>
       <div class="plat-title">MT4 Support</div>
@@ -667,8 +731,8 @@
     </div>
   </div>
   <div class="plat-item">
-    <div class="plat-icon-wrap green-glow">
-      <svg width="28" height="28" fill="#22c55e" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    <div class="plat-icon-wrap" style="width:auto;height:48px;padding:0 10px;border-radius:8px;background:rgba(34,197,94,0.08);">
+      <img src="{{ url('/assets/frontend/img/mt5-brokers.png') }}" alt="MT5 Brokers" style="height:36px;width:auto;object-fit:contain;filter:brightness(1.1)">
     </div>
     <div>
       <div class="plat-title">MT5 Support</div>
@@ -695,17 +759,44 @@
   </div>
 </div>
 
+<!-- ======= TRUSTED MT5 BROKERS ======= -->
+<section class="broker-section">
+  <div class="broker-header">
+    <div class="broker-badge">
+      <span class="broker-badge-dot"></span>
+      Verified Compatibility
+    </div>
+    <div class="broker-title">Trusted by <span>Top MT5 Brokers</span></div>
+    <div class="broker-sub">Our Expert Advisors are verified and optimized for all major MT5 brokers worldwide</div>
+  </div>
+
+  <div class="broker-grid">
+    <div class="broker-single-image" style="width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;padding:14px 0">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <img src="{{ url('/assets/frontend/img/mt4-brokers.png') }}" alt="All MT4 Brokers" style="max-width:100%;height:auto;max-height:70px;object-fit:contain;opacity:0.85;transition:opacity 0.4s;filter:brightness(1.05)" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+        <span style="font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;padding:2px 10px;border-radius:4px;background:rgba(0,95,231,0.08)">MT4 Brokers</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <img src="{{ url('/assets/frontend/img/mt5-brokers.png') }}" alt="All MT5 Brokers" style="max-width:100%;height:auto;max-height:70px;object-fit:contain;opacity:0.85;transition:opacity 0.4s;filter:brightness(1.05)" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+        <span style="font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;padding:2px 10px;border-radius:4px;background:rgba(0,95,231,0.08)">MT5 Brokers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ======= PRODUCTS ======= -->
 <section class="products-section">
-  <div class="section-title">Popular Indicators</div>
+  <div class="section-title"><span>Popular Indicators</span></div>
 
-  <div class="scroll-arrows-wrap">
-    <button class="scroll-arrow scroll-arrow-prev" onclick="scrollProducts(-1)" aria-label="Previous products">
+  @if($dbProducts->count() > 0)
+  <div style="position:relative" id="productsSection">
+    <button class="carousel-btn carousel-btn-prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous products">
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
     </button>
 
+    <div class="products-carousel" id="productsCarousel">
     <div class="products-grid" id="productsGrid">
-      @forelse($dbProducts as $p)
+      @foreach($dbProducts as $p)
       @php
         $firstPlan = $p->plans ? (collect($p->plans)->firstWhere('price', '>', 0) ?? collect($p->plans)->first()) : null;
         $price = $firstPlan['price'] ?? 0;
