@@ -76,6 +76,13 @@ use Illuminate\Support\Str;
             </a>
         </li>
         <li>
+            <a href="{{ route('admin.profit-loss') }}"
+               class="{{ request()->is('admin/profit-loss*') ? 'active' : '' }}">
+                <i class="bi bi-graph-up"></i>
+                <span>Profit-Loss</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('admin.products.index') }}"
                class="{{ request()->is('admin/products*') ? 'active' : '' }}">
                 <i class="bi bi-box-seam-fill"></i>
