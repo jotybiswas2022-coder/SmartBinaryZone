@@ -71,9 +71,9 @@
                                 <td>
                                     @if($product->plans && count($product->plans) > 0)
                                         <span class="prod-price">
-                                            ${{ number_format(min(array_column($product->plans, 'price')), 0) }}
+                                            {{ formatPrice(min(array_column($product->plans, 'price')), 0) }}
                                             –
-                                            ${{ number_format(max(array_column($product->plans, 'price')), 0) }}
+                                            {{ formatPrice(max(array_column($product->plans, 'price')), 0) }}
                                         </span>
                                     @else
                                         <span style="color:var(--psub)">—</span>

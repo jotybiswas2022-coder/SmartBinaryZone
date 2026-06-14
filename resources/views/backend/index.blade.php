@@ -762,7 +762,7 @@
                                         </div>
                                     </td>
                                     <td class="db-td" style="font-weight:700;font-family:'JetBrains Mono',monospace;">
-                                        ${{ number_format((float)$order->total, 2) }}
+                                        {{ formatPrice((float)$order->total) }}
                                     </td>
                                     <td class="db-td">
                                         <span class="db-status db-status-{{ $order->status ?? 'pending' }}">

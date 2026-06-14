@@ -100,9 +100,9 @@
                                 </td>
                                 <td><span class="sc-slug-badge">{{ $sc->slug }}</span></td>
                                 <td>
-                                    <span class="sc-price">${{ number_format($sc->price, 2) }}</span>
+                                    <span class="sc-price">{{ formatPrice($sc->price) }}</span>
                                     @if($sc->old_price)
-                                        <span class="sc-old-price">${{ number_format($sc->old_price, 2) }}</span>
+                                        <span class="sc-old-price">{{ formatPrice($sc->old_price) }}</span>
                                     @endif
                                 </td>
                                 <td>
