@@ -522,6 +522,32 @@
 .stat-label{font-size:11px;color:var(--muted);margin-top:2px;transition:color .35s}
 .stat-item:hover .stat-label{color:rgba(234,234,234,0.5)}
 
+/* ===================== STATS RESPONSIVE ===================== */
+@media(max-width:992px){
+  .stats-bar{margin:0 24px 40px}
+  .stat-item{padding:16px 14px;gap:10px}
+  .stat-icon-wrap{width:36px;height:36px}
+  .stat-icon-wrap svg{width:20px;height:20px}
+  .stat-num{font-size:18px}
+  .stat-label{font-size:10px}
+}
+@media(max-width:768px){
+  .stats-bar{flex-wrap:wrap;margin:0 16px 36px}
+  .stat-item{min-width:calc(50% - 0px);flex:1 1 50%;padding:14px 12px;gap:10px;border-right:none;border-bottom:1px solid var(--border)}
+  .stat-item:last-child,.stat-item:nth-last-child(2){border-bottom:none}
+  .stat-icon-wrap{width:32px;height:32px}
+  .stat-icon-wrap svg{width:18px;height:18px}
+  .stat-num{font-size:16px}
+}
+@media(max-width:480px){
+  .stats-bar{margin:0 12px 32px}
+  .stat-item{padding:12px 10px;gap:8px}
+  .stat-icon-wrap{width:28px;height:28px}
+  .stat-icon-wrap svg{width:15px;height:15px}
+  .stat-num{font-size:14px}
+  .stat-label{font-size:9px}
+}
+
 /* ===================== BROKER LOGOS ===================== */
 .broker-section{padding:48px 40px 56px;background:var(--bg-primary);border-top:1px solid var(--border);position:relative;overflow:hidden}
 .broker-section::before{
