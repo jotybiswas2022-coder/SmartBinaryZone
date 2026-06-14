@@ -17,9 +17,6 @@ if (!function_exists('formatPrice')) {
 
         if (!$currency) return $formatted;
 
-        return match ($currency) {
-            'BDT' => '৳' . $formatted,
-            default => '$' . $formatted,
-        };
+        return $formatted . ' ' . $currency;
     }
 }

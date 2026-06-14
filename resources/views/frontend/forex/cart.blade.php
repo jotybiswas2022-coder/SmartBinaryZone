@@ -110,9 +110,9 @@
 
 @push('scripts')
 <script>
-var currencySymbol = '{{ setting('currency') ? (setting('currency') === 'BDT' ? '৳' : '$') : '' }}';
+var currencyName = '{{ setting('currency') ?? '' }}';
 function formatPriceJS(amount) {
-    return currencySymbol + amount.toFixed(2);
+    return currencyName ? amount.toFixed(2) + ' ' + currencyName : amount.toFixed(2);
 }
 function renderCart() {
     const cart = getCart();
