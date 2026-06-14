@@ -28,7 +28,9 @@ class TotalSellController extends Controller
         foreach ($orders as $order) {
             foreach ($order->items ?? [] as $item) {
                 $itemId = $item['id'] ?? '';
-                $sellingPrice = (float) ($item['price'] ?? 0);
+                $price = (float) ($item['price'] ?? 0);
+                $qty = (int) ($item['qty'] ?? 1);
+                $lineTotal = $price * $qty;
                 $type = 'N/A';
 
                 if (str_starts_with($itemId, 'src-')) {
@@ -57,11 +59,13 @@ class TotalSellController extends Controller
                     'order_number' => $order->order_number,
                     'item_name' => $item['name'] ?? 'Item',
                     'type' => $type,
-                    'selling_price' => $sellingPrice,
+                    'price' => $price,
+                    'qty' => $qty,
+                    'total' => $lineTotal,
                 ];
 
-                $totalSelling += $sellingPrice;
-                $totalItems++;
+                $totalSelling += $lineTotal;
+                $totalItems += $qty;
             }
         }
 

@@ -67,37 +67,43 @@
     {{-- Table --}}
     <div class="ts-card">
         @if(count($rows) > 0)
-        <div class="table-scroll-wrap">
-            <table class="ts-table">
-                <thead>
-                    <tr>
-                        <th><i class="bi bi-calendar-event me-1"></i> Date</th>
-                        <th><i class="bi bi-hash me-1"></i> Order #</th>
-                        <th class="text-start"><i class="bi bi-box me-1"></i> Item</th>
-                        <th><i class="bi bi-tag me-1"></i> Type</th>
-                        <th><i class="bi bi-currency-dollar me-1"></i> Selling Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($rows as $row)
-                        <tr>
-                            <td><span class="ts-date">{{ $row['date'] }}</span></td>
-                            <td><span class="ts-order-num">#{{ $row['order_number'] }}</span></td>
-                            <td class="text-start">{{ $row['item_name'] }}</td>
-                            <td>
-                                @if($row['type'] === 'Product')
-                                    <span class="ts-badge ts-badge-product">Product</span>
-                                @elseif($row['type'] === 'Source Code')
-                                    <span class="ts-badge ts-badge-source">Source Code</span>
-                                @else
-                                    <span class="ts-badge ts-badge-na">N/A</span>
-                                @endif
-                            </td>
-                            <td class="ts-price">${{ number_format($row['selling_price'], 2) }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="ts-items-wrap">
+            <div class="ts-items-header">
+                <span class="ts-h-item">Item</span>
+                <span class="ts-h-date">Date</span>
+                <span class="ts-h-order">Order #</span>
+                <span class="ts-h-type">Type</span>
+                <span class="ts-h-qty">Qty</span>
+                <span class="ts-h-price">Price</span>
+                <span class="ts-h-total">Total</span>
+            </div>
+            <div class="ts-items-body">
+                @foreach($rows as $row)
+                    <div class="ts-item-row">
+                        <div class="ts-item-info">
+                            <div class="ts-item-name">{{ $row['item_name'] }}</div>
+                        </div>
+                        <div class="ts-item-date">{{ $row['date'] }}</div>
+                        <div class="ts-item-order">#{{ $row['order_number'] }}</div>
+                        <div>
+                            @if($row['type'] === 'Product')
+                                <span class="ts-badge ts-badge-product">Product</span>
+                            @elseif($row['type'] === 'Source Code')
+                                <span class="ts-badge ts-badge-source">Source Code</span>
+                            @else
+                                <span class="ts-badge ts-badge-na">N/A</span>
+                            @endif
+                        </div>
+                        <div class="ts-item-qty">{{ $row['qty'] }}</div>
+                        <div class="ts-item-price">${{ number_format($row['price'], 2) }}</div>
+                        <div class="ts-item-total">${{ number_format($row['total'], 2) }}</div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="ts-items-footer">
+                <span class="ts-footer-label">Grand Total</span>
+                <span class="ts-footer-value">${{ number_format($totalSelling, 2) }}</span>
+            </div>
         </div>
         @else
             <div class="ts-empty">
@@ -259,7 +265,7 @@
 .ts-summary-selling .ts-summary-value { color: #60A5FA; }
 .ts-summary-avg .ts-summary-value { color: #10B981; }
 
-/* ─── Table Card ─── */
+/* ─── Items Card ─── */
 .ts-card {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
@@ -267,14 +273,15 @@
     overflow: hidden;
     backdrop-filter: blur(8px);
 }
-.ts-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
+.ts-items-wrap {
+    display: flex;
+    flex-direction: column;
 }
-.ts-table thead th {
+.ts-items-header {
+    display: grid;
+    grid-template-columns: 1fr 100px 80px 100px 50px 90px 100px;
+    gap: 0;
     padding: 12px 16px;
-    text-align: center;
     font-size: 11px;
     font-weight: 600;
     color: #94a3b8;
@@ -283,34 +290,78 @@
     background: rgba(10,10,10,0.3);
     border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.ts-table thead th.text-start { text-align: left; }
-.ts-table tbody td {
-    padding: 12px 16px;
+.ts-items-header > span {
     text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    vertical-align: middle;
 }
-.ts-table tbody td.text-start { text-align: left; }
-.ts-table tbody tr:hover {
+.ts-h-item { text-align: left !important; }
+.ts-items-body {
+    display: flex;
+    flex-direction: column;
+}
+.ts-item-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 80px 100px 50px 90px 100px;
+    gap: 0;
+    padding: 14px 16px;
+    font-size: 13px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.2s;
+}
+.ts-item-row:hover {
     background: rgba(255,255,255,0.02);
 }
-.ts-table tbody tr:last-child td {
+.ts-item-row:last-child {
     border-bottom: none;
 }
-.ts-date {
+.ts-item-row > div {
+    text-align: center;
+}
+.ts-item-info { text-align: left !important; }
+.ts-item-name {
+    font-weight: 600;
+    color: #f1f5f9;
+}
+.ts-item-date {
     color: #94a3b8;
     font-size: 12px;
-    white-space: nowrap;
 }
-.ts-order-num {
+.ts-item-order {
     color: #60A5FA;
     font-weight: 600;
     font-size: 12px;
-    white-space: nowrap;
 }
-.ts-price {
-    font-weight: 600;
+.ts-item-qty {
+    font-weight: 700;
     color: #f1f5f9;
+}
+.ts-item-price {
+    color: #94a3b8;
+}
+.ts-item-total {
+    font-weight: 700;
+    color: #10B981;
+}
+.ts-items-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: rgba(10,10,10,0.2);
+}
+.ts-footer-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.ts-footer-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #60A5FA;
 }
 
 /* ─── Badges ─── */
@@ -355,11 +406,33 @@
 }
 
 /* ─── Responsive ─── */
+@media (max-width: 992px) {
+    .ts-items-header {
+        grid-template-columns: 1fr 90px 70px 90px 45px 80px 90px;
+    }
+    .ts-item-row {
+        grid-template-columns: 1fr 90px 70px 90px 45px 80px 90px;
+    }
+}
 @media (max-width: 768px) {
     .ts-page { padding: 20px 22px; }
     .ts-summary { grid-template-columns: 1fr; }
     .ts-filter-form { flex-direction: column; align-items: stretch; }
     .ts-filter-btn { height: auto; justify-content: center; }
+    .ts-items-header { display: none; }
+    .ts-item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 4px 12px;
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ts-item-row > div { text-align: left; }
+    .ts-item-info { grid-column: 1 / -1; margin-bottom: 4px; }
+    .ts-item-date::before { content: "Date: "; color: #94a3b8; font-size: 11px; }
+    .ts-item-order::before { content: "Order: "; color: #94a3b8; font-size: 11px; }
+    .ts-item-qty::before { content: "Qty: "; color: #94a3b8; font-size: 11px; }
+    .ts-item-price::before { content: "Price: "; color: #94a3b8; font-size: 11px; }
+    .ts-item-total::before { content: "Total: "; color: #94a3b8; font-size: 11px; }
 }
 @media (max-width: 480px) {
     .ts-page { padding: 16px; }
