@@ -227,7 +227,7 @@
                 <div class="os-summary">
                     <div class="os-summary-row">
                         <span class="os-summary-label">Subtotal</span>
-                        <span class="os-summary-value">${{ number_format($order->subtotal, 2) }}</span>
+                        <span class="os-summary-value">{{ formatPrice($order->subtotal) }}</span>
                     </div>
                     <div class="os-summary-row">
                         <span class="os-summary-label">Items</span>
@@ -236,7 +236,7 @@
                     <div class="os-summary-divider"></div>
                     <div class="os-summary-row os-summary-total">
                         <span class="os-summary-total-label">Total</span>
-                        <span class="os-summary-total-value">${{ number_format($order->total, 2) }}</span>
+                        <span class="os-summary-total-value">{{ formatPrice($order->total) }}</span>
                     </div>
                 </div>
             </div>
@@ -286,14 +286,14 @@
                             @endif
                         </div>
                         <div class="os-item-qty">{{ $item['qty'] ?? 1 }}</div>
-                        <div class="os-item-price">${{ number_format($item['price'] ?? 0, 2) }}</div>
-                        <div class="os-item-total">${{ number_format(($item['price'] ?? 0) * ($item['qty'] ?? 1), 2) }}</div>
+                        <div class="os-item-price">{{ formatPrice($item['price'] ?? 0) }}</div>
+                        <div class="os-item-total">{{ formatPrice(($item['price'] ?? 0) * ($item['qty'] ?? 1)) }}</div>
                     </div>
                 @endforeach
             </div>
             <div class="os-items-footer">
                 <span class="os-items-footer-label">Grand Total</span>
-                <span class="os-items-footer-value">${{ number_format($order->total, 2) }}</span>
+                <span class="os-items-footer-value">{{ formatPrice($order->total) }}</span>
             </div>
         </div>
     </div>

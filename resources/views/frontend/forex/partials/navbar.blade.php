@@ -363,7 +363,7 @@
                             </div>
                             @php $minPrice = collect($p->plans)->min('price'); @endphp
                             @if($minPrice)
-                            <span style="color: #005fe7; font-size: 13px; font-weight: 700; white-space: nowrap;">${{ number_format($minPrice, 0) }}</span>
+                            <span style="color: #005fe7; font-size: 13px; font-weight: 700; white-space: nowrap;">{{ formatPrice($minPrice, 0) }}</span>
                             @endif
                         </a>
                         @empty
@@ -399,7 +399,7 @@
                                 <p style="color: rgba(234,234,234,0.4); font-size: 12px; margin: 1px 0 0 0;">{{ $sc->language ?? $sc->category ?? 'Source Code' }}</p>
                             </div>
                             @if($sc->price)
-                            <span style="color: #005fe7; font-size: 13px; font-weight: 700; white-space: nowrap;">${{ number_format($sc->price, 0) }}</span>
+                            <span style="color: #005fe7; font-size: 13px; font-weight: 700; white-space: nowrap;">{{ formatPrice($sc->price, 0) }}</span>
                             @endif
                         </a>
                         @empty

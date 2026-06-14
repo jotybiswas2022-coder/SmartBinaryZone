@@ -87,7 +87,7 @@
                 <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem">
                     <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.875rem">
                         <span style="color:rgba(234,234,234,0.5)">Subtotal</span>
-                        <span id="cartSubtotal" style="color:#EAEAEA;font-weight:600">$0.00</span>
+                        <span id="cartSubtotal" style="color:#EAEAEA;font-weight:600">0.00</span>
                     </div>
                     <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.875rem">
                         <span style="color:rgba(234,234,234,0.5)">Tax</span>
@@ -96,7 +96,7 @@
                     <div style="height:1px;background:rgba(255,255,255,0.06)"></div>
                     <div style="display:flex;align-items:center;justify-content:space-between">
                         <span style="color:#EAEAEA;font-weight:500">Total</span>
-                        <span id="cartTotal" style="color:#EAEAEA;font-weight:700;font-size:1.25rem">$0.00</span>
+                        <span id="cartTotal" style="color:#EAEAEA;font-weight:700;font-size:1.25rem">0.00</span>
                     </div>
                 </div>
                 <button onclick="proceedToPayment(event)" id="checkoutBtn" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.875rem 2rem;background:linear-gradient(135deg,#005fe7,#2255ff);color:white;font-weight:600;font-size:1rem;border-radius:0.75rem;transition:all 0.3s;cursor:pointer;border:none" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(34,85,255,0.25)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
@@ -110,6 +110,10 @@
 
 @push('scripts')
 <script>
+var currencySymbol = '{{ setting('currency') ? (setting('currency') === 'BDT' ? '৳' : '$') : '' }}';
+function formatPriceJS(amount) {
+    return currencySymbol + amount.toFixed(2);
+}
 function renderCart() {
     const cart = getCart();
     const empty = document.getElementById('cartEmpty');
@@ -138,7 +142,7 @@ function renderCart() {
             <style>@media (min-width:640px){.cart-item-p{padding:1.25rem}}</style>
             <div style="flex:1;min-width:0">
                 <h3 style="color:#EAEAEA;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.name}</h3>
-                <p style="color:#005fe7;font-size:0.875rem;font-weight:600">$${item.price.toFixed(2)}</p>
+                <p style="color:#005fe7;font-size:0.875rem;font-weight:600">${formatPriceJS(item.price)}</p>
             </div>
             <div style="display:flex;align-items:center;gap:0.75rem">
                 <div style="display:flex;align-items:center;background:#05050f;border:1px solid #2a2a2a;border-radius:0.5rem;overflow:hidden">
@@ -147,15 +151,15 @@ function renderCart() {
                     <button onclick="updateQty(${index}, 1)" class="btn-icon">+</button>
                 </div>
             </div>
-            <span style="color:#EAEAEA;font-weight:600;width:5rem;text-align:right;font-family:'JetBrains Mono',monospace;font-size:0.875rem">$${(item.price * item.qty).toFixed(2)}</span>
+            <span style="color:#EAEAEA;font-weight:600;width:5rem;text-align:right;font-family:'JetBrains Mono',monospace;font-size:0.875rem">${formatPriceJS(item.price * item.qty)}</span>
             <button onclick="removeFromCart(${index})" style="width:2rem;height:2rem;border-radius:50%;background:#1a1a1a;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;transition:all 0.2s" onmouseover="this.style.color='#ef4444';this.style.borderColor='rgba(239,68,68,0.3)'" onmouseout="this.style.color='#9ca3af';this.style.borderColor='#2a2a2a'">
                 <svg style="width:1rem;height:1rem" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>`;
     });
     items.innerHTML = html;
-    subtotal.textContent = '$' + sum.toFixed(2);
-    if (total) total.textContent = '$' + sum.toFixed(2);
+    subtotal.textContent = formatPriceJS(sum);
+    if (total) total.textContent = formatPriceJS(sum);
 
     // Animate newly added items
     items.querySelectorAll('.reveal').forEach((el, i) => {

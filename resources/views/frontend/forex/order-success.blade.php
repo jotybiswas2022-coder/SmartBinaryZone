@@ -266,7 +266,7 @@
                                         <div class="order-item-name">{{ $item['name'] ?? 'Item' }}</div>
                                         <div class="order-item-qty">Qty: {{ $item['qty'] ?? 1 }}</div>
                                     </div>
-                                    <span class="order-item-price">${{ number_format(($item['price'] ?? 0) * ($item['qty'] ?? 1), 2) }}</span>
+                                    <span class="order-item-price">{{ formatPrice(($item['price'] ?? 0) * ($item['qty'] ?? 1)) }}</span>
                                 </div>
                                 @endforeach
                             </div>
@@ -275,7 +275,7 @@
                             <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.06)">
                                 <div class="order-pricing-row">
                                     <span class="order-pricing-label">Subtotal</span>
-                                    <span class="order-pricing-value">${{ number_format($order->subtotal, 2) }}</span>
+                                    <span class="order-pricing-value">{{ formatPrice($order->subtotal) }}</span>
                                 </div>
                                 <div class="order-pricing-row">
                                     <span class="order-pricing-label" style="display:flex;align-items:center;gap:0.375rem">
@@ -286,7 +286,7 @@
                                 </div>
                                 <div class="order-pricing-row order-pricing-total">
                                     <span class="order-pricing-label">Total Paid</span>
-                                    <span class="order-pricing-value">${{ number_format($order->total, 2) }}</span>
+                                    <span class="order-pricing-value">{{ formatPrice($order->total) }}</span>
                                 </div>
                             </div>
                         </div>

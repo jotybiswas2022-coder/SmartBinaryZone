@@ -189,7 +189,7 @@
                             {{ $sc['label'] }}
                         </span>
                         <span class="my-orders-card-items">{{ $itemCount }} item{{ $itemCount !== 1 ? 's' : '' }}</span>
-                        <span class="my-orders-card-total">${{ number_format($order->total, 2) }}</span>
+                        <span class="my-orders-card-total">{{ formatPrice($order->total) }}</span>
                         <svg class="my-orders-card-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </div>
                 </a>

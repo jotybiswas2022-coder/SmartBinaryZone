@@ -106,7 +106,7 @@
                             <span class="prod-card-badge" style="position:absolute;top:12px;left:12px;z-index:3;background:rgba(0,0,0,0.5);color:{{ $c['from'] }};border:1px solid {{ $c['from'] }}30">{{ $product->indicator }}</span>
                             @endif
                             @if($minPrice)
-                            <span class="prod-card-price" style="position:absolute;bottom:12px;right:12px;z-index:3;background:rgba(5,5,15,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:2px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);font-size:1rem">${{ number_format($minPrice, 0) }}+</span>
+                            <span class="prod-card-price" style="position:absolute;bottom:12px;right:12px;z-index:3;background:rgba(5,5,15,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:2px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);font-size:1rem">{{ formatPrice($minPrice, 0) }}+</span>
                             @endif
                         </div>
                         <!-- Body -->

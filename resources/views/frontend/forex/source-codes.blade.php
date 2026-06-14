@@ -130,9 +130,9 @@
 
                         <div style="display:flex;align-items:center;justify-content:space-between;padding-top:1rem;margin-top:auto;border-top:1px solid rgba(255,255,255,0.06)">
                             <div style="display:flex;align-items:center;gap:8px">
-                                <span style="background:linear-gradient(135deg,#005fe7,#ff2d78);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;font-size:1.25rem">${{ number_format($sc->price, 0) }}</span>
+                                <span style="background:linear-gradient(135deg,#005fe7,#ff2d78);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;font-size:1.25rem">{{ formatPrice($sc->price, 0) }}</span>
                                 @if($sc->old_price)
-                                <span style="color:rgba(234,234,234,0.25);font-size:0.8125rem;text-decoration:line-through">${{ number_format($sc->old_price, 0) }}</span>
+                                <span style="color:rgba(234,234,234,0.25);font-size:0.8125rem;text-decoration:line-through">{{ formatPrice($sc->old_price, 0) }}</span>
                                 @endif
                             </div>
                             <div style="display:flex;align-items:center;gap:0.5rem">

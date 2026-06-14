@@ -68,7 +68,7 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                <td class="order-amount">${{ number_format($order->total, 2) }}</td>
+                                <td class="order-amount">{{ formatPrice($order->total) }}</td>
                                 <td>
                                     <span class="status-badge status-{{ $order->status }}">
                                         <span class="status-dot"></span>

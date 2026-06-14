@@ -50,7 +50,7 @@
             </div>
             <div>
                 <span class="ts-summary-label">Total Selling Price</span>
-                <span class="ts-summary-value">${{ number_format($totalSelling, 2) }}</span>
+                <span class="ts-summary-value">{{ formatPrice($totalSelling) }}</span>
             </div>
         </div>
         <div class="ts-summary-card ts-summary-avg">
@@ -59,7 +59,7 @@
             </div>
             <div>
                 <span class="ts-summary-label">Avg Price / Item</span>
-                <span class="ts-summary-value">${{ number_format($avgPrice, 2) }}</span>
+                <span class="ts-summary-value">{{ formatPrice($avgPrice) }}</span>
             </div>
         </div>
     </div>
@@ -95,14 +95,14 @@
                             @endif
                         </div>
                         <div class="ts-item-qty">{{ $row['qty'] }}</div>
-                        <div class="ts-item-price">${{ number_format($row['price'], 2) }}</div>
-                        <div class="ts-item-total">${{ number_format($row['total'], 2) }}</div>
+                        <div class="ts-item-price">{{ formatPrice($row['price']) }}</div>
+                        <div class="ts-item-total">{{ formatPrice($row['total']) }}</div>
                     </div>
                 @endforeach
             </div>
             <div class="ts-items-footer">
                 <span class="ts-footer-label">Grand Total</span>
-                <span class="ts-footer-value">${{ number_format($totalSelling, 2) }}</span>
+                <span class="ts-footer-value">{{ formatPrice($totalSelling) }}</span>
             </div>
         </div>
         @else

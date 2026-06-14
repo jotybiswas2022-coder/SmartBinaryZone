@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\PartnerController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SourceCodeController;
 use App\Http\Controllers\Backend\TotalSellController;
+use App\Http\Controllers\Backend\SettingsController;
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     // Dashboard
@@ -35,6 +36,10 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
     // Total Sell
     Route::get('/total-sell', [TotalSellController::class, 'index'])->name('admin.total-sell');
+
+    // Settings
+    Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings');
+    Route::post('/settings', [SettingsController::class, 'update'])->name('admin.settings.update');
 
     // Source Codes
     Route::get('/source-codes', [SourceCodeController::class, 'index'])->name('admin.source-codes.index');

@@ -114,6 +114,11 @@ function toggleSidebar() {
         </li>
     </ul>
     <div class="sidebar-footer">
+        <a href="{{ route('admin.settings') }}"
+           class="{{ request()->is('admin/settings*') ? 'active' : '' }} sidebar-settings-link">
+            <i class="bi bi-gear"></i>
+            <span>Settings</span>
+        </a>
         <span class="sidebar-version">Connectly v1.0</span>
     </div>
 </aside>
@@ -287,14 +292,45 @@ function toggleSidebar() {
     box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 .sidebar-footer {
-    padding: 14px 20px;
+    padding: 12px 14px;
     border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.sidebar-settings-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #94a3b8;
+    padding: 8px 12px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+.sidebar-settings-link i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.sidebar-settings-link:hover {
+    background: rgba(37,99,235,0.1);
+    color: #60A5FA;
+}
+.sidebar-settings-link.active {
+    background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(37,99,235,0.05));
+    color: #60A5FA;
+    border: 1px solid rgba(37,99,235,0.12);
 }
 .sidebar-version {
     font-size: 0.65rem;
     color: rgba(148,163,184,0.35);
     letter-spacing: 1px;
     text-transform: uppercase;
+    padding: 0 12px;
 }
 
 /* ─── Scrollbar ─── */
