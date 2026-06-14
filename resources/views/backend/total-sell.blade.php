@@ -279,30 +279,32 @@
 }
 .ts-items-header {
     display: grid;
-    grid-template-columns: 1fr 100px 80px 100px 50px 90px 100px;
+    grid-template-columns: minmax(140px, 1fr) 95px 75px 95px 48px 95px 105px;
     gap: 0;
-    padding: 12px 16px;
-    font-size: 11px;
+    padding: 10px 16px;
+    font-size: 10px;
     font-weight: 600;
     color: #94a3b8;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
     background: rgba(10,10,10,0.3);
     border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .ts-items-header > span {
     text-align: center;
+    white-space: nowrap;
 }
 .ts-h-item { text-align: left !important; }
+.ts-h-qty, .ts-h-price, .ts-h-total { text-align: right !important; }
 .ts-items-body {
     display: flex;
     flex-direction: column;
 }
 .ts-item-row {
     display: grid;
-    grid-template-columns: 1fr 100px 80px 100px 50px 90px 100px;
+    grid-template-columns: minmax(140px, 1fr) 95px 75px 95px 48px 95px 105px;
     gap: 0;
-    padding: 14px 16px;
+    padding: 12px 16px;
     font-size: 13px;
     align-items: center;
     border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -316,11 +318,19 @@
 }
 .ts-item-row > div {
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.ts-item-info { text-align: left !important; }
+.ts-item-info {
+    text-align: left !important;
+    white-space: normal !important;
+    overflow: visible !important;
+}
 .ts-item-name {
     font-weight: 600;
     color: #f1f5f9;
+    font-size: 13px;
 }
 .ts-item-date {
     color: #94a3b8;
@@ -334,13 +344,16 @@
 .ts-item-qty {
     font-weight: 700;
     color: #f1f5f9;
+    text-align: right !important;
 }
 .ts-item-price {
     color: #94a3b8;
+    text-align: right !important;
 }
 .ts-item-total {
     font-weight: 700;
     color: #10B981;
+    text-align: right !important;
 }
 .ts-items-footer {
     display: flex;
@@ -367,10 +380,11 @@
 /* ─── Badges ─── */
 .ts-badge {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 6px;
-    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 10px;
     font-weight: 600;
+    white-space: nowrap;
 }
 .ts-badge-product {
     background: rgba(16,185,129,0.1);
@@ -408,10 +422,10 @@
 /* ─── Responsive ─── */
 @media (max-width: 992px) {
     .ts-items-header {
-        grid-template-columns: 1fr 90px 70px 90px 45px 80px 90px;
+        grid-template-columns: minmax(120px, 1fr) 80px 65px 80px 42px 80px 90px;
     }
     .ts-item-row {
-        grid-template-columns: 1fr 90px 70px 90px 45px 80px 90px;
+        grid-template-columns: minmax(120px, 1fr) 80px 65px 80px 42px 80px 90px;
     }
 }
 @media (max-width: 768px) {
@@ -422,23 +436,33 @@
     .ts-items-header { display: none; }
     .ts-item-row {
         grid-template-columns: 1fr 1fr;
-        gap: 4px 12px;
-        padding: 12px 14px;
+        gap: 3px 12px;
+        padding: 10px 14px;
         border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .ts-item-row > div { text-align: left; }
     .ts-item-info { grid-column: 1 / -1; margin-bottom: 4px; }
-    .ts-item-date::before { content: "Date: "; color: #94a3b8; font-size: 11px; }
-    .ts-item-order::before { content: "Order: "; color: #94a3b8; font-size: 11px; }
-    .ts-item-qty::before { content: "Qty: "; color: #94a3b8; font-size: 11px; }
-    .ts-item-price::before { content: "Price: "; color: #94a3b8; font-size: 11px; }
-    .ts-item-total::before { content: "Total: "; color: #94a3b8; font-size: 11px; }
+    .ts-item-date::before { content: "Date: "; color: #94a3b8; font-size: 10px; }
+    .ts-item-order::before { content: "Order: "; color: #94a3b8; font-size: 10px; }
+    .ts-item-qty::before { content: "Qty: "; color: #94a3b8; font-size: 10px; }
+    .ts-item-price::before { content: "Price: "; color: #94a3b8; font-size: 10px; }
+    .ts-item-total::before { content: "Total: "; color: #94a3b8; font-size: 10px; }
+    .ts-item-qty { text-align: left !important; }
+    .ts-item-price { text-align: left !important; }
+    .ts-item-total { text-align: left !important; }
 }
 @media (max-width: 480px) {
     .ts-page { padding: 16px; }
     .ts-header { padding: 14px 16px; }
     .ts-summary-card { padding: 14px 16px; }
     .ts-summary-value { font-size: 17px; }
+    .ts-item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 2px 10px;
+        padding: 8px 12px;
+    }
+    .ts-item-name { font-size: 12px; }
+    .ts-item-row > div { font-size: 12px; }
 }
 </style>
 
